@@ -97,4 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a77f9ff2cd93d742ad6df431aa17418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UnitName: Scorpio Enemy
+  occupiedTile: {fileID: 0}
   Faction: 1

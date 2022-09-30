@@ -99,10 +99,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf024eac8af47a5478188790c6a23240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TileName: Path Tile
   _baseColor: {r: 0.2457333, g: 0.03146139, b: 0.9528302, a: 1}
   _offsetColor: {r: 0.08499462, g: 0.04160734, b: 0.5188679, a: 1}
   _renderer: {fileID: 4285864889213970467}
   _highlight: {fileID: 8355543931709103310}
+  occupiedUnit: {fileID: 0}
 --- !u!61 &426115762341940410
 BoxCollider2D:
   m_ObjectHideFlags: 0

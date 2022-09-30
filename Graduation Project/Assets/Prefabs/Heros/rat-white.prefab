@@ -97,5 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd7a42cf9122e384581bb392b24412fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UnitName: Rat Hero
   occupiedTile: {fileID: 0}
   Faction: 0

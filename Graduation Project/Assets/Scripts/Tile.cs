@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+    public string TileName;
     [SerializeField] private Color _baseColor, _offsetColor;
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private GameObject _highlight;
@@ -26,11 +27,41 @@ public class Tile : MonoBehaviour
     void OnMouseEnter()
     {
         _highlight.SetActive(true);
+        MenuManager.Instance.ShowTileInfo(this);
     }
 
     void OnMouseExit()
     {
         _highlight.SetActive(false);
+        MenuManager.Instance.ShowTileInfo(null);
+    }
+
+    void OnMouseDown()
+    {
+        if (GameManager.Instance.GameState != GameState.HerosTurn) return;
+
+        if (occupiedUnit != null)
+        {
+            if (occupiedUnit.Faction == Faction.Hero) UnitManager.Instance.SetSelectedHero((BaseHero)occupiedUnit);
+            else
+            {
+                if (UnitManager.Instance.SelectedHero != null)
+                {
+                    var enemy = (BaseEnemy)occupiedUnit;
+                    Destroy(enemy.gameObject);
+                    UnitManager.Instance.SetSelectedHero(null);
+                }
+            }
+        }
+        else
+        {
+            if (UnitManager.Instance.SelectedHero != null)
+            {
+                SetUnit(UnitManager.Instance.SelectedHero);
+                UnitManager.Instance.SetSelectedHero(null);
+            }
+        }
+
     }
 
     public void SetUnit (BaseUnit unit)

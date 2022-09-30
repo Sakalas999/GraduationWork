@@ -45,4 +45,10 @@ public class UnitManager : MonoBehaviour
     {
         return (T)_units.Where(u => u.Faction == faction).OrderBy(o => Random.value).First().UnitPrefab;
     }
+
+    public void SetSelectedHero(BaseHero hero)
+    {
+        SelectedHero = hero;
+        MenuManager.Instance.ShowSelectedHero(hero);
+    }
 }
