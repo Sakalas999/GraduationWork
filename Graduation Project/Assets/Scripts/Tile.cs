@@ -50,6 +50,8 @@ public class Tile : MonoBehaviour
                     var enemy = (BaseEnemy)occupiedUnit;
                     Destroy(enemy.gameObject);
                     UnitManager.Instance.SetSelectedHero(null);
+                    UnitManager.Instance.SetHerosTile(this);
+                    GameManager.Instance.ChangeState(GameState.EnemiesTurn);
                 }
             }
         }
@@ -59,6 +61,9 @@ public class Tile : MonoBehaviour
             {
                 SetUnit(UnitManager.Instance.SelectedHero);
                 UnitManager.Instance.SetSelectedHero(null);
+                UnitManager.Instance.SetHerosTile(this);
+                GameManager.Instance.ChangeState(GameState.EnemiesTurn);
+
             }
         }
 

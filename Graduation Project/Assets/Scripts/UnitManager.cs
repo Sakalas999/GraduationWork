@@ -10,6 +10,8 @@ public class UnitManager : MonoBehaviour
 
     private List<ScriptableUnit> _units;
     public BaseHero SelectedHero;
+    public Tile HerosTile;
+    public BaseEnemy Enemy;
 
     void Awake()
     {
@@ -27,6 +29,8 @@ public class UnitManager : MonoBehaviour
 
         randomSpawnTile.SetUnit(spawnedHero);
 
+        SetHerosTile(randomSpawnTile);
+
         GameManager.Instance.ChangeState(GameState.SpawnEnemies);
     }
 
@@ -37,6 +41,8 @@ public class UnitManager : MonoBehaviour
         var randomSpawnTile = GridManager.Instance.GetEnemySpawnTile();
 
         randomSpawnTile.SetUnit(spawnedEnemy);
+
+        Enemy = spawnedEnemy;
 
         GameManager.Instance.ChangeState(GameState.HerosTurn);
     }
@@ -50,5 +56,17 @@ public class UnitManager : MonoBehaviour
     {
         SelectedHero = hero;
         MenuManager.Instance.ShowSelectedHero(hero);
+    }
+
+    public void SetHerosTile(Tile tile)
+    {
+        HerosTile = tile;
+    }
+
+    public void EnemyMoves()
+    {
+        var hero = (BaseHero)HerosTile.occupiedUnit;
+        Destroy(hero.gameObject);
+        HerosTile.SetUnit(Enemy);
     }
 }
