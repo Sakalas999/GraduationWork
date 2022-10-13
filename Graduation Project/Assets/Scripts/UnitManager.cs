@@ -11,6 +11,7 @@ public class UnitManager : MonoBehaviour
     private List<ScriptableUnit> _units;
     public BaseHero SelectedHero;
     public Tile HerosTile;
+    public Tile EnemiesTile;
     public BaseEnemy Enemy;
 
     void Awake()
@@ -42,6 +43,8 @@ public class UnitManager : MonoBehaviour
 
         randomSpawnTile.SetUnit(spawnedEnemy);
 
+        SetEnemiesTile(randomSpawnTile);
+
         Enemy = spawnedEnemy;
 
         GameManager.Instance.ChangeState(GameState.HerosTurn);
@@ -63,10 +66,38 @@ public class UnitManager : MonoBehaviour
         HerosTile = tile;
     }
 
+    public void SetEnemiesTile(Tile tile)
+    {
+        EnemiesTile = tile;
+    }
+
     public void EnemyMoves()
     {
         var hero = (BaseHero)HerosTile.occupiedUnit;
-        Destroy(hero.gameObject);
-        HerosTile.SetUnit(Enemy);
+        var tile = GridManager.Instance.GetTileAtPosition(Enemy.Distance(HerosTile, EnemiesTile));
+        Debug.Log("distance" + tile.name);
+        if (tile.name != HerosTile.name)
+        {
+            tile.SetUnit(Enemy);
+            EnemiesTile = tile;
+            GameManager.Instance.ChangeState(GameState.HerosTurn);
+        }
+        else
+        {
+
+            Destroy(hero.gameObject);
+            HerosTile.SetUnit(Enemy);
+            EnemiesTile = HerosTile;
+            HerosTile = null;
+
+            if (HerosTile == null)
+            {
+                GameManager.Instance.ChangeState(GameState.BattleLost);
+            }
+            else
+            {
+                GameManager.Instance.ChangeState(GameState.HerosTurn);
+            }
+        }
     }
 }

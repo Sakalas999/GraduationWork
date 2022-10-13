@@ -35,7 +35,13 @@ public class GameManager : MonoBehaviour
             case GameState.HerosTurn:
                 break;
             case GameState.EnemiesTurn:
-                UnitManager.Instance.EnemyMoves();
+                 UnitManager.Instance.EnemyMoves();
+                break;
+            case GameState.BattleLost:
+                MenuManager.Instance.ShowBattleLostScreen();
+                break;
+            case GameState.BattleWon:
+                MenuManager.Instance.ShowBattleWonScreen();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
@@ -49,5 +55,7 @@ public enum GameState
     SpawnHeros = 1,
     SpawnEnemies = 2,
     HerosTurn = 3,
-    EnemiesTurn = 4
+    EnemiesTurn = 4,
+    BattleLost = 5,
+    BattleWon = 6
 }

@@ -26,8 +26,9 @@ public class Tile : MonoBehaviour
 
     void OnMouseEnter()
     {
-        _highlight.SetActive(true);
-        MenuManager.Instance.ShowTileInfo(this);
+        if (GameManager.Instance.GameState == GameState.BattleWon || GameManager.Instance.GameState == GameState.BattleLost) return;
+            _highlight.SetActive(true);
+            MenuManager.Instance.ShowTileInfo(this);
     }
 
     void OnMouseExit()
@@ -49,9 +50,18 @@ public class Tile : MonoBehaviour
                 {
                     var enemy = (BaseEnemy)occupiedUnit;
                     Destroy(enemy.gameObject);
+                    SetUnit(UnitManager.Instance.SelectedHero);
                     UnitManager.Instance.SetSelectedHero(null);
                     UnitManager.Instance.SetHerosTile(this);
-                    GameManager.Instance.ChangeState(GameState.EnemiesTurn);
+                    UnitManager.Instance.SetEnemiesTile(null);
+                    if (UnitManager.Instance.EnemiesTile != null)
+                    {
+                        GameManager.Instance.ChangeState(GameState.EnemiesTurn);
+                    }
+                    else 
+                    {
+                        GameManager.Instance.ChangeState(GameState.BattleWon);
+                    }
                 }
             }
         }
