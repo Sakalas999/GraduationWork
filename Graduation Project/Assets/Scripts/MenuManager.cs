@@ -37,7 +37,7 @@ public class MenuManager : MonoBehaviour
 
     public void ShowSelectedHero(BaseHero hero)
     {
-        if (hero == null ^ GameManager.Instance.GameState == GameState.BattleLost ^ GameManager.Instance.GameState == GameState.BattleWon)
+        if (hero == null || GameManager.Instance.GameState == GameState.BattleLost || GameManager.Instance.GameState == GameState.BattleWon)
         {
             _selectedHeroObject.SetActive(false);
             return;
@@ -73,5 +73,10 @@ public class MenuManager : MonoBehaviour
         _tileObject.SetActive(false);
         _tileUnitObject.SetActive(false);
         _selectedHeroObject.SetActive(false);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

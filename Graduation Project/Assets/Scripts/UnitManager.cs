@@ -64,6 +64,7 @@ public class UnitManager : MonoBehaviour
     public void SetHerosTile(Tile tile)
     {
         HerosTile = tile;
+
     }
 
     public void SetEnemiesTile(Tile tile)
@@ -75,7 +76,6 @@ public class UnitManager : MonoBehaviour
     {
         var hero = (BaseHero)HerosTile.occupiedUnit;
         var tile = GridManager.Instance.GetTileAtPosition(Enemy.Distance(HerosTile, EnemiesTile));
-        Debug.Log("distance" + tile.name);
         if (tile.name != HerosTile.name)
         {
             tile.SetUnit(Enemy);

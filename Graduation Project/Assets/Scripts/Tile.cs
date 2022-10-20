@@ -7,7 +7,7 @@ public class Tile : MonoBehaviour
     public string TileName;
     [SerializeField] private Color _baseColor, _offsetColor;
     [SerializeField] private SpriteRenderer _renderer;
-    [SerializeField] private GameObject _highlight;
+    [SerializeField] private GameObject _highlight, _available;
 
     public BaseUnit occupiedUnit;
     public bool walkable => occupiedUnit == null;
@@ -46,7 +46,7 @@ public class Tile : MonoBehaviour
             if (occupiedUnit.Faction == Faction.Hero) UnitManager.Instance.SetSelectedHero((BaseHero)occupiedUnit);
             else
             {
-                if (UnitManager.Instance.SelectedHero != null)
+                if (UnitManager.Instance.SelectedHero != null && DistanceX(this) <= 2 && DistanceY(this) <= 2 && DistanceY(this) + DistanceX(this) <= 2)
                 {
                     var enemy = (BaseEnemy)occupiedUnit;
                     Destroy(enemy.gameObject);
@@ -58,7 +58,7 @@ public class Tile : MonoBehaviour
                     {
                         GameManager.Instance.ChangeState(GameState.EnemiesTurn);
                     }
-                    else 
+                    else
                     {
                         GameManager.Instance.ChangeState(GameState.BattleWon);
                     }
@@ -67,7 +67,7 @@ public class Tile : MonoBehaviour
         }
         else
         {
-            if (UnitManager.Instance.SelectedHero != null)
+            if (UnitManager.Instance.SelectedHero != null && DistanceX(this) <= 2 && DistanceY(this) <= 2 && DistanceY(this) + DistanceX(this) <= 2)
             {
                 SetUnit(UnitManager.Instance.SelectedHero);
                 UnitManager.Instance.SetSelectedHero(null);
@@ -85,5 +85,15 @@ public class Tile : MonoBehaviour
         unit.transform.position = transform.position;
         occupiedUnit = unit;
         unit.occupiedTile = this;
+    }
+
+    public float DistanceX(Tile tile)
+    {
+        return Mathf.Abs(UnitManager.Instance.HerosTile.transform.position.x - tile.transform.position.x);
+    }
+
+    public float DistanceY(Tile tile)
+    {
+        return Mathf.Abs(UnitManager.Instance.HerosTile.transform.position.y - tile.transform.position.y);
     }
 }
