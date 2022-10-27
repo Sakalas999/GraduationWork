@@ -29,12 +29,24 @@ public class Tile : MonoBehaviour
         if (GameManager.Instance.GameState == GameState.BattleWon || GameManager.Instance.GameState == GameState.BattleLost) return;
             _highlight.SetActive(true);
             MenuManager.Instance.ShowTileInfo(this);
+
+        if (occupiedUnit != null)
+        {
+            UnitManager.Instance.HoveringOverACharacter(true);
+            UnitManager.Instance.GetAvailableTiles(this);
+        }
     }
 
     void OnMouseExit()
     {
         _highlight.SetActive(false);
         MenuManager.Instance.ShowTileInfo(null);
+
+        if (occupiedUnit != null)
+        {
+            UnitManager.Instance.HoveringOverACharacter(false);
+            UnitManager.Instance.GetAvailableTiles(this);
+        }
     }
 
     void OnMouseDown()
@@ -43,7 +55,11 @@ public class Tile : MonoBehaviour
 
         if (occupiedUnit != null)
         {
-            if (occupiedUnit.Faction == Faction.Hero) UnitManager.Instance.SetSelectedHero((BaseHero)occupiedUnit);
+            if (occupiedUnit.Faction == Faction.Hero)
+            {
+                UnitManager.Instance.SetSelectedHero((BaseHero)occupiedUnit);
+                UnitManager.Instance.GetAvailableTiles(this);
+            }
             else
             {
                 if (UnitManager.Instance.SelectedHero != null && DistanceX(this) <= 2 && DistanceY(this) <= 2 && DistanceY(this) + DistanceX(this) <= 2)
@@ -52,6 +68,7 @@ public class Tile : MonoBehaviour
                     Destroy(enemy.gameObject);
                     SetUnit(UnitManager.Instance.SelectedHero);
                     UnitManager.Instance.SetSelectedHero(null);
+                    UnitManager.Instance.GetAvailableTiles(UnitManager.Instance.HerosTile);
                     UnitManager.Instance.SetHerosTile(this);
                     UnitManager.Instance.SetEnemiesTile(null);
                     if (UnitManager.Instance.EnemiesTile != null)
@@ -71,6 +88,7 @@ public class Tile : MonoBehaviour
             {
                 SetUnit(UnitManager.Instance.SelectedHero);
                 UnitManager.Instance.SetSelectedHero(null);
+                UnitManager.Instance.GetAvailableTiles(UnitManager.Instance.HerosTile);
                 UnitManager.Instance.SetHerosTile(this);
                 GameManager.Instance.ChangeState(GameState.EnemiesTurn);
 
@@ -95,5 +113,15 @@ public class Tile : MonoBehaviour
     public float DistanceY(Tile tile)
     {
         return Mathf.Abs(UnitManager.Instance.HerosTile.transform.position.y - tile.transform.position.y);
+    }
+
+    public void ShowAvailableTiles()
+    {
+        _available.SetActive(true);
+    }
+
+    public void DisablleAvailableTiles()
+    {
+        _available.SetActive(false);
     }
 }
