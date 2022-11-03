@@ -9,7 +9,6 @@ public class UnitManager : MonoBehaviour
     public static UnitManager Instance;
 
     private List<ScriptableUnit> _units;
-    private bool isHovering;
 
     public BaseHero SelectedHero;
     public Tile HerosTile;
@@ -63,11 +62,6 @@ public class UnitManager : MonoBehaviour
         MenuManager.Instance.ShowSelectedHero(hero);
     }
 
-    public bool HoveringOverACharacter(bool isHoveringOver)
-    {
-        return isHovering = isHoveringOver;
-    }
-
     public void SetHerosTile(Tile tile)
     {
         HerosTile = tile;
@@ -108,14 +102,14 @@ public class UnitManager : MonoBehaviour
         }
     }
 
-    public  void GetAvailableTiles(Tile tile)
+    public void GetAvailableTiles(Tile tile, bool showTiles)
     {
         for (int i = 1; i < 3; i++)
         {
-            for(int j = 1; j < 3; j++)
+            for (int j = 1; j < 3; j++)
             {
                 Tile _tileUp = GridManager.Instance.GetTileAtPosition(new Vector2(Mathf.RoundToInt(tile.transform.position.x), Mathf.RoundToInt(tile.transform.position.y + j)));
-                if (_tileUp != null && (SelectedHero != null || isHovering))
+                if (_tileUp != null && showTiles)
                 {
                     _tileUp.ShowAvailableTiles();
                 }
@@ -125,7 +119,7 @@ public class UnitManager : MonoBehaviour
                 }
 
                 Tile _tileDown = GridManager.Instance.GetTileAtPosition(new Vector2(Mathf.RoundToInt(tile.transform.position.x), Mathf.RoundToInt(tile.transform.position.y - j)));
-                if(_tileDown != null && (SelectedHero != null || isHovering))
+                if (_tileDown != null && showTiles)
                 {
                     _tileDown.ShowAvailableTiles();
                 }
@@ -135,7 +129,7 @@ public class UnitManager : MonoBehaviour
                 }
 
                 Tile _tileLeft = GridManager.Instance.GetTileAtPosition(new Vector2(Mathf.RoundToInt(tile.transform.position.x - i), Mathf.RoundToInt(tile.transform.position.y)));
-                if(_tileLeft != null && (SelectedHero != null || isHovering))
+                if (_tileLeft != null && showTiles)
                 {
                     _tileLeft.ShowAvailableTiles();
                 }
@@ -145,7 +139,7 @@ public class UnitManager : MonoBehaviour
                 }
 
                 Tile _tileRight = GridManager.Instance.GetTileAtPosition(new Vector2(Mathf.RoundToInt(tile.transform.position.x + i), Mathf.RoundToInt(tile.transform.position.y)));
-                if(_tileRight != null && (SelectedHero != null || isHovering))
+                if (_tileRight != null && showTiles)
                 {
                     _tileRight.ShowAvailableTiles();
                 }
@@ -157,7 +151,7 @@ public class UnitManager : MonoBehaviour
         }
 
         Tile _tileDiagonallyUpR = GridManager.Instance.GetTileAtPosition(new Vector2(Mathf.RoundToInt(tile.transform.position.x + 1), Mathf.RoundToInt(tile.transform.position.y + 1)));
-        if (_tileDiagonallyUpR != null && (SelectedHero != null || isHovering))
+        if (_tileDiagonallyUpR != null && showTiles)
         {
             _tileDiagonallyUpR.ShowAvailableTiles();
         }
@@ -167,7 +161,7 @@ public class UnitManager : MonoBehaviour
         }
 
         Tile _tileDiagonallyUpL = GridManager.Instance.GetTileAtPosition(new Vector2(Mathf.RoundToInt(tile.transform.position.x - 1), Mathf.RoundToInt(tile.transform.position.y + 1)));
-        if (_tileDiagonallyUpL != null && (SelectedHero != null || isHovering))
+        if (_tileDiagonallyUpL != null && showTiles)
         {
             _tileDiagonallyUpL.ShowAvailableTiles();
         }
@@ -177,7 +171,7 @@ public class UnitManager : MonoBehaviour
         }
 
         Tile _tileDiagonallyDownR = GridManager.Instance.GetTileAtPosition(new Vector2(Mathf.RoundToInt(tile.transform.position.x + 1), Mathf.RoundToInt(tile.transform.position.y - 1)));
-        if (_tileDiagonallyDownR != null && (SelectedHero != null || isHovering))
+        if (_tileDiagonallyDownR != null && showTiles)
         {
             _tileDiagonallyDownR.ShowAvailableTiles();
         }
@@ -187,7 +181,7 @@ public class UnitManager : MonoBehaviour
         }
 
         Tile _tileDiagonallyDownL = GridManager.Instance.GetTileAtPosition(new Vector2(Mathf.RoundToInt(tile.transform.position.x - 1), Mathf.RoundToInt(tile.transform.position.y - 1)));
-        if (_tileDiagonallyDownL != null && (SelectedHero != null || isHovering))
+        if (_tileDiagonallyDownL != null && showTiles)
         {
             _tileDiagonallyDownL.ShowAvailableTiles();
         }

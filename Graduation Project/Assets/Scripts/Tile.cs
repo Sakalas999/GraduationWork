@@ -32,8 +32,7 @@ public class Tile : MonoBehaviour
 
         if (occupiedUnit != null)
         {
-            UnitManager.Instance.HoveringOverACharacter(true);
-            UnitManager.Instance.GetAvailableTiles(this);
+            UnitManager.Instance.GetAvailableTiles(this, true);
         }
     }
 
@@ -44,8 +43,13 @@ public class Tile : MonoBehaviour
 
         if (occupiedUnit != null)
         {
-            UnitManager.Instance.HoveringOverACharacter(false);
-            UnitManager.Instance.GetAvailableTiles(this);
+            if (occupiedUnit.Faction == Faction.Hero && UnitManager.Instance.SelectedHero != null) return;
+            else
+            {
+
+
+                UnitManager.Instance.GetAvailableTiles(this, false);
+            }
         }
     }
 
@@ -58,7 +62,7 @@ public class Tile : MonoBehaviour
             if (occupiedUnit.Faction == Faction.Hero)
             {
                 UnitManager.Instance.SetSelectedHero((BaseHero)occupiedUnit);
-                UnitManager.Instance.GetAvailableTiles(this);
+                UnitManager.Instance.GetAvailableTiles(this, true);
             }
             else
             {
@@ -68,7 +72,7 @@ public class Tile : MonoBehaviour
                     Destroy(enemy.gameObject);
                     SetUnit(UnitManager.Instance.SelectedHero);
                     UnitManager.Instance.SetSelectedHero(null);
-                    UnitManager.Instance.GetAvailableTiles(UnitManager.Instance.HerosTile);
+                    UnitManager.Instance.GetAvailableTiles(UnitManager.Instance.HerosTile, false);
                     UnitManager.Instance.SetHerosTile(this);
                     UnitManager.Instance.SetEnemiesTile(null);
                     if (UnitManager.Instance.EnemiesTile != null)
@@ -88,7 +92,7 @@ public class Tile : MonoBehaviour
             {
                 SetUnit(UnitManager.Instance.SelectedHero);
                 UnitManager.Instance.SetSelectedHero(null);
-                UnitManager.Instance.GetAvailableTiles(UnitManager.Instance.HerosTile);
+                UnitManager.Instance.GetAvailableTiles(UnitManager.Instance.HerosTile, false);
                 UnitManager.Instance.SetHerosTile(this);
                 GameManager.Instance.ChangeState(GameState.EnemiesTurn);
 
