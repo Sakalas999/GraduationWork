@@ -22,7 +22,6 @@ public class UnitManager : MonoBehaviour
         _units = Resources.LoadAll<ScriptableUnit>("Units").ToList();
 
     }
-
     public void SpawnHeros()
     {
         var randomPrefab = GetRandomUnit<BaseHero>(Faction.Hero);
@@ -76,29 +75,46 @@ public class UnitManager : MonoBehaviour
     public void EnemyMoves()
     {
         var hero = (BaseHero)HerosTile.occupiedUnit;
+        bool isClose = false;
+
+        Vector2 heroPosition = new Vector2(HerosTile.transform.position.x, HerosTile.transform.position.y);
+        Vector2 enemyPosition = new Vector2(EnemiesTile.transform.position.x, EnemiesTile.transform.position.y);
+
+        if (Mathf.Abs(Vector2.Distance(heroPosition, enemyPosition)) == 1)
+        {
+            hero.TakeDamage();
+            isClose = true;
+            GameManager.Instance.ChangeState(GameState.HerosTurn);
+        }
+        else
+        {
+            isClose = false;
+        }
+
         var tile = GridManager.Instance.GetTileAtPosition(Enemy.Distance(HerosTile, EnemiesTile));
-        if (tile.name != HerosTile.name)
+        if (tile.name != HerosTile.name && !isClose)
         {
             tile.SetUnit(Enemy);
             EnemiesTile = tile;
             GameManager.Instance.ChangeState(GameState.HerosTurn);
         }
-        else
+        
+        if(hero.Health <= 0)
         {
 
             Destroy(hero.gameObject);
             HerosTile.SetUnit(Enemy);
             EnemiesTile = HerosTile;
-            HerosTile = null;
+            HerosTile = null;     
+        }
 
-            if (HerosTile == null)
-            {
-                GameManager.Instance.ChangeState(GameState.BattleLost);
-            }
-            else
-            {
-                GameManager.Instance.ChangeState(GameState.HerosTurn);
-            }
+        if (HerosTile == null)
+        {
+            GameManager.Instance.ChangeState(GameState.BattleLost);
+        }
+        else
+        {
+            GameManager.Instance.ChangeState(GameState.HerosTurn);
         }
     }
 

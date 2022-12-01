@@ -69,12 +69,22 @@ public class Tile : MonoBehaviour
                 if (UnitManager.Instance.SelectedHero != null && DistanceX(this) <= 2 && DistanceY(this) <= 2 && DistanceY(this) + DistanceX(this) <= 2)
                 {
                     var enemy = (BaseEnemy)occupiedUnit;
-                    Destroy(enemy.gameObject);
-                    SetUnit(UnitManager.Instance.SelectedHero);
-                    UnitManager.Instance.SetSelectedHero(null);
-                    UnitManager.Instance.GetAvailableTiles(UnitManager.Instance.HerosTile, false);
-                    UnitManager.Instance.SetHerosTile(this);
-                    UnitManager.Instance.SetEnemiesTile(null);
+                    occupiedUnit.TakeDamage();
+
+                    if (occupiedUnit.Health <= 0)
+                    {
+                        Destroy(enemy.gameObject);
+
+                        SetUnit(UnitManager.Instance.SelectedHero);
+                        UnitManager.Instance.SetSelectedHero(null);
+                        UnitManager.Instance.GetAvailableTiles(UnitManager.Instance.HerosTile, false);
+                        UnitManager.Instance.SetHerosTile(this);
+                        UnitManager.Instance.SetEnemiesTile(null);
+                     }
+
+                     UnitManager.Instance.SetSelectedHero(null);
+                     UnitManager.Instance.GetAvailableTiles(UnitManager.Instance.HerosTile, false);
+
                     if (UnitManager.Instance.EnemiesTile != null)
                     {
                         GameManager.Instance.ChangeState(GameState.EnemiesTurn);
