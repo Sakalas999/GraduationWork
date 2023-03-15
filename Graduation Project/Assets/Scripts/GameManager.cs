@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
         {
             case GameState.GenerateGrid:
                 GridManager.Instance.GenerateGrid();
+                MenuManager.Instance.UpdateCurrencyDisplay();
                 break;
             case GameState.SpawnHeros:
                 UnitManager.Instance.SpawnHeros();
@@ -38,9 +39,15 @@ public class GameManager : MonoBehaviour
                  UnitManager.Instance.EnemyMoves();
                 break;
             case GameState.BattleLost:
+                CurrencyManager.cheese = 0;
+                CurrencyManager.UpdateCheese();
+                MenuManager.Instance.UpdateCurrencyDisplay();
                 MenuManager.Instance.ShowBattleLostScreen();
                 break;
             case GameState.BattleWon:
+                CurrencyManager.cheese += 5;
+                CurrencyManager.UpdateCheese();
+                MenuManager.Instance.UpdateCurrencyDisplay();
                 MenuManager.Instance.ShowBattleWonScreen();
                 break;
             default:
