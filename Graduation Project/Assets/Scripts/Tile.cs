@@ -61,35 +61,79 @@ public class Tile : MonoBehaviour
         {
             if (occupiedUnit.Faction == Faction.Hero)
             {
-                UnitManager.Instance.SetSelectedHero((BaseHero)occupiedUnit);
+                UnitManager.Instance.SetSelectedHero((BaseHero)occupiedUnit, this);
                 UnitManager.Instance.GetAvailableTiles(this, true);
             }
             else
             {
-                if (UnitManager.Instance.SelectedHero != null && DistanceX(this) <= 2 && DistanceY(this) <= 2 && DistanceY(this) + DistanceX(this) <= 2)
+                if (UnitManager.Instance.SelectedHero != null && DistanceX(this) <= 2 && DistanceY(this) <= 2 && DistanceY(this) + DistanceX(this) <= 2
+                    && !UnitManager.Instance.MovedHeroUnits[UnitManager.Instance.SelectedHeroIndex])
                 {
                     var enemy = (BaseEnemy)occupiedUnit;
+                    int index = 0;
                     occupiedUnit.TakeDamage();
 
                     if (occupiedUnit.Health <= 0)
                     {
-                        Destroy(enemy.gameObject);
+                        for (int i = 0; i < UnitManager.Instance.EnemyAmount; i++)
+                        {
+                            if( UnitManager.Instance.EnemiesTile[i] != null &&this.name == UnitManager.Instance.EnemiesTile[i].name)
+                            {
+                                index = i;
+                            }
+                        }
 
+                        Destroy(enemy.gameObject);
                         SetUnit(UnitManager.Instance.SelectedHero);
-                        UnitManager.Instance.SetSelectedHero(null);
-                        UnitManager.Instance.GetAvailableTiles(UnitManager.Instance.HerosTile, false);
-                        UnitManager.Instance.SetHerosTile(this);
-                        UnitManager.Instance.SetEnemiesTile(null);
+                        UnitManager.Instance.UpdateEnemyUnitAmount(-1);
+
+                        UnitManager.Instance.GetAvailableTiles(UnitManager.Instance.HerosTile[UnitManager.Instance.SelectedHeroIndex], false);
+                        UnitManager.Instance.SetHerosTile(this, UnitManager.Instance.SelectedHeroIndex);                       
+                        UnitManager.Instance.SetSelectedHero(null, null);
+                        UnitManager.Instance.SetEnemiesTile(null, index);
+                        UnitManager.Instance.Enemy[index] = null;
                      }
 
-                     UnitManager.Instance.SetSelectedHero(null);
-                     UnitManager.Instance.GetAvailableTiles(UnitManager.Instance.HerosTile, false);
+                    UnitManager.Instance.UpdateHeroMovementAvailability(UnitManager.Instance.SelectedHeroIndex, true);
+                    UnitManager.Instance.GetAvailableTiles(UnitManager.Instance.HerosTile[UnitManager.Instance.SelectedHeroIndex], false);
+                     UnitManager.Instance.SetSelectedHero(null, null);
 
-                    if (UnitManager.Instance.EnemiesTile != null)
+                    int countEnemies = 0;
+                    for (int i = 0; i < UnitManager.Instance.EnemyAmount; i++)
+                    {
+                        if (UnitManager.Instance.EnemiesTile[i] != null)
+                        {
+                            countEnemies++;
+                        }
+                    }
+
+                    int countHeros = 0;
+                    for (int i = 0; i < UnitManager.Instance.HeroAmount; i++)
+                    {
+                        if (UnitManager.Instance.HerosTile[i] != null)
+                        {
+                            countHeros++;
+                        }
+                    }
+
+                    int countMovedUnits = 0;
+                    for (int i = 0; i < UnitManager.Instance.HeroAmount; i++)
+                    {
+                        if(UnitManager.Instance.MovedHeroUnits[i])
+                        {
+                            countMovedUnits++;
+                        }
+                    }
+
+                    if (countEnemies != 0 && (countMovedUnits == UnitManager.Instance.HeroAmount || countMovedUnits == countHeros))
                     {
                         GameManager.Instance.ChangeState(GameState.EnemiesTurn);
+                        for (int i = 0; i < UnitManager.Instance.EnemyAmount; i++)
+                        {
+                            UnitManager.Instance.UpdateEnemyMovementAvailability(i, false);
+                        }
                     }
-                    else
+                    if (countEnemies == 0)
                     {
                         GameManager.Instance.ChangeState(GameState.BattleWon);
                     }
@@ -98,14 +142,50 @@ public class Tile : MonoBehaviour
         }
         else
         {
-            if (UnitManager.Instance.SelectedHero != null && DistanceX(this) <= 2 && DistanceY(this) <= 2 && DistanceY(this) + DistanceX(this) <= 2)
+            if (UnitManager.Instance.SelectedHero != null && DistanceX(this) <= 2 && DistanceY(this) <= 2 && DistanceY(this) + DistanceX(this) <= 2
+                && !UnitManager.Instance.MovedHeroUnits[UnitManager.Instance.SelectedHeroIndex])
             {
                 SetUnit(UnitManager.Instance.SelectedHero);
-                UnitManager.Instance.SetSelectedHero(null);
-                UnitManager.Instance.GetAvailableTiles(UnitManager.Instance.HerosTile, false);
-                UnitManager.Instance.SetHerosTile(this);
-                GameManager.Instance.ChangeState(GameState.EnemiesTurn);
+                UnitManager.Instance.GetAvailableTiles(UnitManager.Instance.HerosTile[UnitManager.Instance.SelectedHeroIndex], false);
+                UnitManager.Instance.SetHerosTile(this, UnitManager.Instance.SelectedHeroIndex);
+                UnitManager.Instance.UpdateHeroMovementAvailability(UnitManager.Instance.SelectedHeroIndex, true);
+                UnitManager.Instance.SetSelectedHero(null, null);
 
+                int countEnemies = 0;
+                for (int i = 0; i < UnitManager.Instance.EnemyAmount; i++)
+                {
+                    if (UnitManager.Instance.EnemiesTile[i] != null)
+                    {
+                        countEnemies++;
+                    }
+                }
+
+                int countHeros = 0;
+                for (int i = 0; i < UnitManager.Instance.HeroAmount; i++)
+                {
+                    if (UnitManager.Instance.HerosTile[i] != null)
+                    {
+                        countHeros++;
+                    }
+                }
+
+                int countMovedUnits = 0;
+                for (int i = 0; i < UnitManager.Instance.HeroAmount; i++)
+                {
+                    if (UnitManager.Instance.MovedHeroUnits[i])
+                    {
+                        countMovedUnits++;
+                    }
+                }
+
+                if (countEnemies != 0 && (countMovedUnits == UnitManager.Instance.HeroAmount || countMovedUnits == countHeros))
+                {
+                    GameManager.Instance.ChangeState(GameState.EnemiesTurn);
+                    for (int i = 0; i < UnitManager.Instance.EnemyAmount; i++)
+                    {
+                        UnitManager.Instance.UpdateEnemyMovementAvailability(i, false);
+                    }
+                }
             }
         }
 
@@ -121,12 +201,12 @@ public class Tile : MonoBehaviour
 
     public float DistanceX(Tile tile)
     {
-        return Mathf.Abs(UnitManager.Instance.HerosTile.transform.position.x - tile.transform.position.x);
+        return Mathf.Abs(UnitManager.Instance.HerosTile[UnitManager.Instance.SelectedHeroIndex].transform.position.x - tile.transform.position.x);
     }
 
     public float DistanceY(Tile tile)
     {
-        return Mathf.Abs(UnitManager.Instance.HerosTile.transform.position.y - tile.transform.position.y);
+        return Mathf.Abs(UnitManager.Instance.HerosTile[UnitManager.Instance.SelectedHeroIndex].transform.position.y - tile.transform.position.y);
     }
 
     public void ShowAvailableTiles()

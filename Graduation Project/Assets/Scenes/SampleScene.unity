@@ -1078,10 +1078,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ce893eaa0884d43bb6c8017f4ff50e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HeroAmount: 2
+  EnemyAmount: 3
+  SelectedHeroIndex: 0
+  MovedHeroUnits: 
+  MovedEnemyUnits: 
   SelectedHero: {fileID: 0}
-  HerosTile: {fileID: 0}
-  EnemiesTile: {fileID: 0}
-  Enemy: {fileID: 0}
+  HerosTile: []
+  EnemiesTile: []
+  Enemy: []
 --- !u!1 &1093427729
 GameObject:
   m_ObjectHideFlags: 0

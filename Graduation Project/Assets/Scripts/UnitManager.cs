@@ -10,10 +10,17 @@ public class UnitManager : MonoBehaviour
 
     private List<ScriptableUnit> _units;
 
+    public int HeroAmount;
+    public int EnemyAmount;
+    public int SelectedHeroIndex;
+    public bool[] MovedHeroUnits;
+    public bool[] MovedEnemyUnits;
     public BaseHero SelectedHero;
-    public Tile HerosTile;
-    public Tile EnemiesTile;
-    public BaseEnemy Enemy;
+    public Tile[] HerosTile;
+    public Tile[] EnemiesTile;
+    public BaseEnemy[] Enemy;
+
+    private int EnemyLeft;
 
     void Awake()
     {
@@ -21,31 +28,48 @@ public class UnitManager : MonoBehaviour
 
         _units = Resources.LoadAll<ScriptableUnit>("Units").ToList();
 
+        HerosTile = new Tile[HeroAmount];
+        EnemiesTile = new Tile[EnemyAmount];
+        MovedHeroUnits = new bool[HeroAmount];
+        MovedEnemyUnits = new bool[EnemyAmount];
+        Enemy = new BaseEnemy[EnemyAmount];
+
+        EnemyLeft = EnemyAmount;
+
     }
     public void SpawnHeros()
     {
-        var randomPrefab = GetRandomUnit<BaseHero>(Faction.Hero);
-        var spawnedHero = Instantiate(randomPrefab);
-        var randomSpawnTile = GridManager.Instance.GetHeroSpawnTile();
+        for (int i = 0; i < HeroAmount; i++)
+        {
+            var randomPrefab = GetRandomUnit<BaseHero>(Faction.Hero);
+            var spawnedHero = Instantiate(randomPrefab);
+            var randomSpawnTile = GridManager.Instance.GetHeroSpawnTile();
 
-        randomSpawnTile.SetUnit(spawnedHero);
+            randomSpawnTile.SetUnit(spawnedHero);
 
-        SetHerosTile(randomSpawnTile);
+            SetHerosTile(randomSpawnTile, i);
+
+            UpdateHeroMovementAvailability(i, false);
+        }
 
         GameManager.Instance.ChangeState(GameState.SpawnEnemies);
     }
 
     public void SpawnEnemies()
     {
-        var randomPrefab = GetRandomUnit<BaseEnemy>(Faction.Enemy);
-        var spawnedEnemy = Instantiate(randomPrefab);
-        var randomSpawnTile = GridManager.Instance.GetEnemySpawnTile();
+        for (int i = 0; i < EnemyAmount; i++)
+        {
+            var randomPrefab = GetRandomUnit<BaseEnemy>(Faction.Enemy);
+            var spawnedEnemy = Instantiate(randomPrefab);
+            var randomSpawnTile = GridManager.Instance.GetEnemySpawnTile();
 
-        randomSpawnTile.SetUnit(spawnedEnemy);
+            randomSpawnTile.SetUnit(spawnedEnemy);
 
-        SetEnemiesTile(randomSpawnTile);
+            SetEnemiesTile(randomSpawnTile, i);
+            UpdateEnemyMovementAvailability(i, false);
 
-        Enemy = spawnedEnemy;
+            Enemy[i] = spawnedEnemy;
+        }
 
         GameManager.Instance.ChangeState(GameState.HerosTurn);
     }
@@ -55,67 +79,177 @@ public class UnitManager : MonoBehaviour
         return (T)_units.Where(u => u.Faction == faction).OrderBy(o => Random.value).First().UnitPrefab;
     }
 
-    public void SetSelectedHero(BaseHero hero)
+    public void SetSelectedHero(BaseHero hero, Tile tile)
     {
         SelectedHero = hero;
         MenuManager.Instance.ShowSelectedHero(hero);
+
+        if (tile != null)
+        {
+            for (int i = 0; i < HeroAmount; i++)
+            {
+                if (HerosTile[i] != null && tile.name == HerosTile[i].name)
+                {
+                    SelectedHeroIndex = i;
+                }
+            }
+        }
     }
 
-    public void SetHerosTile(Tile tile)
+    public void SetHerosTile(Tile tile, int i)
     {
-        HerosTile = tile;
+        HerosTile[i] = tile;
 
     }
 
-    public void SetEnemiesTile(Tile tile)
+    public void SetEnemiesTile(Tile tile, int i)
     {
-        EnemiesTile = tile;
+        EnemiesTile[i] = tile;
+    }
+
+    public void UpdateEnemyUnitAmount(int amount)
+    {
+        EnemyLeft += amount;
     }
 
     public void EnemyMoves()
     {
-        var hero = (BaseHero)HerosTile.occupiedUnit;
-        bool isClose = false;
+        for (int i = 0; i < EnemyAmount; i++)
+        {
+            if (EnemiesTile[i] != null)
+            {
+                int closestIndex = 0;
+                float[] distance = new float[HeroAmount];
 
-        Vector2 heroPosition = new Vector2(HerosTile.transform.position.x, HerosTile.transform.position.y);
-        Vector2 enemyPosition = new Vector2(EnemiesTile.transform.position.x, EnemiesTile.transform.position.y);
+            
+                for (int j = 0; j < HeroAmount; j++)
+                {
+                    if (HerosTile[j] != null)
+                    {
+                        distance[j] = Vector2.Distance(HerosTile[j].transform.position, EnemiesTile[i].transform.position);
 
-        if (Mathf.Abs(Vector2.Distance(heroPosition, enemyPosition)) == 1)
-        {
-            hero.TakeDamage();
-            isClose = true;
-            GameManager.Instance.ChangeState(GameState.HerosTurn);
-        }
-        else
-        {
-            isClose = false;
-        }
+                        if (distance[j] < distance[closestIndex])
+                        {
+                            closestIndex = j;
+                        }
+                    }
+                }
 
-        var tile = GridManager.Instance.GetTileAtPosition(Enemy.Distance(HerosTile, EnemiesTile));
-        if (tile.name != HerosTile.name && !isClose)
-        {
-            tile.SetUnit(Enemy);
-            EnemiesTile = tile;
-            GameManager.Instance.ChangeState(GameState.HerosTurn);
-        }
-        
-        if(hero.Health <= 0)
-        {
 
-            Destroy(hero.gameObject);
-            HerosTile.SetUnit(Enemy);
-            EnemiesTile = HerosTile;
-            HerosTile = null;     
-        }
+                var hero = (BaseHero)HerosTile[closestIndex].occupiedUnit;
 
-        if (HerosTile == null)
-        {
-            GameManager.Instance.ChangeState(GameState.BattleLost);
+                Vector2 heroPosition = new Vector2(HerosTile[closestIndex].transform.position.x, HerosTile[closestIndex].transform.position.y);
+                Vector2 enemyPosition = new Vector2(EnemiesTile[i].transform.position.x, EnemiesTile[i].transform.position.y);
+
+                if (Mathf.Abs(Vector2.Distance(heroPosition, enemyPosition)) == 1)
+                {
+                    hero.TakeDamage();
+                    UpdateEnemyMovementAvailability(i, true);
+
+                    int countMovedUnits = 0;
+                    for (int j = 0; j < EnemyAmount; j++)
+                    {
+                        if (MovedEnemyUnits[j])
+                        {
+                            countMovedUnits++;
+                        }
+                    }
+
+                    if (countMovedUnits == EnemyAmount)
+                    {
+                        GameManager.Instance.ChangeState(GameState.HerosTurn);
+                        for (int j = 0; j < HeroAmount; j++)
+                        {
+                            UpdateHeroMovementAvailability(j, false);
+                        }
+                    }
+                }
+
+                var tile = GridManager.Instance.GetTileAtPosition(Enemy[i].Distance(HerosTile[closestIndex], EnemiesTile[i]));
+                if (tile.occupiedUnit == null && tile !=null)
+                {
+                    tile.SetUnit(Enemy[i]);
+                    EnemiesTile[i] = tile;
+                    UpdateEnemyMovementAvailability(i, true);
+
+                    int countMovedUnits = 0;
+                    for (int j = 0; j < EnemyAmount; j++)
+                    {
+                        if (MovedEnemyUnits[j])
+                        {
+                            countMovedUnits++;
+                        }
+                    }
+
+                    if (countMovedUnits == EnemyAmount)
+                    {
+                        GameManager.Instance.ChangeState(GameState.HerosTurn);
+                        for (int j = 0; j < HeroAmount; j++)
+                        {
+                            UpdateHeroMovementAvailability(j, false);
+                        }
+                    }
+                }
+                else
+                {
+                    UpdateEnemyMovementAvailability(i, true);
+                }
+
+                if (hero.Health <= 0)
+                {
+
+                    Destroy(hero.gameObject);
+                    HerosTile[closestIndex].SetUnit(Enemy[i]);
+                    EnemiesTile[i] = HerosTile[closestIndex];
+                    HerosTile[closestIndex] = null;
+                    UpdateEnemyMovementAvailability(i, true);
+                }
+
+                int countHeros = 0;
+                for (int j = 0; j < HeroAmount; j++)
+                {
+                    if (HerosTile[j] != null)
+                    {
+                        countHeros++;
+                    }
+                }
+
+                if (countHeros == 0)
+                {
+                    GameManager.Instance.ChangeState(GameState.BattleLost);
+                }
+                else
+                {
+                    int countMovedUnits = 0;
+                    for (int j = 0; j < EnemyAmount; j++)
+                    {
+                        if (MovedEnemyUnits[j])
+                        {
+                            countMovedUnits++;
+                        }
+                    }
+
+                    if (countMovedUnits == EnemyLeft || countMovedUnits == countHeros)
+                    {
+                        GameManager.Instance.ChangeState(GameState.HerosTurn);
+                        for (int j = 0; j < HeroAmount; j++)
+                        {
+                            UpdateHeroMovementAvailability(j, false);
+                        }
+                    }
+                }
+            }
         }
-        else
-        {
-            GameManager.Instance.ChangeState(GameState.HerosTurn);
-        }
+    }
+
+    public void UpdateHeroMovementAvailability(int i, bool wasItMoved)
+    {
+        MovedHeroUnits[i] = wasItMoved;
+    }
+
+    public void UpdateEnemyMovementAvailability(int i, bool wasItMoved)
+    {
+        MovedEnemyUnits[i] = wasItMoved;
     }
 
     public void GetAvailableTiles(Tile tile, bool showTiles)
