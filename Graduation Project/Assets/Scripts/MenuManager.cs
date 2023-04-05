@@ -15,6 +15,7 @@ public class MenuManager : MonoBehaviour
         Instance = this;
     }
 
+    //Shows tile name
     public void ShowTileInfo(Tile tile)
     {
 
@@ -35,6 +36,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    //Shows selected hero's name
     public void ShowSelectedHero(BaseHero hero)
     {
         if (hero == null || GameManager.Instance.GameState == GameState.BattleLost || GameManager.Instance.GameState == GameState.BattleWon)
@@ -47,6 +49,7 @@ public class MenuManager : MonoBehaviour
         _selectedHeroObject.SetActive(true);
     }
 
+    //Shows a battle lost scene
     public void ShowBattleLostScreen()
     {
         if (GameManager.Instance.GameState != GameState.BattleLost)
@@ -61,6 +64,7 @@ public class MenuManager : MonoBehaviour
         _selectedHeroObject.SetActive(false);
     }
 
+    //Shows a battle won scene
     public void ShowBattleWonScreen()
     {
         if (GameManager.Instance.GameState != GameState.BattleWon)
@@ -75,6 +79,7 @@ public class MenuManager : MonoBehaviour
         _selectedHeroObject.SetActive(false);
     }
 
+    //Displays Currency
     public void UpdateCurrencyDisplay()
     {
         TextMeshProUGUI text = _currencyDisplay.GetComponent<TextMeshProUGUI>();

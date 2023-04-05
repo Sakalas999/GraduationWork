@@ -7,6 +7,7 @@ public class BaseUnit : MonoBehaviour
     public string UnitName;
     public Tile occupiedTile;
     public Faction Faction;
+    public Type Type;
     public float Health;
     public float BaseHealth;
 
@@ -18,9 +19,9 @@ public class BaseUnit : MonoBehaviour
         _healthBar.UpdateHealthBar(BaseHealth, Health);
     }
 
-    public void TakeDamage()
+    public void TakeDamage(int multiply)
     {
-        Health -= 10f;
+        Health -= 10f * multiply;
         _healthBar.UpdateHealthBar(BaseHealth, Health);
     }
 }

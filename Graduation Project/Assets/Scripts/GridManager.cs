@@ -22,6 +22,7 @@ public class GridManager : MonoBehaviour
         Instance = this;
     }
 
+    //Generates a grid
     public void GenerateGrid()
     {
         _tiles = new Dictionary<Vector2, Tile>();
@@ -40,21 +41,26 @@ public class GridManager : MonoBehaviour
             }
         }
 
+        //Puts camera in the midle of generated grid
         _cam.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);
 
+        //Changes game state
         GameManager.Instance.ChangeState(GameState.SpawnHeros);
     }
 
+    //Gets a random tile where a hero unit will spawn
     public Tile GetHeroSpawnTile()
     {
         return _tiles.Where(t => t.Key.x < _width / 2 && t.Value.walkable).OrderBy(t => Random.value).First().Value;
     }
 
+    //Gets a random tile where an enemy unit spawns
     public Tile GetEnemySpawnTile()
     {
         return _tiles.Where(t => t.Key.x > _width / 2 && t.Value.walkable).OrderBy(t => Random.value).First().Value;
     } 
 
+    //Grabs a tile at a specifed position
     public Tile GetTileAtPosition(Vector2 pos)
     {
         if (_tiles.TryGetValue(pos, out var tile)) return tile;

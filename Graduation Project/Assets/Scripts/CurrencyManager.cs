@@ -18,6 +18,7 @@ public class CurrencyManager : MonoBehaviour
         
     }
 
+    //Updates the currency amount
     public static void UpdateCheese()
     {
         PlayerPrefs.SetInt("cheese", cheese);
