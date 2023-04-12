@@ -83,15 +83,25 @@ public class Tile : MonoBehaviour
                 {
                     var enemy = (BaseEnemy)occupiedUnit;
                     int index = 0;
+                    float debuff;
 
-                    if(UnitManager.Instance.SelectedHero.Type == Type.Hero1)
+                    if (UnitManager.Instance.SelectedHero.isWounded)
                     {
-                        occupiedUnit.TakeDamage(1);
+                        debuff = 0.5f;
+                    }
+                    else
+                    {
+                        debuff = 1;
+                    }
+
+                    if (UnitManager.Instance.SelectedHero.Type == Type.Hero1)
+                    {
+                        occupiedUnit.TakeDamage(1 * debuff);
                     }
 
                     if (UnitManager.Instance.SelectedHero.Type == Type.Hero2)
                     {
-                        occupiedUnit.TakeDamage(2);
+                        occupiedUnit.TakeDamage(2 * debuff);
                     }
 
                     //Destroys an enemy unit if it reaches 0 or less health
@@ -106,11 +116,10 @@ public class Tile : MonoBehaviour
                         }
 
                         Destroy(enemy.gameObject);
-                        SetUnit(UnitManager.Instance.SelectedHero);
-                        UnitManager.Instance.UpdateEnemyUnitAmount(-1);
-
-                        UnitManager.Instance.GetAvailableTiles(UnitManager.Instance.HerosTile[UnitManager.Instance.SelectedHeroIndex].occupiedUnit, 
+                        UnitManager.Instance.GetAvailableTiles(UnitManager.Instance.HerosTile[UnitManager.Instance.SelectedHeroIndex].occupiedUnit,
                             UnitManager.Instance.HerosTile[UnitManager.Instance.SelectedHeroIndex], false);
+                        SetUnit(UnitManager.Instance.SelectedHero);
+                        UnitManager.Instance.UpdateEnemyUnitAmount(-1);                        
                         UnitManager.Instance.SetHerosTile(this, UnitManager.Instance.SelectedHeroIndex);                       
                         UnitManager.Instance.SetSelectedHero(null, null);
                         UnitManager.Instance.SetEnemiesTile(null, index);

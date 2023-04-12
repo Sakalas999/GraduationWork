@@ -8,7 +8,7 @@ public class MenuManager : MonoBehaviour
 {
     public static MenuManager Instance;
 
-    [SerializeField] private GameObject _selectedHeroObject, _tileObject, _tileUnitObject, _battleLostObject, _battleWonObject, _attackButton, _currencyDisplay;
+    [SerializeField] private GameObject _selectedHeroObject, _tileObject, _tileUnitObject, _battleLostObject, _battleWonObject, _attackButton, _currencyDisplay, _resetWounded;
 
     void Awake()
     {
@@ -85,6 +85,14 @@ public class MenuManager : MonoBehaviour
         TextMeshProUGUI text = _currencyDisplay.GetComponent<TextMeshProUGUI>();
         string[] temp = text.text.Split(' ');
         text.text = temp[0] + " " + CurrencyManager.cheese;
+    }
+
+    public void ResetWounded()
+    {
+        Hero1 hero1 = FindObjectOfType<Hero1>();
+        hero1.UpdateIsWounded(false);
+        Hero2 hero2 = FindObjectOfType<Hero2>();
+        hero2.UpdateIsWounded(false);
     }
 
     public void QuitGame()

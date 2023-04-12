@@ -7,6 +7,48 @@ public class BaseHero : BaseUnit
     private int _type1 = 48;
     private int _type2 = 24;
 
+    public bool isWounded = false;
+
+    public void UpdateWounded(bool wounded, Type type)
+    {
+        if (wounded && !isWounded)
+        {
+            isWounded = wounded;
+
+            if (type == Type.Hero1)
+            {
+                FindObjectOfType<Hero1>().UpdateIsWounded(isWounded);
+            }
+            else
+            {
+                FindObjectOfType<Hero2>().UpdateIsWounded(isWounded);
+            }
+        } else if (wounded && isWounded)
+        {
+            if (type == Type.Hero1)
+            {
+                FindObjectOfType<Hero1>().Kill();
+            }
+            else
+            {
+                FindObjectOfType<Hero2>().Kill();
+            }
+        }
+        else
+        {
+            isWounded = wounded;
+
+            if (type == Type.Hero1)
+            {
+                FindObjectOfType<Hero1>().UpdateIsWounded(isWounded);
+            }
+            else
+            {
+                FindObjectOfType<Hero2>().UpdateIsWounded(isWounded);
+            }
+        }
+    }
+
     public bool CanItMove(Tile herpPosition, Tile selectedTile, Type heroType)
     {
         int n = 0;
@@ -49,14 +91,24 @@ public class BaseHero : BaseUnit
     public Tile[] GetAvailableTiles(Tile heroPosition, Type type)
     {
         int indexer = 0;
+        float debuff;
+
+        if (isWounded)
+        {
+            debuff = 0.5f;
+        }
+        else
+        {
+            debuff = 1;
+        }
 
         if (type == Type.Hero2)
-        {
+        {     
             Tile[] array = new Tile[_type2];
 
-            for (int i = -2; i <= 2; i++)
+            for (int i = Mathf.RoundToInt (- 2 * debuff) ; i <= Mathf.RoundToInt(2 * debuff); i++)
             {
-                for (int j = -2; j <= 2; j++)
+                for (int j = Mathf.RoundToInt(-2 * debuff); j <= Mathf.RoundToInt(2 * debuff); j++)
                 {
                     int x = Mathf.RoundToInt(heroPosition.transform.position.x + i);
                     int y = Mathf.RoundToInt(heroPosition.transform.position.y + j);
@@ -76,9 +128,9 @@ public class BaseHero : BaseUnit
         {
             Tile[] array = new Tile[_type1];
 
-            for (int i = -3; i <= 3; i++)
+            for (int i = Mathf.RoundToInt(-3 * debuff); i <= Mathf.RoundToInt(3 * debuff); i++)
             {
-                for (int j = -3; j <= 3; j++)
+                for (int j = Mathf.RoundToInt(-3 * debuff); j <= Mathf.RoundToInt(3 * debuff); j++)
                 {
                     int x = Mathf.RoundToInt(heroPosition.transform.position.x + i);
                     int y = Mathf.RoundToInt(heroPosition.transform.position.y + j);

@@ -4,14 +4,41 @@ using UnityEngine;
 
 public class Hero1 : BaseHero
 {
-    // Start is called before the first frame update
-    void Start()
+    public const string IsDeadH1 = "isDeadH1";
+    public const string IsWoundedH1 = "isWoundedH1";
+    private bool isWoundedH1 = false;
+    public bool isDeadH1 = false;
+
+    void Awake()
     {
-        
+        isWounded = isWoundedH1 = intToBool(PlayerPrefs.GetInt("isWoundedH1"));
+        isDeadH1 = intToBool(PlayerPrefs.GetInt("isDeadH1"));
     }
 
-    // Update is called once per frame
-    void Update()
-    {     
+    public void UpdateIsWounded(bool wounded)
+    {
+        if (wounded)
+        {
+            PlayerPrefs.SetInt("isWoundedH1", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("isWoundedH1", 0);
+        }
+        PlayerPrefs.Save();
+    }
+
+    public void Kill()
+    {
+        PlayerPrefs.SetInt("isDeadH1", 1);
+        PlayerPrefs.Save();
+    }
+
+    private bool intToBool(int val)
+    {
+        if (val != 0)
+            return true;
+        else
+            return false;
     }
 }

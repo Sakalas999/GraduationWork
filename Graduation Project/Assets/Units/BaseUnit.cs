@@ -15,11 +15,28 @@ public class BaseUnit : MonoBehaviour
 
     private void Start()
     {
-        Health = BaseHealth;
-        _healthBar.UpdateHealthBar(BaseHealth, Health);
+        if (this.Faction == Faction.Hero)
+        {
+            BaseHero hero = (BaseHero)this;
+            if (hero.isWounded)
+            {
+                Health = BaseHealth * 0.5f;
+                _healthBar.UpdateHealthBar(BaseHealth, Health);
+            }
+            else
+            {
+                Health = BaseHealth;
+                _healthBar.UpdateHealthBar(BaseHealth, Health);
+            }
+        }
+        else
+        {
+            Health = BaseHealth;
+            _healthBar.UpdateHealthBar(BaseHealth, Health);
+        }
     }
 
-    public void TakeDamage(int multiply)
+    public void TakeDamage(float multiply)
     {
         Health -= 10f * multiply;
         _healthBar.UpdateHealthBar(BaseHealth, Health);

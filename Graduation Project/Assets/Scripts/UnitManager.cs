@@ -258,24 +258,6 @@ public class UnitManager : MonoBehaviour
                         hero.TakeDamage(3);
                     }
                     UpdateEnemyMovementAvailability(i, true);
-
-                    /*int countMovedUnits = 0;
-                    for (int j = 0; j < EnemyAmount; j++)
-                    {
-                        if (MovedEnemyUnits[j])
-                        {
-                            countMovedUnits++;
-                        }
-                    }
-
-                    if (countMovedUnits == EnemyAmount)
-                    {
-                        GameManager.Instance.ChangeState(GameState.HerosTurn);
-                        for (int j = 0; j < HeroAmount; j++)
-                        {
-                            UpdateHeroMovementAvailability(j, false);
-                        }
-                    }*/
                 }
 
                 var tile = Enemy[i].Distance(HerosTile[closestIndex], EnemiesTile[i], Enemy[i].Type);
@@ -286,24 +268,6 @@ public class UnitManager : MonoBehaviour
                     tile.SetUnit(Enemy[i]);
                     EnemiesTile[i] = tile;
                     UpdateEnemyMovementAvailability(i, true);
-
-                    /*int countMovedUnits = 0;
-                    for (int j = 0; j < EnemyAmount; j++)
-                    {
-                        if (MovedEnemyUnits[j])
-                        {
-                            countMovedUnits++;
-                        }
-                    }
-
-                    if (countMovedUnits == EnemyAmount)
-                    {
-                        GameManager.Instance.ChangeState(GameState.HerosTurn);
-                        for (int j = 0; j < HeroAmount; j++)
-                        {
-                            UpdateHeroMovementAvailability(j, false);
-                        }
-                    }*/
                 }
                 else
                 {
@@ -314,7 +278,7 @@ public class UnitManager : MonoBehaviour
                 //If a hero unit has 0 or less health then the hero unit is destroyed and the enemy character moves to it's tile
                 if (hero.Health <= 0)
                 {
-
+                    hero.UpdateWounded(true, hero.Type); 
                     Destroy(hero.gameObject);
                     HerosTile[closestIndex].SetUnit(Enemy[i]);
                     EnemiesTile[i] = HerosTile[closestIndex];
