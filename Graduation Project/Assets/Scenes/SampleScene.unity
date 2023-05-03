@@ -1216,7 +1216,7 @@ MonoBehaviour:
   EnemyAmount: 3
   SelectedHeroIndex: 0
   HeroTypes: 0100000001000000
-  EnemyTypes: 010000000100000001000000
+  EnemyTypes: 030000000000000000000000
   MovedHeroUnits: 
   MovedEnemyUnits: 
   SelectedHero: {fileID: 0}
@@ -2251,7 +2251,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 164.554, y: 61.706}
+  m_AnchoredPosition: {x: 164.554, y: 61.705994}
   m_SizeDelta: {x: 282.283, y: 76.588}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1450517369
