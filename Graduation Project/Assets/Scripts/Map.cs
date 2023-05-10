@@ -4,29 +4,64 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
+    public GameObject[] eventAreas;
+    public bool eventOpen;
+
+    public static Map Instance;
+
+    void Awake()
+    {
+        Instance = this;
+    }
+
     public void MiceTown()
     {
-        Debug.Log("Mice town location pressed");
+        if (eventOpen == false)
+        {
+            Debug.Log("Mice town location pressed");
+            eventAreas[0].GetComponent<EventsOfTheArea>().GetARandomEvent();
+            eventOpen = true;
+        }
     }
 
     public void Crossroads()
     {
-        Debug.Log("Crossroads location pressed");
+        if (eventOpen == false)
+        {
+            Debug.Log("Crossroads location pressed");
+            eventAreas[1].GetComponent<EventsOfTheArea>().GetARandomEvent();
+            eventOpen = true;
+        }
     }
 
     public void DeadEnd()
     {
-        Debug.Log("DeadEnd location pressed");
+        if (eventOpen == false)
+        {
+            Debug.Log("DeadEnd location pressed");
+            eventAreas[2].GetComponent<EventsOfTheArea>().GetARandomEvent();
+            eventOpen = true;
+        }
     }
 
     public void RatLair()
     {
-        Debug.Log("RatLair location pressed");
+        if (eventOpen == false)
+        {
+            Debug.Log("RatLair location pressed");
+            eventAreas[3].GetComponent<EventsOfTheArea>().GetARandomEvent();
+            eventOpen = true;
+        }
     }
 
     public void Alleyway()
     {
-        Debug.Log("Alleyway location pressed");
+        if (eventOpen == false)
+        {
+            Debug.Log("Alleyway location pressed");
+            eventAreas[4].GetComponent<EventsOfTheArea>().GetARandomEvent();
+            eventOpen = true;
+        }
     }
 
     public void Base()
