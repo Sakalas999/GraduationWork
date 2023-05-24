@@ -39,9 +39,22 @@ public class Event : MonoBehaviour
         texts[0].SetActive(true);
         texts[1].SetActive(false);
         texts[2].SetActive(false);
+        if (texts.Length > 3 && texts[3] != null)
+        texts[3].SetActive(false);
 
         Map.Instance.eventOpen = false;
     }
+
+    public void SomethingDidntWork()
+    {
+        texts[0].SetActive(false);
+        texts[3].SetActive(true);
+
+        buttons[0].SetActive(false);
+        buttons[1].SetActive(false);
+        buttons[2].SetActive(true);
+    }
+
     // Start is called before the first frame update
     void Start()
     {

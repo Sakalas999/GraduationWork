@@ -8,7 +8,7 @@ public class EventsOfTheArea : MonoBehaviour
 
     public void GetARandomEvent()
     {
-        int random = Random.Range(0, events.Length - 1);
+        int random = Random.Range(0, events.Length);
         events[random].SetActive(true);
     }
 
