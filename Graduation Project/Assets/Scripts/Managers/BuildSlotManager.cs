@@ -88,6 +88,7 @@ public class BuildSlotManager : MonoBehaviour
         _armoryBuildSlot.SetActive(false);
 
         BuildingManager.Instance.isABuilt = true;
+        BuildingManager.Instance.UpgradeBuilding("A");
     }
 
     public void BuildGym()
@@ -96,6 +97,7 @@ public class BuildSlotManager : MonoBehaviour
         _gymBuildSlot.SetActive(false);
 
         BuildingManager.Instance.isGBuilt = true;
+        BuildingManager.Instance.UpgradeBuilding("G");
     }
 
     public void BuildHealersHut()
@@ -112,6 +114,7 @@ public class BuildSlotManager : MonoBehaviour
         _scoutsHutBuildSlot.SetActive(false);
 
         BuildingManager.Instance.isSHBuilt = true;
+        BuildingManager.Instance.UpgradeBuilding("SH");
     }
 
     public void BuildCheeseStorage()
@@ -120,5 +123,6 @@ public class BuildSlotManager : MonoBehaviour
         _cheeseStorageBuildSlot.SetActive(false);
 
         BuildingManager.Instance.isCSBuilt = true;
+        BuildingManager.Instance.UpgradeBuilding("CS");
     }
 }

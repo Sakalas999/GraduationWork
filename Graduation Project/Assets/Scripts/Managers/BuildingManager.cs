@@ -7,7 +7,7 @@ public class BuildingManager : MonoBehaviour
     public static BuildingManager Instance;
     public bool isABuilt, isGBuilt, isHHBuilt, isSHBuilt, isCSBuilt;
 
-    public int ALevel, GLevel, HHLevel, SHLevel, CSLevel;
+    public int ALevel, GLevel, SHLevel, CSLevel;
 
     void Awake()
     {
@@ -21,9 +21,12 @@ public class BuildingManager : MonoBehaviour
 
         PlayerPrefs.SetInt("ALevel", 0);
         PlayerPrefs.SetInt("GLevel", 0);
-        PlayerPrefs.SetInt("HHLevel", 0);
         PlayerPrefs.SetInt("SHLevel", 0);
         PlayerPrefs.SetInt("CSLevel", 0);
+
+        PlayerPrefs.SetInt("HealthEffectsAll", 0);
+        PlayerPrefs.SetInt("DamageEffectsAll", 0);
+        PlayerPrefs.SetInt("CheeseMultiplier", 1);
     }
 
     public void UpgradeBuilding(string initialOfBuilding)
@@ -32,16 +35,13 @@ public class BuildingManager : MonoBehaviour
         {
             ALevel++;
             PlayerPrefs.SetInt("ALevel", ALevel);
+            PlayerPrefs.SetInt("DamageEffectsAll", ALevel * 10);
         }
         if (initialOfBuilding == "G")
         {
             GLevel++;
             PlayerPrefs.SetInt("GLevel", GLevel);
-        }
-        if (initialOfBuilding == "HH")
-        {
-            HHLevel++;
-            PlayerPrefs.SetInt("HHLevel", HHLevel);
+            PlayerPrefs.SetInt("HealthEffectsAll", GLevel * 50);
         }
         if (initialOfBuilding == "SH")
         {
@@ -52,6 +52,7 @@ public class BuildingManager : MonoBehaviour
         {
             CSLevel++;
             PlayerPrefs.SetInt("CSLevel", CSLevel);
+            PlayerPrefs.SetInt("CheeseMultiplier", CSLevel);
         }
     }
 
@@ -61,16 +62,13 @@ public class BuildingManager : MonoBehaviour
         {
             ALevel--;
             PlayerPrefs.SetInt("ALevel", ALevel);
+            PlayerPrefs.SetInt("DamageEffectsAll", ALevel * 10);
         }
         if (initialOfBuilding == "G")
         {
             GLevel--;
             PlayerPrefs.SetInt("GLevel", GLevel);
-        }
-        if (initialOfBuilding == "HH")
-        {
-            HHLevel--;
-            PlayerPrefs.SetInt("HHLevel", HHLevel);
+            PlayerPrefs.SetInt("HealthEffectsAll", GLevel * 50);
         }
         if (initialOfBuilding == "SH")
         {
@@ -81,6 +79,15 @@ public class BuildingManager : MonoBehaviour
         {
             CSLevel--;
             PlayerPrefs.SetInt("CSLevel", CSLevel);
+
+            if (CSLevel > 0)
+            {
+                PlayerPrefs.SetInt("CheeseMultiplier", CSLevel);
+            }
+            else
+            {
+                PlayerPrefs.SetInt("CheeseMultiplier", 1);
+            }
         }
     }
 }

@@ -8,7 +8,7 @@ public class BuildingsInterfaces : MonoBehaviour
     private GameObject _currentInterface;
 
     [SerializeField]
-    private GameObject _mainText, _upgrade, _heal;
+    private GameObject _mainText, _heal;
 
     private void Start()
     {
@@ -20,21 +20,11 @@ public class BuildingsInterfaces : MonoBehaviour
         _mainText.GetComponent<TextMeshProUGUI>().text = text;
     }
 
-    public void HideUpgradeHeal()
-    {
-        _upgrade.SetActive(false);
-        _heal.SetActive(false);
-    }
-
-    public void ShowUpgradeHeal()
-    {
-        _upgrade.SetActive(true);
-        _heal.SetActive(true);
-    }
-
     public void ShowHealingWindow()
     {
-
+        _heal.SetActive(true);
+        _heal.GetComponent<CharacterSelection>().ShowSelection();
+        _currentInterface.SetActive(false);
     }
 
 

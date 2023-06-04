@@ -6,10 +6,12 @@ using UnityEngine.UI;
 
 public class CharacterSelection : MonoBehaviour
 {
-   [SerializeField] private GameObject _firstRatHero, _secondRatHero, _thirdRatHero, _firstDogHero, _secondDogHero;
+    [SerializeField] private GameObject _firstRatHero, _secondRatHero, _thirdRatHero, _firstDogHero, _secondDogHero, _healersHutInterface;
+    [SerializeField] private GameObject[] woundedAttribute = new GameObject[5]; 
 
     private bool _selectedFirstRat, _selectedSecondRat, _selectedThirdRat, _selectedFirstDog, _selectedSecondDog;
     private Color _ogFirstRat, _ogSecondRat, _ogThirdRat, _ogFirstDog, _ogSecondDog;
+    private GameObject _currentGameObject;
 
 
     public void Start()
@@ -19,53 +21,155 @@ public class CharacterSelection : MonoBehaviour
         _ogSecondRat = _secondRatHero.GetComponent<Image>().color;
         _ogSecondDog = _secondDogHero.GetComponent<Image>().color;
         _ogThirdRat = _thirdRatHero.GetComponent<Image>().color;
+
+        _currentGameObject = this.gameObject;
     }
 
     public void ShowSelection()
     {
-        if (InfoOnOwnedCharacters.Instance.isOwnedH1)
+        if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            _firstRatHero.SetActive(true);
-        }
-        else
-        {
-            _firstRatHero.SetActive(false);
-        }
+            if (InfoOnOwnedCharacters.Instance.isOwnedH1)
+            {
+                _firstRatHero.SetActive(true);
 
-        if (InfoOnOwnedCharacters.Instance.isOwnedH2)
-        {
-            _firstDogHero.SetActive(true);
-        }
-        else
-        {
-            _firstDogHero.SetActive(false);
-        }
+                if (InfoOnOwnedCharacters.Instance.isWoundedH1)
+                {
+                    woundedAttribute[0].SetActive(true);
+                }
+                else
+                {
+                    woundedAttribute[0].SetActive(false);
+                }
+            }
+            else
+            {
+                _firstRatHero.SetActive(false);
+            }
 
-        if (InfoOnOwnedCharacters.Instance.isOwnedH3)
-        {
-            _secondRatHero.SetActive(true);
-        }
-        else
-        {
-            _secondRatHero.SetActive(false);
-        }
+            if (InfoOnOwnedCharacters.Instance.isOwnedH2)
+            {
+                _firstDogHero.SetActive(true);
 
-        if (InfoOnOwnedCharacters.Instance.isOwnedH4)
-        {
-            _secondDogHero.SetActive(true);
-        }
-        else
-        {
-            _secondDogHero.SetActive(false);
-        }
+                if (InfoOnOwnedCharacters.Instance.isWoundedH2)
+                {
+                    woundedAttribute[1].SetActive(true);
+                }
+                else
+                {
+                    woundedAttribute[1].SetActive(false);
+                }
+            }
+            else
+            {
+                _firstDogHero.SetActive(false);
+            }
 
-        if (InfoOnOwnedCharacters.Instance.isOwnedH5)
-        {
-            _thirdRatHero.SetActive(true);
+            if (InfoOnOwnedCharacters.Instance.isOwnedH3)
+            {
+                _secondRatHero.SetActive(true);
+
+                if (InfoOnOwnedCharacters.Instance.isWoundedH3)
+                {
+                    woundedAttribute[2].SetActive(true);
+                }
+                else
+                {
+                    woundedAttribute[2].SetActive(false);
+                }
+            }
+            else
+            {
+                _secondRatHero.SetActive(false);
+            }
+
+            if (InfoOnOwnedCharacters.Instance.isOwnedH4)
+            {
+                _secondDogHero.SetActive(true);
+
+                if (InfoOnOwnedCharacters.Instance.isWoundedH4)
+                {
+                    woundedAttribute[3].SetActive(true);
+                }
+                else
+                {
+                    woundedAttribute[3].SetActive(false);
+                }
+            }
+            else
+            {
+                _secondDogHero.SetActive(false);
+            }
+
+            if (InfoOnOwnedCharacters.Instance.isOwnedH5)
+            {
+                _thirdRatHero.SetActive(true);
+
+                if (InfoOnOwnedCharacters.Instance.isWoundedH5)
+                {
+                    woundedAttribute[4].SetActive(true);
+                }
+                else
+                {
+                    woundedAttribute[4].SetActive(false);
+                }
+            }
+            else
+            {
+                _thirdRatHero.SetActive(false);
+            }
         }
         else
         {
-            _thirdRatHero.SetActive(false);
+            if (InfoOnOwnedCharacters.Instance.isOwnedH1 && InfoOnOwnedCharacters.Instance.isWoundedH1)
+            {
+                _firstRatHero.SetActive(true);
+                woundedAttribute[0].SetActive(true);
+            }
+            else
+            {
+                _firstRatHero.SetActive(false);
+            }
+
+            if (InfoOnOwnedCharacters.Instance.isOwnedH2 && InfoOnOwnedCharacters.Instance.isWoundedH2)
+            {
+                _firstDogHero.SetActive(true);
+                woundedAttribute[1].SetActive(true);
+            }
+            else
+            {
+                _firstDogHero.SetActive(false);
+            }
+
+            if (InfoOnOwnedCharacters.Instance.isOwnedH3 && InfoOnOwnedCharacters.Instance.isWoundedH3)
+            {
+                _secondRatHero.SetActive(true);
+                woundedAttribute[2].SetActive(true);
+            }
+            else
+            {
+                _secondRatHero.SetActive(false);
+            }
+
+            if (InfoOnOwnedCharacters.Instance.isOwnedH4 && InfoOnOwnedCharacters.Instance.isWoundedH4)
+            {
+                _secondDogHero.SetActive(true);
+                woundedAttribute[3].SetActive(true);
+            }
+            else
+            {
+                _secondDogHero.SetActive(false);
+            }
+
+            if (InfoOnOwnedCharacters.Instance.isOwnedH5 && InfoOnOwnedCharacters.Instance.isWoundedH5)
+            {
+                _thirdRatHero.SetActive(true);
+                woundedAttribute[4].SetActive(true);
+            }
+            else
+            {
+                _thirdRatHero.SetActive(false);
+            }
         }
     }
 
@@ -146,5 +250,90 @@ public class CharacterSelection : MonoBehaviour
     public void Proceed()
     {
         SceneManager.LoadScene(1);
+    }
+
+    public void Heal()
+    {
+        int count = 0;
+
+        if (_selectedFirstRat || _selectedFirstDog || _selectedSecondRat || _selectedSecondDog || _selectedThirdRat)
+        {
+            if (_selectedFirstRat) count++;
+            if (_selectedFirstDog) count++;
+            if (_selectedSecondRat) count++;
+            if (_selectedSecondDog) count++;
+            if (_selectedThirdRat) count++;
+
+            if (CurrencyManager.cheese >= count * 5)
+            {
+                if (_selectedFirstRat)
+                {
+                    InfoOnOwnedCharacters.Instance.UpdateWounded(1, false);
+                    _selectedFirstRat = false;
+                    _firstRatHero.GetComponent<Image>().color = _ogFirstRat;
+                }
+                if (_selectedFirstDog)
+                {
+                    InfoOnOwnedCharacters.Instance.UpdateWounded(2, false);
+                    _selectedFirstDog = false;
+                    _firstDogHero.GetComponent<Image>().color = _ogFirstDog;
+                }
+                if (_selectedSecondRat)
+                {
+                    InfoOnOwnedCharacters.Instance.UpdateWounded(3, false);
+                    _selectedSecondRat = false;
+                    _secondRatHero.GetComponent<Image>().color = _ogSecondRat;
+                }
+                if (_selectedSecondDog)
+                {
+                    InfoOnOwnedCharacters.Instance.UpdateWounded(4, false);
+                    _selectedSecondDog = false;
+                    _secondDogHero.GetComponent<Image>().color = _ogSecondDog;
+                }
+                if (_selectedThirdRat)
+                {
+                    InfoOnOwnedCharacters.Instance.UpdateWounded(5, false);
+                    _selectedThirdRat = false;
+                    _thirdRatHero.GetComponent<Image>().color = _ogThirdRat;
+                }
+
+                CurrencyManager.cheese -= count * 5;
+                CurrencyManager.UpdateCheese();
+                MenuManager.Instance.UpdateCurrencyDisplay();
+                ShowSelection();
+                count = 0;
+            }
+            else
+            {
+                count = 0;
+
+                _selectedFirstRat = false;
+                _firstRatHero.GetComponent<Image>().color = _ogFirstRat;
+
+                _selectedFirstDog = false;
+                _firstDogHero.GetComponent<Image>().color = _ogFirstDog;
+
+                _selectedSecondRat = false;
+                _secondRatHero.GetComponent<Image>().color = _ogSecondRat;
+
+                _selectedSecondDog = false;
+                _secondDogHero.GetComponent<Image>().color = _ogSecondDog;
+
+                _selectedThirdRat = false;
+                _thirdRatHero.GetComponent<Image>().color = _ogThirdRat;
+            }
+        }           
+    }
+
+    public void GoBack()
+    {
+        _currentGameObject.SetActive(false);
+        _healersHutInterface.SetActive(true);
+    }
+
+    public void Close()
+    {
+        _currentGameObject.SetActive(false);
+        PreventMultipleUi.Instance.isUIWindowOpen = false;
     }
 }

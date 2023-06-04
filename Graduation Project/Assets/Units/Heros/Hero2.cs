@@ -13,6 +13,7 @@ public class Hero2 : BaseHero
     {
         isWounded = isWoundedH2 = intToBool(PlayerPrefs.GetInt("isWoundedH2"));
         isDeadH2 = intToBool(PlayerPrefs.GetInt("isDeadH2"));
+        BaseHealth += PlayerPrefs.GetInt("HealthEffectsH2") + PlayerPrefs.GetInt("HealthEffectsAll");
     }
 
     public void UpdateIsWounded(bool wounded)

@@ -13,8 +13,9 @@ public class Hero1 : BaseHero
     {
         isWounded = isWoundedH1 = intToBool(PlayerPrefs.GetInt("isWoundedH1"));
         isDeadH1 = intToBool(PlayerPrefs.GetInt("isDeadH1"));
-    }
 
+        BaseHealth += PlayerPrefs.GetInt("HealthEffectsH1") + PlayerPrefs.GetInt("HealthEffectsAll");
+    }
     public void UpdateIsWounded(bool wounded)
     {
         if (wounded)

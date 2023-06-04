@@ -6,7 +6,7 @@ public class MiceTownEvent02 : MonoBehaviour
 {
     public void FirstChoice()
     {
-        CurrencyManager.cheese += 5;
+        CurrencyManager.cheese += 1 * PlayerPrefs.GetInt("CheeseMultiplier");
         CurrencyManager.UpdateCheese();
 
         MenuManager.Instance.UpdateCurrencyDisplay();
