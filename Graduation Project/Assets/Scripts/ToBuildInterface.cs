@@ -25,5 +25,6 @@ public class ToBuildInterface : MonoBehaviour
     {
         this.gameObject.SetActive(false);
         _buildSlot.SetActive(true);
+        PreventMultipleUi.Instance.isUIWindowOpen = false;
     }
 }

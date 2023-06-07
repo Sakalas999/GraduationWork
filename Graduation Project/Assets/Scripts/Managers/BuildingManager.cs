@@ -13,6 +13,10 @@ public class BuildingManager : MonoBehaviour
     {
         Instance = this;
 
+        /*CurrencyManager.cheese = 100;
+        CurrencyManager.UpdateCheese();
+        MenuManager.Instance.UpdateCurrencyDisplay();
+
         PlayerPrefs.SetInt("isABuilt", 0);
         PlayerPrefs.SetInt("isGBuilt", 0);
         PlayerPrefs.SetInt("isHHBuilt", 0);
@@ -27,6 +31,56 @@ public class BuildingManager : MonoBehaviour
         PlayerPrefs.SetInt("HealthEffectsAll", 0);
         PlayerPrefs.SetInt("DamageEffectsAll", 0);
         PlayerPrefs.SetInt("CheeseMultiplier", 1);
+        PlayerPrefs.SetInt("RaidLessPercentage", 0);*/
+
+        if (PlayerPrefs.GetInt("isABuilt") != 0)
+        {
+            isABuilt = true;
+            ALevel = PlayerPrefs.GetInt("ALevel");
+        }
+        else
+        {
+            isABuilt = false;
+        }
+
+        if (PlayerPrefs.GetInt("isGBuilt") != 0)
+        {
+            isGBuilt = true;
+            GLevel = PlayerPrefs.GetInt("GLevel");
+        }
+        else
+        {
+            isGBuilt = false;
+        }
+
+        if (PlayerPrefs.GetInt("isHHBuilt") != 0)
+        {
+            isHHBuilt = true;
+        }
+        else
+        {
+            isHHBuilt = false;
+        }
+
+        if (PlayerPrefs.GetInt("isSHBuilt") != 0)
+        {
+            isSHBuilt = true;
+            SHLevel = PlayerPrefs.GetInt("SHLevel");
+        }
+        else
+        {
+            isSHBuilt = false;
+        }
+
+        if (PlayerPrefs.GetInt("isCSBuilt") != 0)
+        {
+            isCSBuilt = true;
+            CSLevel = PlayerPrefs.GetInt("CSLevel");
+        }
+        else
+        {
+            isCSBuilt = false;
+        }
     }
 
     public void UpgradeBuilding(string initialOfBuilding)
@@ -36,23 +90,28 @@ public class BuildingManager : MonoBehaviour
             ALevel++;
             PlayerPrefs.SetInt("ALevel", ALevel);
             PlayerPrefs.SetInt("DamageEffectsAll", ALevel * 10);
+            PlayerPrefs.Save();
         }
         if (initialOfBuilding == "G")
         {
             GLevel++;
             PlayerPrefs.SetInt("GLevel", GLevel);
             PlayerPrefs.SetInt("HealthEffectsAll", GLevel * 50);
+            PlayerPrefs.Save();
         }
         if (initialOfBuilding == "SH")
         {
             SHLevel++;
             PlayerPrefs.SetInt("SHLevel", SHLevel);
+            PlayerPrefs.SetInt("RaidLessPercentage", SHLevel * 5);
+            PlayerPrefs.Save();
         }
         if (initialOfBuilding == "CS")
         {
             CSLevel++;
             PlayerPrefs.SetInt("CSLevel", CSLevel);
             PlayerPrefs.SetInt("CheeseMultiplier", CSLevel);
+            PlayerPrefs.Save();
         }
     }
 
@@ -63,30 +122,37 @@ public class BuildingManager : MonoBehaviour
             ALevel--;
             PlayerPrefs.SetInt("ALevel", ALevel);
             PlayerPrefs.SetInt("DamageEffectsAll", ALevel * 10);
+            PlayerPrefs.Save();
         }
         if (initialOfBuilding == "G")
         {
             GLevel--;
             PlayerPrefs.SetInt("GLevel", GLevel);
             PlayerPrefs.SetInt("HealthEffectsAll", GLevel * 50);
+            PlayerPrefs.Save();
         }
         if (initialOfBuilding == "SH")
         {
             SHLevel--;
             PlayerPrefs.SetInt("SHLevel", SHLevel);
+            PlayerPrefs.SetInt("RaidLessPercentage", SHLevel * 5);
+            PlayerPrefs.Save();
         }
         if (initialOfBuilding == "CS")
         {
             CSLevel--;
             PlayerPrefs.SetInt("CSLevel", CSLevel);
+            PlayerPrefs.Save();
 
             if (CSLevel > 0)
             {
-                PlayerPrefs.SetInt("CheeseMultiplier", CSLevel);
+                PlayerPrefs.SetInt("CheeseMultiplier", CSLevel + 1);
+                PlayerPrefs.Save();
             }
             else
             {
                 PlayerPrefs.SetInt("CheeseMultiplier", 1);
+                PlayerPrefs.Save();
             }
         }
     }

@@ -17,8 +17,41 @@ public class BuildSlotManager : MonoBehaviour
 
     void Awake()
     {
-        Instance = this;
-        CurrencyManager.cheese = 50;
+        Instance = this;     
+
+        if (BuildingManager.Instance.isABuilt)
+        {
+            _armoryBuildSlot.SetActive(false);
+            _armory.SetActive(true);
+        }
+
+        if (BuildingManager.Instance.isGBuilt)
+        {
+            _gymBuildSlot.SetActive(false);
+            _gym.SetActive(true);
+        }
+
+        if (BuildingManager.Instance.isHHBuilt)
+        {
+            _healersHutBuildSlot.SetActive(false);
+            _healersHut.SetActive(true);
+        }
+
+        if (BuildingManager.Instance.isSHBuilt)
+        {
+            _scoutsHutBuildSlot.SetActive(false);
+            _scoutsHut.SetActive(true);
+        }
+
+        if (BuildingManager.Instance.isCSBuilt)
+        {
+            _cheeseStorageBuildSlot.SetActive(false);
+            _cheeseStorage.SetActive(true);
+        }
+    }
+
+    private void Start()
+    {
         CurrencyManager.UpdateCheese();
         MenuManager.Instance.UpdateCurrencyDisplay();
     }
@@ -88,6 +121,8 @@ public class BuildSlotManager : MonoBehaviour
         _armoryBuildSlot.SetActive(false);
 
         BuildingManager.Instance.isABuilt = true;
+        PlayerPrefs.SetInt("isABuilt", 1);
+        PlayerPrefs.Save();
         BuildingManager.Instance.UpgradeBuilding("A");
     }
 
@@ -97,6 +132,8 @@ public class BuildSlotManager : MonoBehaviour
         _gymBuildSlot.SetActive(false);
 
         BuildingManager.Instance.isGBuilt = true;
+        PlayerPrefs.SetInt("isGBuilt", 1);
+        PlayerPrefs.Save();
         BuildingManager.Instance.UpgradeBuilding("G");
     }
 
@@ -106,6 +143,8 @@ public class BuildSlotManager : MonoBehaviour
         _healersHutBuildSlot.SetActive(false);
 
         BuildingManager.Instance.isHHBuilt = true;
+        PlayerPrefs.SetInt("isHHBuilt", 1);
+        PlayerPrefs.Save();
     }
 
     public void BuildScoutsHut()
@@ -114,6 +153,8 @@ public class BuildSlotManager : MonoBehaviour
         _scoutsHutBuildSlot.SetActive(false);
 
         BuildingManager.Instance.isSHBuilt = true;
+        PlayerPrefs.SetInt("isSHBuilt", 1);
+        PlayerPrefs.Save();
         BuildingManager.Instance.UpgradeBuilding("SH");
     }
 
@@ -123,6 +164,8 @@ public class BuildSlotManager : MonoBehaviour
         _cheeseStorageBuildSlot.SetActive(false);
 
         BuildingManager.Instance.isCSBuilt = true;
+        PlayerPrefs.SetInt("isCSBuilt", 1);
+        PlayerPrefs.Save();
         BuildingManager.Instance.UpgradeBuilding("CS");
     }
 }

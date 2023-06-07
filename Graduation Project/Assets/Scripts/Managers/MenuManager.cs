@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
@@ -84,8 +85,7 @@ public class MenuManager : MonoBehaviour
     public void UpdateCurrencyDisplay()
     {
         TextMeshProUGUI text = _currencyDisplay.GetComponent<TextMeshProUGUI>();
-        string[] temp = text.text.Split(' ');
-        text.text = temp[0] + " " + CurrencyManager.cheese;
+        text.text = ""+CurrencyManager.cheese;
     }
 
     public void ResetWounded()
@@ -94,6 +94,11 @@ public class MenuManager : MonoBehaviour
         hero1.UpdateIsWounded(false);
         Hero2 hero2 = FindObjectOfType<Hero2>();
         hero2.UpdateIsWounded(false);
+    }
+
+    public void LoadMapScene()
+    {
+        SceneManager.LoadScene(0);
     }
 
     public void QuitGame()
