@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Event : MonoBehaviour
 {
@@ -29,6 +30,16 @@ public class Event : MonoBehaviour
         buttons[2].SetActive(true);
     }
 
+    public void Choice02More()
+    {
+        texts[0].SetActive(false);
+        texts[2].SetActive(true);
+
+        buttons[0].SetActive(false);
+        buttons[1].SetActive(false);
+        buttons[3].SetActive(true);
+    }
+
     public void CloseTheEvent()
     {
         buttons[2].transform.parent.gameObject.SetActive(false);
@@ -39,10 +50,15 @@ public class Event : MonoBehaviour
         texts[0].SetActive(true);
         texts[1].SetActive(false);
         texts[2].SetActive(false);
+
         if (texts.Length > 3 && texts[3] != null)
         texts[3].SetActive(false);
 
         Map.Instance.eventOpen = false;
+
+        RaidChance();
+        if (PlayerPrefs.GetInt("Raid") == 1)
+            SceneManager.LoadScene(3);
     }
 
     public void SomethingDidntWork()
@@ -55,15 +71,15 @@ public class Event : MonoBehaviour
         buttons[2].SetActive(true);
     }
 
-    // Start is called before the first frame update
-    void Start()
+      private void RaidChance()
     {
+        int random = Random.Range(0, 100);
+        random -= PlayerPrefs.GetInt("RaidLessPercentage");
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (random >= 0 && random < PlayerPrefs.GetInt("RaidChance"))
+        {
+            PlayerPrefs.SetInt("Raid", 1);
+            PlayerPrefs.Save();
+        }
     }
 }

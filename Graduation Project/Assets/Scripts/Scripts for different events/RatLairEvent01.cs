@@ -10,11 +10,12 @@ public class RatLairEvent01 : MonoBehaviour
     public void FirstChoice()
     {
         GetComponentInParent<Event>().Choice01();
+        PlayerPrefs.SetInt("RaidChance", PlayerPrefs.GetInt("RaidChance") + 5);
     }
 
     public void SecondChoice()
     {
-        GetComponentInParent<Event>().Choice02();
+        GetComponentInParent<Event>().Choice02More();
     }
 
     public void Continue()

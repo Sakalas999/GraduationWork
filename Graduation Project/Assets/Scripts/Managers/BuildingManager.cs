@@ -89,7 +89,7 @@ public class BuildingManager : MonoBehaviour
         {
             ALevel++;
             PlayerPrefs.SetInt("ALevel", ALevel);
-            PlayerPrefs.SetInt("DamageEffectsAll", ALevel * 10);
+            PlayerPrefs.SetInt("DamageEffectsAll", ALevel * 5);
             PlayerPrefs.Save();
         }
         if (initialOfBuilding == "G")
@@ -110,7 +110,7 @@ public class BuildingManager : MonoBehaviour
         {
             CSLevel++;
             PlayerPrefs.SetInt("CSLevel", CSLevel);
-            PlayerPrefs.SetInt("CheeseMultiplier", CSLevel);
+            PlayerPrefs.SetInt("CheeseMultiplier", CSLevel + 1);
             PlayerPrefs.Save();
         }
     }
@@ -120,38 +120,78 @@ public class BuildingManager : MonoBehaviour
         if (initialOfBuilding == "A")
         {
             ALevel--;
-            PlayerPrefs.SetInt("ALevel", ALevel);
-            PlayerPrefs.SetInt("DamageEffectsAll", ALevel * 10);
-            PlayerPrefs.Save();
+            if (ALevel < 1)
+            {
+                PlayerPrefs.SetInt("ALevel", ALevel);
+                PlayerPrefs.SetInt("isABuilt", 0);
+                PlayerPrefs.SetInt("DamageEffectsAll", ALevel);
+                PlayerPrefs.Save();
+
+                isABuilt = false;
+            }
+            else
+            {
+                PlayerPrefs.SetInt("ALevel", ALevel);
+                PlayerPrefs.SetInt("DamageEffectsAll", ALevel * 5);
+                PlayerPrefs.Save();
+            }
         }
         if (initialOfBuilding == "G")
         {
             GLevel--;
-            PlayerPrefs.SetInt("GLevel", GLevel);
-            PlayerPrefs.SetInt("HealthEffectsAll", GLevel * 50);
-            PlayerPrefs.Save();
+            if (GLevel < 1)
+            {
+                PlayerPrefs.SetInt("isGBuilt", 0);
+                PlayerPrefs.SetInt("GLevel", GLevel);
+                PlayerPrefs.SetInt("HealthEffectsAll", GLevel * 50);
+                PlayerPrefs.Save();
+
+                isGBuilt = false;
+            }
+            else
+            {
+                PlayerPrefs.SetInt("GLevel", GLevel);
+                PlayerPrefs.SetInt("HealthEffectsAll", GLevel * 50);
+                PlayerPrefs.Save();
+            }
         }
         if (initialOfBuilding == "SH")
         {
             SHLevel--;
-            PlayerPrefs.SetInt("SHLevel", SHLevel);
-            PlayerPrefs.SetInt("RaidLessPercentage", SHLevel * 5);
-            PlayerPrefs.Save();
+            if (SHLevel < 1)
+            {
+                PlayerPrefs.SetInt("isSHBuilt", 0);
+                PlayerPrefs.SetInt("SHLevel", SHLevel);
+                PlayerPrefs.SetInt("RaidLessPercentage", SHLevel * 5);
+                PlayerPrefs.Save();
+
+                isSHBuilt = false;
+            }
+            else
+            {
+                PlayerPrefs.SetInt("SHLevel", SHLevel);
+                PlayerPrefs.SetInt("RaidLessPercentage", SHLevel * 5);
+                PlayerPrefs.Save();
+            }
         }
         if (initialOfBuilding == "CS")
         {
             CSLevel--;
-            PlayerPrefs.SetInt("CSLevel", CSLevel);
-            PlayerPrefs.Save();
 
-            if (CSLevel > 0)
+            if (CSLevel < 1)
             {
-                PlayerPrefs.SetInt("CheeseMultiplier", CSLevel + 1);
+                PlayerPrefs.SetInt("isCSBuilt", 0);
+                isCSBuilt = false;
+
+                PlayerPrefs.SetInt("CheeseMultiplier", 1);
+                PlayerPrefs.SetInt("CSLevel", CSLevel);
                 PlayerPrefs.Save();
+
             }
             else
             {
-                PlayerPrefs.SetInt("CheeseMultiplier", 1);
+                PlayerPrefs.SetInt("CSLevel", CSLevel);
+                PlayerPrefs.SetInt("CheeseMultiplier", CSLevel + 1);
                 PlayerPrefs.Save();
             }
         }

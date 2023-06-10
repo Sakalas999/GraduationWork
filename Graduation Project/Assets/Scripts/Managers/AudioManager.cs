@@ -35,17 +35,38 @@ public class AudioManager : MonoBehaviour
 
     private String LocationMusic()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             return "Map Theme";
         }
-        else if (SceneManager.GetActiveScene().buildIndex == 1)
+        else if (SceneManager.GetActiveScene().buildIndex == 2)
         {
             return "Batlle Theme";
         }
-        else
+        else if (SceneManager.GetActiveScene().buildIndex == 3)
         {
             return "Base Theme";
         }
+        else
+        {
+            return "Main Menu Theme";
+        }
     }
+
+    public void PlaySoundEffect (string name)
+    {
+        if (name == "Clicking")
+        {
+
+        }
+        else if (name == "Event popup")
+        {
+
+        }
+        else if (name == "attack")
+        {
+
+        }
+    }
+
 }

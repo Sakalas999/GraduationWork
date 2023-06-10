@@ -13,6 +13,8 @@ public class BaseUnit : MonoBehaviour
 
     [SerializeField] private HealthBarBehaviour _healthBar;
 
+    [SerializeField] private GameObject _blood;
+
     private void Start()
     {
         if (this.Faction == Faction.Hero)
@@ -36,9 +38,11 @@ public class BaseUnit : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float multiply)
+    public void TakeDamage(float damage)
     {
-        Health -= 10f * multiply;
+        _blood.GetComponent<ParticleSystem>().Play();
+
+        Health -= damage;
         _healthBar.UpdateHealthBar(BaseHealth, Health);
     }
 }

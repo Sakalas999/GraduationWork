@@ -11,7 +11,7 @@ public class MiceTownEvent02 : MonoBehaviour
 
         MenuManager.Instance.UpdateCurrencyDisplay();
 
-
+        PlayerPrefs.SetInt("RaidChance", PlayerPrefs.GetInt("RaidChance") + 5);
         GetComponentInParent<Event>().Choice01();
     }
 

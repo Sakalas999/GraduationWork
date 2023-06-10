@@ -27,7 +27,7 @@ public class CharacterSelection : MonoBehaviour
 
     public void ShowSelection()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             if (InfoOnOwnedCharacters.Instance.isOwnedH1)
             {
@@ -249,7 +249,7 @@ public class CharacterSelection : MonoBehaviour
 
     public void Proceed()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     public void Heal()

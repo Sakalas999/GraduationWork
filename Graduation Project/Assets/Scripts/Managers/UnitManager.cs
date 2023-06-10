@@ -60,7 +60,7 @@ public class UnitManager : MonoBehaviour
         }
         if (PlayerPrefs.GetInt("thirdTypeEnemies") != 0)
         {
-            EnemyTypes[2] = PlayerPrefs.GetInt("ThirdTypeEnemies");
+            EnemyTypes[2] = PlayerPrefs.GetInt("thirdTypeEnemies");
         }
         if (PlayerPrefs.GetInt("firstTypeEnemies") == 0)
         {
@@ -82,6 +82,8 @@ public class UnitManager : MonoBehaviour
         Enemy = new BaseEnemy[EnemyAmount];
 
         EnemyLeft = EnemyAmount;
+
+        CurrencyManager.Count(EnemyTypes[0], EnemyTypes[1]);
 
     }
 
@@ -290,17 +292,17 @@ public class UnitManager : MonoBehaviour
                 {
                     if (Enemy[i].Type == Type.Enemy1)
                     {
-                        hero.TakeDamage(1);
+                        hero.TakeDamage(10);
                     }
 
                     if (Enemy[i].Type == Type.Enemy2)
                     {
-                        hero.TakeDamage(2);
+                        hero.TakeDamage(20);
                     }
 
                     if (Enemy[i].Type == Type.Enemy3)
                     {
-                        hero.TakeDamage(3);
+                        hero.TakeDamage(30);
                     }
                     UpdateEnemyMovementAvailability(i, true);
                 }

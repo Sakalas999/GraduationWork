@@ -20,7 +20,14 @@ public class Hero2 : BaseHero
     {
         if (wounded)
         {
-            PlayerPrefs.SetInt("isWoundedH2", 1);
+            if (!isWoundedH2)
+            {
+                PlayerPrefs.SetInt("isWoundedH2", 1);
+            }
+            else
+            {
+                Kill();
+            }
         }
         else
         {
@@ -32,6 +39,7 @@ public class Hero2 : BaseHero
     public void Kill()
     {
         PlayerPrefs.SetInt("isDeadH2", 1);
+        PlayerPrefs.SetInt("isOwnedH2", 0);
         PlayerPrefs.Save();
     }
 

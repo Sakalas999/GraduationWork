@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InfoOnOwnedCharacters : MonoBehaviour
 {
@@ -24,18 +25,12 @@ public class InfoOnOwnedCharacters : MonoBehaviour
     public bool isDeadH4;
     public bool isDeadH5;
 
-    public int healthEffects1;
-    public int healthEffects2;
-    public int healthEffects3;
-    public int healthEffects4;
-    public int healthEffects5;
-
     public int amountOfUnits = 0;
 
     private void Awake()
     {
         Instance = this;
-        PlayerPrefs.SetInt("isOwnedH1", 1);
+        /*PlayerPrefs.SetInt("isOwnedH1", 1);
         PlayerPrefs.SetInt("isOwnedH2", 0);
         PlayerPrefs.SetInt("isOwnedH3", 0);
         PlayerPrefs.SetInt("isOwnedH4", 0);
@@ -57,7 +52,7 @@ public class InfoOnOwnedCharacters : MonoBehaviour
         PlayerPrefs.SetInt("HealthEffectsH2", 0);
         PlayerPrefs.SetInt("HealthEffectsH3", 0);
         PlayerPrefs.SetInt("HealthEffectsH4", 0);
-        PlayerPrefs.SetInt("HealthEffectsH5", 0);
+        PlayerPrefs.SetInt("HealthEffectsH5", 0);*/
 
 
         isOwnedH1 = intToBool(PlayerPrefs.GetInt("isOwnedH1"));
@@ -82,12 +77,6 @@ public class InfoOnOwnedCharacters : MonoBehaviour
         isDeadH3 = intToBool(PlayerPrefs.GetInt("isDeadH3"));
         isDeadH4 = intToBool(PlayerPrefs.GetInt("isDeadH4"));
         isDeadH5 = intToBool(PlayerPrefs.GetInt("isDeadH5"));
-
-        healthEffects1 = PlayerPrefs.GetInt("HealthEffectsH1");
-        healthEffects2 = PlayerPrefs.GetInt("HealthEffectsH2");
-        healthEffects3 = PlayerPrefs.GetInt("HealthEffectsH3");
-        healthEffects4 = PlayerPrefs.GetInt("HealthEffectsH4");
-        healthEffects5 = PlayerPrefs.GetInt("HealthEffectsH5");
 
         PlayerPrefs.SetInt("amountOfUnits", amountOfUnits);
         PlayerPrefs.SetInt("ratHero", 0);
@@ -223,6 +212,7 @@ public class InfoOnOwnedCharacters : MonoBehaviour
                     PlayerPrefs.SetInt("isDeadH1", 1);
                     isDeadH1 = true;
                     UpdateOwned(1, false);
+                    SceneManager.LoadScene(4);
                 }
                 else
                 {
@@ -387,24 +377,61 @@ public class InfoOnOwnedCharacters : MonoBehaviour
         switch(which)
         {
             case 1:
-                healthEffects1 += amount;
-                PlayerPrefs.SetInt("HealingEffectsH1", healthEffects1);
+                int healthEffectH1 = PlayerPrefs.GetInt("HealingEffectsH1");
+                PlayerPrefs.SetInt("HealingEffectsH1", healthEffectH1 + amount);
+                PlayerPrefs.Save();
                 break;
             case 2:
-                healthEffects2 += amount;
-                PlayerPrefs.SetInt("HealingEffectsH2", healthEffects2);
+                int healthEffectH2 = PlayerPrefs.GetInt("HealingEffectsH2");
+                PlayerPrefs.SetInt("HealingEffectsH2", healthEffectH2 + amount);
+                PlayerPrefs.Save();
                 break;
             case 3:
-                healthEffects3 += amount;
-                PlayerPrefs.SetInt("HealingEffectsH3", healthEffects3);
+                int healthEffectH3 = PlayerPrefs.GetInt("HealingEffectsH3");
+                PlayerPrefs.SetInt("HealingEffectsH3", healthEffectH3 + amount);
+                PlayerPrefs.Save();
                 break;
             case 4:
-                healthEffects4 += amount;
-                PlayerPrefs.SetInt("HealingEffectsH4", healthEffects4);
+                int healthEffectH4 = PlayerPrefs.GetInt("HealingEffectsH4");
+                PlayerPrefs.SetInt("HealingEffectsH4", healthEffectH4 + amount);
+                PlayerPrefs.Save();
                 break;
             case 5:
-                healthEffects5 += amount;
-                PlayerPrefs.SetInt("HealingEffectsH5", healthEffects5);
+                int healthEffectH5 = PlayerPrefs.GetInt("HealingEffectsH5");
+                PlayerPrefs.SetInt("HealingEffectsH5", healthEffectH5 + amount);
+                PlayerPrefs.Save();
+                break;
+        }
+    }
+
+    public void UpdateDamageEffects(int which, float amount)
+    {
+        switch (which)
+        {
+            case 1:
+                float damageEffectH1 = PlayerPrefs.GetFloat("DamageEffectsH1");
+                PlayerPrefs.SetFloat("DamageEffectsH1", damageEffectH1 + amount);
+                PlayerPrefs.Save();
+                break;
+            case 2:
+                float damageEffectH2 = PlayerPrefs.GetFloat("DamageEffectsH2");
+                PlayerPrefs.SetFloat("DamageEffectsH2", damageEffectH2 + amount);
+                PlayerPrefs.Save();
+                break;
+            case 3:
+                float damageEffectH3 = PlayerPrefs.GetFloat("DamageEffectsH3");
+                PlayerPrefs.SetFloat("DamageEffectsH3", damageEffectH3 + amount);
+                PlayerPrefs.Save();
+                break;
+            case 4:
+                float damageEffectH4 = PlayerPrefs.GetFloat("DamageEffectsH4");
+                PlayerPrefs.SetFloat("DamageEffectsH4", damageEffectH4 + amount);
+                PlayerPrefs.Save();
+                break;
+            case 5:
+                float damageEffectH5 = PlayerPrefs.GetFloat("DamageEffectsH5");
+                PlayerPrefs.SetFloat("DamageEffectsH5", damageEffectH5 + amount);
+                PlayerPrefs.Save();
                 break;
         }
     }

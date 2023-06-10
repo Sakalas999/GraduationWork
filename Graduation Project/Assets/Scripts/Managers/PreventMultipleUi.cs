@@ -10,6 +10,14 @@ public class PreventMultipleUi : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        isUIWindowOpen = false;
+
+        if (PlayerPrefs.GetInt("Raid") == 1)
+        {
+            isUIWindowOpen = true;
+        }
+        else
+        {
+            isUIWindowOpen = false;
+        }
     }
 }

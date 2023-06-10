@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -41,16 +42,26 @@ public class GameManager : MonoBehaviour
                 UnitManager.Instance.EnemyMoves();
                 break;
             case GameState.BattleLost:
-                CurrencyManager.cheese = 0;
-                CurrencyManager.UpdateCheese();
-                MenuManager.Instance.UpdateCurrencyDisplay();
-                MenuManager.Instance.ShowBattleLostScreen();
+                if (PlayerPrefs.GetInt("End Battle") == 0)
+                {
+                    MenuManager.Instance.UpdateCurrencyDisplay();
+                    MenuManager.Instance.ShowBattleLostScreen();
+                }
+                else
+                {
+                    SceneManager.LoadScene(4);
+                }
                 break;
             case GameState.BattleWon:
-                CurrencyManager.cheese += 5;
-                CurrencyManager.UpdateCheese();
-                MenuManager.Instance.UpdateCurrencyDisplay();
-                MenuManager.Instance.ShowBattleWonScreen();
+                if (PlayerPrefs.GetInt("End Battle") == 0)
+                {
+                    MenuManager.Instance.UpdateCurrencyDisplay();
+                    MenuManager.Instance.ShowBattleWonScreen();
+                }
+                else
+                {
+                    SceneManager.LoadScene(5);
+                }
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);

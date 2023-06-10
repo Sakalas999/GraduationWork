@@ -9,17 +9,21 @@ public class EventsOfTheArea : MonoBehaviour
     public void GetARandomEvent()
     {
         int random = Random.Range(0, events.Length);
-        events[random].SetActive(true);
-    }
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (InfoOnOwnedCharacters.Instance.isOwnedH2)
+        {
+            if (events[random].name == "AlleywayEvent01")
+            {
+                GetARandomEvent();
+            }
+            else
+            {
+                events[random].SetActive(true);
+            }
+        }
+        else
+        {
+            events[random].SetActive(true);
+        }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Hero1 : BaseHero
 {
@@ -20,7 +21,14 @@ public class Hero1 : BaseHero
     {
         if (wounded)
         {
-            PlayerPrefs.SetInt("isWoundedH1", 1);
+            if (!isWoundedH1)
+            {
+                PlayerPrefs.SetInt("isWoundedH1", 1);
+            }
+            else
+            {
+                Kill();
+            }
         }
         else
         {
@@ -32,7 +40,9 @@ public class Hero1 : BaseHero
     public void Kill()
     {
         PlayerPrefs.SetInt("isDeadH1", 1);
+        PlayerPrefs.SetInt("isOwnedH1", 0);
         PlayerPrefs.Save();
+        SceneManager.LoadScene(4);
     }
 
     private bool intToBool(int val)

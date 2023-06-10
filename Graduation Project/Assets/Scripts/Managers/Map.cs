@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Map : MonoBehaviour
 {
     public GameObject[] eventAreas;
-    public GameObject characterSelectionWindow;
+    public GameObject areYouSure;
     public bool eventOpen;
 
     public static Map Instance;
@@ -68,13 +68,12 @@ public class Map : MonoBehaviour
 
     public void Base()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 
     public void EndBattle()
     {
-        characterSelectionWindow.SetActive(true);
-        characterSelectionWindow.GetComponent<CharacterSelection>().ShowSelection();
-        InfoOnOwnedCharacters.Instance.AddEnemy(2, 0, 0, 2);
+        areYouSure.SetActive(true);
+        eventOpen = true;
     }
 }

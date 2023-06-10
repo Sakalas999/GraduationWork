@@ -15,41 +15,42 @@ public class CrossroadsEvent01 : MonoBehaviour
             else CurrencyManager.cheese += -5;
             CurrencyManager.UpdateCheese();
 
-            random = Random.Range(1, InfoOnOwnedCharacters.Instance.amountOfUnits);
-
-            if (random == 1 && InfoOnOwnedCharacters.Instance.isOwnedH1)
-                InfoOnOwnedCharacters.Instance.UpdateWounded(random, true);
-            else if (random == 2 && InfoOnOwnedCharacters.Instance.isOwnedH2)
-                InfoOnOwnedCharacters.Instance.UpdateWounded(random, true);
-            else if (random != 2 && InfoOnOwnedCharacters.Instance.isOwnedH2)
-                InfoOnOwnedCharacters.Instance.UpdateWounded(2, true);
-            else
-                GetComponentInParent<Event>().SomethingDidntWork();
+            RandomUnit();
 
             MenuManager.Instance.UpdateCurrencyDisplay();
 
-
             GetComponentInParent<Event>().Choice01();
+
+            if (PlayerPrefs.GetInt("RaidChance") > 0)
+                PlayerPrefs.SetInt("RaidChance", PlayerPrefs.GetInt("RaidChance") - 5);
         }
         else
         {
             GetComponentInParent<Event>().SomethingDidntWork();
+            PlayerPrefs.SetInt("RaidChance", PlayerPrefs.GetInt("RaidChance") + 5);
         }
     }
+
+    private void RandomUnit()
+    {
+        int random = Random.Range(1, 5);
+        if (random == 1 && InfoOnOwnedCharacters.Instance.isOwnedH1)
+            InfoOnOwnedCharacters.Instance.UpdateWounded(random, true);
+        else if (random == 2 && InfoOnOwnedCharacters.Instance.isOwnedH2)
+            InfoOnOwnedCharacters.Instance.UpdateWounded(random, true);
+        else if (random == 3 && InfoOnOwnedCharacters.Instance.isOwnedH3)
+            InfoOnOwnedCharacters.Instance.UpdateWounded(random, true);
+        else if (random == 4 && InfoOnOwnedCharacters.Instance.isOwnedH4)
+            InfoOnOwnedCharacters.Instance.UpdateWounded(random, true);
+        else if (random == 5 && InfoOnOwnedCharacters.Instance.isOwnedH5)
+            InfoOnOwnedCharacters.Instance.UpdateWounded(random, true);
+        else
+            RandomUnit();
+    }
+
     public void SecondChoice()
     {
         GetComponentInParent<Event>().Choice02();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        PlayerPrefs.SetInt("RaidChance", PlayerPrefs.GetInt("RaidChance") + 5);
     }
 }
