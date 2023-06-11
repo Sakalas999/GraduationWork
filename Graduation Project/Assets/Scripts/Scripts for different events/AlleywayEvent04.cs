@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class AlleywayEvent04 : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void FirstChoice()
     {
-        
+
+        CurrencyManager.cheese += 1 * PlayerPrefs.GetInt("CheeseMultiplier");
+        CurrencyManager.UpdateCheese();
+
+        MenuManager.Instance.UpdateCurrencyDisplay();
+
+        GetComponentInParent<Event>().Choice01();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SecondChoice()
     {
-        
+        GetComponentInParent<Event>().Choice02();
     }
 }

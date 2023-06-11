@@ -20,7 +20,12 @@ public enum Type
 {
     Hero1, 
     Hero2,
+    Hero3,
+    Hero4,
+    Hero5,
     Enemy1,
     Enemy2,
     Enemy3,
+    Enemy4,
+    Enemy5
 }

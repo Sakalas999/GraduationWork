@@ -19,9 +19,21 @@ public class BaseHero : BaseUnit
             {
                 FindObjectOfType<Hero1>().UpdateIsWounded(isWounded);
             }
-            else
+            else if (type == Type.Hero2)
             {
                 FindObjectOfType<Hero2>().UpdateIsWounded(isWounded);
+            }
+            else if (type == Type.Hero3)
+            {
+                FindObjectOfType<Hero3>().UpdateIsWounded(isWounded);
+            }
+            else if (type == Type.Hero4)
+            {
+                FindObjectOfType<Hero4>().UpdateIsWounded(isWounded);
+            }
+            else
+            {
+                FindObjectOfType<Hero5>().UpdateIsWounded(isWounded);
             }
         } else if (wounded && isWounded)
         {
@@ -29,9 +41,21 @@ public class BaseHero : BaseUnit
             {
                 FindObjectOfType<Hero1>().Kill();
             }
-            else
+            else if (type == Type.Hero2)
             {
                 FindObjectOfType<Hero2>().Kill();
+            }
+            else if (type == Type.Hero3)
+            {
+                FindObjectOfType<Hero3>().Kill();
+            }
+            else if (type == Type.Hero4)
+            {
+                FindObjectOfType<Hero4>().Kill();
+            }
+            else
+            {
+                FindObjectOfType<Hero5>().Kill();
             }
         }
         else
@@ -42,9 +66,21 @@ public class BaseHero : BaseUnit
             {
                 FindObjectOfType<Hero1>().UpdateIsWounded(isWounded);
             }
-            else
+            else if (type == Type.Hero2)
             {
                 FindObjectOfType<Hero2>().UpdateIsWounded(isWounded);
+            }
+            else if (type == Type.Hero3)
+            {
+                FindObjectOfType<Hero3>().UpdateIsWounded(isWounded);
+            }
+            else if (type == Type.Hero4)
+            {
+                FindObjectOfType<Hero4>().UpdateIsWounded(isWounded);
+            }
+            else
+            {
+                FindObjectOfType<Hero5>().UpdateIsWounded(isWounded);
             }
         }
     }

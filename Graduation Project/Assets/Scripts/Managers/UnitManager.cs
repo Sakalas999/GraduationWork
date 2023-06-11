@@ -8,13 +8,17 @@ public class UnitManager : MonoBehaviour
 {
     public static UnitManager Instance;
 
+    [SerializeField] private GameObject[] enemyPrefab;
+    [SerializeField] private GameObject[] heroPrefab;
+
+
     private List<ScriptableUnit> _units;
 
     public int HeroAmount;
     public int EnemyAmount;
     public int SelectedHeroIndex;
-    public int[] HeroTypes = new int[2];
-    public int[] EnemyTypes = new int[3];
+    public int[] HeroTypes = new int[5];
+    public int[] EnemyTypes = new int[5];
     public bool[] MovedHeroUnits;
     public bool[] MovedEnemyUnits;
     public BaseHero SelectedHero;
@@ -33,21 +37,45 @@ public class UnitManager : MonoBehaviour
         HeroAmount = PlayerPrefs.GetInt("amountOfUnits");
         EnemyAmount = PlayerPrefs.GetInt("enemyAmount");
         
-        if (PlayerPrefs.GetInt("ratHero") != 0)
+        if (PlayerPrefs.GetInt("ranpo") != 0)
         {
             HeroTypes[0] = 1;
         }
-        if (PlayerPrefs.GetInt("dogHero") != 0)
+        if (PlayerPrefs.GetInt("poe") != 0)
         {
             HeroTypes[1] = 1;
         }
-        if (PlayerPrefs.GetInt("ratHero") == 0)
+        if (PlayerPrefs.GetInt("sushi") != 0)
+        {
+            HeroTypes[2] = 1;
+        }
+        if (PlayerPrefs.GetInt("odasaku") != 0)
+        {
+            HeroTypes[3] = 1;
+        }
+        if (PlayerPrefs.GetInt("pneumonia") != 0)
+        {
+            HeroTypes[4] = 1;
+        }
+        if (PlayerPrefs.GetInt("ranpo") == 0)
         {
             HeroTypes[0] = 0;
         }
-        if (PlayerPrefs.GetInt("dogHero") == 0)
+        if (PlayerPrefs.GetInt("poe") == 0)
         {
             HeroTypes[1] = 0;
+        }
+        if (PlayerPrefs.GetInt("sushi") == 0)
+        {
+            HeroTypes[2] = 0;
+        }
+        if (PlayerPrefs.GetInt("odasaku") == 0)
+        {
+            HeroTypes[3] = 0;
+        }
+        if (PlayerPrefs.GetInt("pneumonia") == 0)
+        {
+            HeroTypes[4] = 0;
         }
 
         if (PlayerPrefs.GetInt("firstTypeEnemies") != 0)
@@ -62,6 +90,14 @@ public class UnitManager : MonoBehaviour
         {
             EnemyTypes[2] = PlayerPrefs.GetInt("thirdTypeEnemies");
         }
+        if (PlayerPrefs.GetInt("fourthTypeEnemies") != 0)
+        {
+            EnemyTypes[3] = PlayerPrefs.GetInt("fourthTypeEnemies");
+        }
+        if (PlayerPrefs.GetInt("fifthTypeEnemies") != 0)
+        {
+            EnemyTypes[4] = PlayerPrefs.GetInt("fifthTypeEnemies");
+        }
         if (PlayerPrefs.GetInt("firstTypeEnemies") == 0)
         {
             EnemyTypes[0] = 0;
@@ -73,6 +109,14 @@ public class UnitManager : MonoBehaviour
         if (PlayerPrefs.GetInt("thirdTypeEnemies") == 0)
         {
             EnemyTypes[2] = 0;
+        }
+        if (PlayerPrefs.GetInt("fourthTypeEnemies") == 0)
+        {
+            EnemyTypes[3] = 0;
+        }
+        if (PlayerPrefs.GetInt("fifthTypeEnemies") == 0)
+        {
+            EnemyTypes[4] = 0;
         }
 
         HerosTile = new Tile[HeroAmount];
@@ -91,19 +135,53 @@ public class UnitManager : MonoBehaviour
     public void SpawnHeros()
     {
         int counter = 0;
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 5; i++)
         {
             for (int j = 0; j < HeroTypes[i]; j++)
             {
                 if (i == 0)
                 {
-                    var randomPrefab = GetRandomUnit<BaseHero>(Faction.Hero);
-                    do
-                    {
-                        randomPrefab = GetRandomUnit<BaseHero>(Faction.Hero);
-                    } while (randomPrefab.Type != Type.Hero1);
+                    var randomPrefab = heroPrefab[i].GetComponent<BaseHero>();
                     var spawnedHero = Instantiate(randomPrefab);
+                    var randomSpawnTile = GridManager.Instance.GetHeroSpawnTile();
 
+                    randomSpawnTile.SetUnit(spawnedHero);
+
+                    SetHerosTile(randomSpawnTile, counter);
+
+                    UpdateHeroMovementAvailability(counter, false);
+                    counter++;
+                }
+                else if (i == 1)
+                {
+                    var randomPrefab = heroPrefab[i].GetComponent<BaseHero>();
+                    var spawnedHero = Instantiate(randomPrefab);
+                    var randomSpawnTile = GridManager.Instance.GetHeroSpawnTile();
+
+                    randomSpawnTile.SetUnit(spawnedHero);
+
+                    SetHerosTile(randomSpawnTile, counter);
+
+                    UpdateHeroMovementAvailability(counter, false);
+                    counter++;
+                }
+                else if (i == 2)
+                {
+                    var randomPrefab = heroPrefab[i].GetComponent<BaseHero>();
+                    var spawnedHero = Instantiate(randomPrefab);
+                    var randomSpawnTile = GridManager.Instance.GetHeroSpawnTile();
+
+                    randomSpawnTile.SetUnit(spawnedHero);
+
+                    SetHerosTile(randomSpawnTile, counter);
+
+                    UpdateHeroMovementAvailability(counter, false);
+                    counter++;
+                }
+                else if (i == 3)
+                {
+                    var randomPrefab = heroPrefab[i].GetComponent<BaseHero>();
+                    var spawnedHero = Instantiate(randomPrefab);
                     var randomSpawnTile = GridManager.Instance.GetHeroSpawnTile();
 
                     randomSpawnTile.SetUnit(spawnedHero);
@@ -115,12 +193,7 @@ public class UnitManager : MonoBehaviour
                 }
                 else
                 {
-                    var randomPrefab = GetRandomUnit<BaseHero>(Faction.Hero);
-                    do
-                    {
-                        randomPrefab = GetRandomUnit<BaseHero>(Faction.Hero);
-                    } while (randomPrefab.Type != Type.Hero2);
-
+                    var randomPrefab = heroPrefab[i].GetComponent<BaseHero>();
                     var spawnedHero = Instantiate(randomPrefab);
                     var randomSpawnTile = GridManager.Instance.GetHeroSpawnTile();
 
@@ -141,18 +214,13 @@ public class UnitManager : MonoBehaviour
     {
         int counter = 0;
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 5; i++)
         {
             for (int j = 0; j < EnemyTypes[i]; j++)
             {
                 if (i == 0)
                 {
-                    var randomPrefab = GetRandomUnit<BaseEnemy>(Faction.Enemy);
-                    do
-                    {
-                        randomPrefab = GetRandomUnit<BaseEnemy>(Faction.Enemy);
-                    } while (randomPrefab.Type != Type.Enemy1);
-
+                    var randomPrefab = enemyPrefab[i].GetComponent<BaseEnemy>();
                     var spawnedEnemy = Instantiate(randomPrefab);
                     var randomSpawnTile = GridManager.Instance.GetEnemySpawnTile();
 
@@ -166,12 +234,35 @@ public class UnitManager : MonoBehaviour
                 }
                 else if (i == 1)
                 {
-                    var randomPrefab = GetRandomUnit<BaseEnemy>(Faction.Enemy);
-                    do
-                    {
-                        randomPrefab = GetRandomUnit<BaseEnemy>(Faction.Enemy);
-                    } while (randomPrefab.Type != Type.Enemy2);
+                    var randomPrefab = enemyPrefab[i].GetComponent<BaseEnemy>();
+                    var spawnedEnemy = Instantiate(randomPrefab);
+                    var randomSpawnTile = GridManager.Instance.GetEnemySpawnTile();
 
+                    randomSpawnTile.SetUnit(spawnedEnemy);
+
+                    SetEnemiesTile(randomSpawnTile, counter);
+                    UpdateEnemyMovementAvailability(counter, false);
+
+                    Enemy[counter] = spawnedEnemy;
+                    counter++;
+                }
+                else if (i == 2)
+                {
+                    var randomPrefab = enemyPrefab[i].GetComponent<BaseEnemy>();
+                    var spawnedEnemy = Instantiate(randomPrefab);
+                    var randomSpawnTile = GridManager.Instance.GetEnemySpawnTile();
+
+                    randomSpawnTile.SetUnit(spawnedEnemy);
+
+                    SetEnemiesTile(randomSpawnTile, counter);
+                    UpdateEnemyMovementAvailability(counter, false);
+
+                    Enemy[counter] = spawnedEnemy;
+                    counter++;
+                }
+                else if (i == 3)
+                {
+                    var randomPrefab = enemyPrefab[i].GetComponent<BaseEnemy>();
                     var spawnedEnemy = Instantiate(randomPrefab);
                     var randomSpawnTile = GridManager.Instance.GetEnemySpawnTile();
 
@@ -185,12 +276,7 @@ public class UnitManager : MonoBehaviour
                 }
                 else
                 {
-                    var randomPrefab = GetRandomUnit<BaseEnemy>(Faction.Enemy);
-                    do
-                    {
-                        randomPrefab = GetRandomUnit<BaseEnemy>(Faction.Enemy);
-                    } while (randomPrefab.Type != Type.Enemy3);
-
+                    var randomPrefab = enemyPrefab[i].GetComponent<BaseEnemy>();
                     var spawnedEnemy = Instantiate(randomPrefab);
                     var randomSpawnTile = GridManager.Instance.GetEnemySpawnTile();
 
@@ -209,10 +295,10 @@ public class UnitManager : MonoBehaviour
     }
 
     //Get's a random unit of a specific faction (currently there's one option for either hero or enemy faction)
-    private T GetRandomUnit<T>(Faction faction) where T : BaseUnit
-    {
-        return (T)_units.Where(u => u.Faction == faction).OrderBy(o => Random.value).First().UnitPrefab;
-    }
+    //private T GetRandomUnit<T>(Faction faction) where T : BaseUnit
+    //{
+     //   return (T)_units.Where(u => u.Faction == faction).OrderBy(o => Random.value).First().UnitPrefab;
+    //}
 
     //Method that sets the selected hero unit
     public void SetSelectedHero(BaseHero hero, Tile tile)
@@ -290,17 +376,19 @@ public class UnitManager : MonoBehaviour
                 //If a hero character is close to the enemy then it attacks
                 if (Mathf.Abs(Vector2.Distance(heroPosition, enemyPosition)) <= 1 && !MovedEnemyUnits[i])
                 {
+                    AudioManager.Instance.Play("Attack");
+
                     if (Enemy[i].Type == Type.Enemy1)
                     {
                         hero.TakeDamage(10);
                     }
 
-                    if (Enemy[i].Type == Type.Enemy2)
+                    if (Enemy[i].Type == Type.Enemy2 || Enemy[i].Type == Type.Enemy3)
                     {
                         hero.TakeDamage(20);
                     }
 
-                    if (Enemy[i].Type == Type.Enemy3)
+                    if (Enemy[i].Type == Type.Enemy4 || Enemy[i].Type == Type.Enemy5)
                     {
                         hero.TakeDamage(30);
                     }
@@ -325,6 +413,8 @@ public class UnitManager : MonoBehaviour
                 //If a hero unit has 0 or less health then the hero unit is destroyed and the enemy character moves to it's tile
                 if (hero.Health <= 0)
                 {
+                    AudioManager.Instance.Play("Death");
+
                     hero.UpdateWounded(true, hero.Type); 
                     Destroy(hero.gameObject);
                     HerosTile[closestIndex].SetUnit(Enemy[i]);
@@ -395,7 +485,7 @@ public class UnitManager : MonoBehaviour
         {
             if (occupiedUnit.Faction == Faction.Hero)
             {
-                if (occupiedUnit.Type == Type.Hero1)
+                if (occupiedUnit.Type == Type.Hero1 || occupiedUnit.Type == Type.Hero3 || occupiedUnit.Type == Type.Hero5)
                 {
                     n = 48;
                     BaseHero hero = (BaseHero)occupiedUnit;
@@ -434,7 +524,7 @@ public class UnitManager : MonoBehaviour
                             array[i].ShowAvailableTiles();
                     }
                 }
-                else if (occupiedUnit.Type == Type.Enemy2)
+                else if (occupiedUnit.Type == Type.Enemy2 || occupiedUnit.Type == Type.Enemy3)
                 {
                     n = 24;
                     BaseEnemy enemy = (BaseEnemy)occupiedUnit;
@@ -450,7 +540,7 @@ public class UnitManager : MonoBehaviour
                 {
                     n = 8;
                     BaseEnemy enemy = (BaseEnemy)occupiedUnit;
-                    Tile[] array = enemy.GetAvailableTiles(tile, n, Type.Enemy3);
+                    Tile[] array = enemy.GetAvailableTiles(tile, n, Type.Enemy4);
 
                     for (int i = 0; i < n; i++)
                     {
@@ -464,7 +554,7 @@ public class UnitManager : MonoBehaviour
         {
             if (occupiedUnit.Faction == Faction.Hero)
             {
-                if (occupiedUnit.Type == Type.Hero1)
+                if (occupiedUnit.Type == Type.Hero1 || occupiedUnit.Type == Type.Hero3 || occupiedUnit.Type == Type.Hero5)
                 {
                     n = 48;
                     BaseHero hero = (BaseHero)occupiedUnit;
@@ -503,7 +593,7 @@ public class UnitManager : MonoBehaviour
                             array[i].DisablleAvailableTiles();
                     }
                 }
-                else if (occupiedUnit.Type == Type.Enemy2)
+                else if (occupiedUnit.Type == Type.Enemy2 || occupiedUnit.Type == Type.Enemy3)
                 {
                     n = 24;
                     BaseEnemy enemy = (BaseEnemy)occupiedUnit;
@@ -519,7 +609,7 @@ public class UnitManager : MonoBehaviour
                 {
                     n = 8;
                     BaseEnemy enemy = (BaseEnemy)occupiedUnit;
-                    Tile[] array = enemy.GetAvailableTiles(tile, n, Type.Enemy3);
+                    Tile[] array = enemy.GetAvailableTiles(tile, n, Type.Enemy4);
 
                     for (int i = 0; i < n; i++)
                     {

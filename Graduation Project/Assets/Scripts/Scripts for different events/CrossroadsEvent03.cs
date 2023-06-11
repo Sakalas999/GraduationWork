@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class CrossroadsEvent03 : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void FirstChoice()
     {
-        
+        InfoOnOwnedCharacters.Instance.UpdateOwned(3, true);
+        GetComponentInParent<Event>().Choice01();
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SecondChoice()
     {
-        
+        GetComponentInParent<Event>().Choice02();
     }
 }

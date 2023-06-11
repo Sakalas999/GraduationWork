@@ -5,6 +5,7 @@ using UnityEngine;
 public class PreventMultipleUi : MonoBehaviour
 {
     public static PreventMultipleUi Instance;
+    public GameObject tipsDisplay;
 
     public bool isUIWindowOpen;
     private void Awake()
@@ -19,5 +20,20 @@ public class PreventMultipleUi : MonoBehaviour
         {
             isUIWindowOpen = false;
         }
+    }
+
+    public void Tips()
+    {
+        if (!isUIWindowOpen)
+        {
+            tipsDisplay.SetActive(true);
+            isUIWindowOpen = true;
+        }
+    }
+
+    public void CloseTips()
+    {
+        tipsDisplay.SetActive(false);
+        isUIWindowOpen = false;
     }
 }

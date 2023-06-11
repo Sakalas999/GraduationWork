@@ -13,7 +13,7 @@ public class EndBattle : MonoBehaviour
         characterSelectionWindow.SetActive(true);
         characterSelectionWindow.GetComponent<CharacterSelection>().ShowSelection();
 
-        InfoOnOwnedCharacters.Instance.AddEnemy(2, 0, 0, 2);
+        InfoOnOwnedCharacters.Instance.AddEnemy(2, 0, 0, 0, 1, 1);
 
         PlayerPrefs.SetInt("End Battle", 1);
         PlayerPrefs.Save();

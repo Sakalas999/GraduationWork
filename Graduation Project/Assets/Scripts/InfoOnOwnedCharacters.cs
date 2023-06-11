@@ -79,8 +79,11 @@ public class InfoOnOwnedCharacters : MonoBehaviour
         isDeadH5 = intToBool(PlayerPrefs.GetInt("isDeadH5"));
 
         PlayerPrefs.SetInt("amountOfUnits", amountOfUnits);
-        PlayerPrefs.SetInt("ratHero", 0);
-        PlayerPrefs.SetInt("dogHero", 0);
+        PlayerPrefs.SetInt("ranpo", 0);
+        PlayerPrefs.SetInt("poe", 0);
+        PlayerPrefs.SetInt("sushi", 0);
+        PlayerPrefs.SetInt("odasaku", 0);
+        PlayerPrefs.SetInt("pneumonia", 0);
         RemoveEnemy();
     }
 
@@ -436,12 +439,14 @@ public class InfoOnOwnedCharacters : MonoBehaviour
         }
     }
 
-    public void AddEnemy(int amount, int firstTypeAmount, int secondTypeAmount, int thirdTypeAmount)
+    public void AddEnemy(int amount, int firstTypeAmount, int secondTypeAmount, int thirdTypeAmount,  int fourthTypeAmount, int fifthTypeAmount)
     {
         PlayerPrefs.SetInt("enemyAmount", amount);
         PlayerPrefs.SetInt("firstTypeEnemies", firstTypeAmount);
         PlayerPrefs.SetInt("secondTypeEnemies", secondTypeAmount);
         PlayerPrefs.SetInt("thirdTypeEnemies", thirdTypeAmount);
+        PlayerPrefs.SetInt("fourthTypeEnemies", fourthTypeAmount);
+        PlayerPrefs.SetInt("fifthTypeEnemies", fifthTypeAmount);
     }
 
     public void RemoveEnemy()
@@ -450,17 +455,31 @@ public class InfoOnOwnedCharacters : MonoBehaviour
         PlayerPrefs.SetInt("firstTypeEnemies", 0);
         PlayerPrefs.SetInt("secondTypeEnemies", 0);
         PlayerPrefs.SetInt("thirdTypeEnemies", 0);
+        PlayerPrefs.SetInt("fourthTypeEnemies", 0);
+        PlayerPrefs.SetInt("fifthTypeEnemies", 0);
     }
 
     public void SelectedHeros(int index)
     {
         if (index == 1)
         {
-            PlayerPrefs.SetInt("ratHero", 1);
+            PlayerPrefs.SetInt("ranpo", 1);
         }
         if (index == 2)
         {
-            PlayerPrefs.SetInt("dogHero", 1);
+            PlayerPrefs.SetInt("poe", 1);
+        }
+        if (index == 3)
+        {
+            PlayerPrefs.SetInt("sushi", 1);
+        }
+        if (index == 4)
+        {
+            PlayerPrefs.SetInt("odasaku", 1);
+        }
+        if (index == 5)
+        {
+            PlayerPrefs.SetInt("pneumonia", 1);
         }
     }
 
@@ -468,11 +487,23 @@ public class InfoOnOwnedCharacters : MonoBehaviour
     {
         if (index == 1)
         {
-            PlayerPrefs.SetInt("ratHero", 0);
+            PlayerPrefs.SetInt("ranpo", 0);
         }
         if (index == 2)
         {
-            PlayerPrefs.SetInt("dogHero", 0);
+            PlayerPrefs.SetInt("poe", 0);
+        }
+        if (index == 3)
+        {
+            PlayerPrefs.SetInt("sushi", 0);
+        }
+        if (index == 4)
+        {
+            PlayerPrefs.SetInt("odasaku", 0);
+        }
+        if (index == 5)
+        {
+            PlayerPrefs.SetInt("pneumonia", 0);
         }
     }
 

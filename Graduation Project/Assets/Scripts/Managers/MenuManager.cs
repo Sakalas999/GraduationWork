@@ -11,6 +11,7 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField] private GameObject _selectedHeroObject, _tileObject, _tileUnitObject, _battleLostObject, _battleWonObject, _continueButton, _currencyDisplay, _resetWounded;
     [SerializeField] private TextMeshProUGUI _lossText, _rewardText;
+    [SerializeField] private GameObject _mainMenu, _options;
 
     private Color _ogContinueButton;
     private string _textContinueButton;
@@ -137,9 +138,6 @@ public class MenuManager : MonoBehaviour
         _tileUnitObject.SetActive(false);
         _selectedHeroObject.SetActive(false);
 
-        CurrencyManager.cheese = CurrencyManager.count;
-        CurrencyManager.UpdateCheese();
-        UpdateCurrencyDisplay();
         _rewardText.text = "You have received " + CurrencyManager.count + " amount of cheese";
     }
 
@@ -192,7 +190,19 @@ public class MenuManager : MonoBehaviour
 
     public void Options()
     {
-        //Parameters.Instance.SetAllParametersToDefault();
+        if (_options.active)
+        {
+            _options.SetActive(false);
+            _mainMenu.SetActive(true);
+        }
+        else
+        {
+            if (Volume.Instance != null)
+                Volume.Instance.LoadValues();
+
+            _options.SetActive(true);
+            _mainMenu.SetActive(false);
+        }
     }
 
     public void QuitGame()

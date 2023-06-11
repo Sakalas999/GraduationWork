@@ -7,13 +7,28 @@ public class Map : MonoBehaviour
 {
     public GameObject[] eventAreas;
     public GameObject areYouSure;
+    public GameObject tipsDisplay;
+    public GameObject characterSelectionWindow;
     public bool eventOpen;
+    public bool characterWindowOpen;
+    public bool loadingBattle;
 
     public static Map Instance;
 
     void Awake()
     {
         Instance = this;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I) && !eventOpen)
+        {
+            eventOpen = true;
+            characterWindowOpen = true;
+            characterSelectionWindow.SetActive(true);
+            characterSelectionWindow.GetComponent<CharacterSelection>().ShowSelection();
+        }
     }
 
     public void MiceTown()
@@ -75,5 +90,20 @@ public class Map : MonoBehaviour
     {
         areYouSure.SetActive(true);
         eventOpen = true;
+    }
+
+    public void Tips()
+    {
+        if (!eventOpen)
+        {
+            tipsDisplay.SetActive(true);
+            eventOpen = true;
+        }
+    }
+
+    public void CloseTips()
+    {
+        tipsDisplay.SetActive(false);
+        eventOpen = false;
     }
 }

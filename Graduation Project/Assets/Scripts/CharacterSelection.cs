@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class CharacterSelection : MonoBehaviour
 {
     [SerializeField] private GameObject _firstRatHero, _secondRatHero, _thirdRatHero, _firstDogHero, _secondDogHero, _healersHutInterface;
-    [SerializeField] private GameObject[] woundedAttribute = new GameObject[5]; 
+    [SerializeField] private GameObject[] woundedAttribute = new GameObject[5];
+    [SerializeField] private GameObject _proceedButton, _closeButton;
 
     private bool _selectedFirstRat, _selectedSecondRat, _selectedThirdRat, _selectedFirstDog, _selectedSecondDog;
     private Color _ogFirstRat, _ogSecondRat, _ogThirdRat, _ogFirstDog, _ogSecondDog;
@@ -29,6 +30,17 @@ public class CharacterSelection : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
+            if (Map.Instance.characterWindowOpen)
+            {
+                _proceedButton.SetActive(false);
+                _closeButton.SetActive(true);
+            }
+            else
+            {
+                _proceedButton.SetActive(true);
+                _closeButton.SetActive(false);
+            }
+
             if (InfoOnOwnedCharacters.Instance.isOwnedH1)
             {
                 _firstRatHero.SetActive(true);
@@ -175,81 +187,129 @@ public class CharacterSelection : MonoBehaviour
 
     public void SelectedFirst()
     {
-        if (_selectedFirstRat)
+        if (SceneManager.GetActiveScene().buildIndex == 1 && !Map.Instance.characterWindowOpen)
         {
-            _selectedFirstRat = false;
-            _firstRatHero.GetComponent<Image>().color = _ogFirstRat;
-            InfoOnOwnedCharacters.Instance.DeselectHero(1);
-        }
-        else
-        {
-            _selectedFirstRat = true;
-            _firstRatHero.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.5f);
-            InfoOnOwnedCharacters.Instance.SelectedHeros(1);
+            if (_selectedFirstRat)
+            {
+                _selectedFirstRat = false;
+                _firstRatHero.GetComponent<Image>().color = _ogFirstRat;
+                InfoOnOwnedCharacters.Instance.DeselectHero(1);
+            }
+            else
+            {
+                _selectedFirstRat = true;
+                _firstRatHero.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.5f);
+                InfoOnOwnedCharacters.Instance.SelectedHeros(1);
+            }
         }
     }
 
     public void SelectedSecond()
     {
-        if (_selectedFirstDog)
+        if (SceneManager.GetActiveScene().buildIndex == 1 && !Map.Instance.characterWindowOpen)
         {
-            _selectedFirstDog = false;
-            _firstDogHero.GetComponent<Image>().color = _ogFirstDog;
-            InfoOnOwnedCharacters.Instance.DeselectHero(2);
-        }
-        else
-        {
-            _selectedFirstDog = true;
-            _firstDogHero.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.5f);
-            InfoOnOwnedCharacters.Instance.SelectedHeros(2);
+            if (_selectedFirstDog)
+            {
+                _selectedFirstDog = false;
+                _firstDogHero.GetComponent<Image>().color = _ogFirstDog;
+                InfoOnOwnedCharacters.Instance.DeselectHero(2);
+            }
+            else
+            {
+                _selectedFirstDog = true;
+                _firstDogHero.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.5f);
+                InfoOnOwnedCharacters.Instance.SelectedHeros(2);
+            }
         }
     }
 
     public void SelectedThird()
     {
-        if (_selectedSecondRat)
+        if (SceneManager.GetActiveScene().buildIndex == 1 && !Map.Instance.characterWindowOpen)
         {
-            _selectedSecondRat = false;
-            _secondRatHero.GetComponent<Image>().color = _ogSecondRat;
-        }
-        else
-        {
-            _selectedSecondRat = true;
-            _secondRatHero.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.5f);
+            if (_selectedSecondRat)
+            {
+                _selectedSecondRat = false;
+                _secondRatHero.GetComponent<Image>().color = _ogSecondRat;
+                InfoOnOwnedCharacters.Instance.DeselectHero(3);
+            }
+            else
+            {
+                _selectedSecondRat = true;
+                _secondRatHero.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.5f);
+                InfoOnOwnedCharacters.Instance.SelectedHeros(3);
+            }
         }
     }  
 
     public void SelectedFourth()
     {
-        if (_selectedSecondDog)
+        if (SceneManager.GetActiveScene().buildIndex == 1 && !Map.Instance.characterWindowOpen)
         {
-            _selectedSecondDog = false;
-            _secondDogHero.GetComponent<Image>().color = _ogSecondDog;
-        }
-        else
-        {
-            _selectedSecondDog = true;
-            _secondDogHero.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.5f);
+            if (_selectedSecondDog)
+            {
+                _selectedSecondDog = false;
+                _secondDogHero.GetComponent<Image>().color = _ogSecondDog;
+                InfoOnOwnedCharacters.Instance.DeselectHero(4);
+            }
+            else
+            {
+                _selectedSecondDog = true;
+                _secondDogHero.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.5f);
+                InfoOnOwnedCharacters.Instance.SelectedHeros(4);
+            }
         }
     }
 
     public void SelectedFifth()
     {
-        if (_selectedThirdRat)
+        if (SceneManager.GetActiveScene().buildIndex == 1 && !Map.Instance.characterWindowOpen)
         {
-            _selectedThirdRat = false;
-            _thirdRatHero.GetComponent<Image>().color = _ogThirdRat;
-        }
-        else
-        {
-            _selectedThirdRat = true;
-            _thirdRatHero.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.5f);
+            if (_selectedThirdRat)
+            {
+                _selectedThirdRat = false;
+                _thirdRatHero.GetComponent<Image>().color = _ogThirdRat;
+                InfoOnOwnedCharacters.Instance.DeselectHero(5);
+            }
+            else
+            {
+                _selectedThirdRat = true;
+                _thirdRatHero.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.5f);
+                InfoOnOwnedCharacters.Instance.SelectedHeros(5);
+            }
         }
     }
 
     public void Proceed()
     {
-        SceneManager.LoadScene(2);
+        int count = 0;
+        if (_selectedFirstRat) count++;
+        if (_selectedFirstDog) count++;
+        if (_selectedSecondRat) count++;
+        if (_selectedSecondDog) count++;
+        if (_selectedThirdRat) count++;
+
+        if (count > 0 && count < 4)
+            SceneManager.LoadScene(2);
+        else
+        {
+            count = 0;
+
+            _selectedFirstRat = false;
+            _firstRatHero.GetComponent<Image>().color = _ogFirstRat;
+
+            _selectedFirstDog = false;
+            _firstDogHero.GetComponent<Image>().color = _ogFirstDog;
+
+            _selectedSecondRat = false;
+            _secondRatHero.GetComponent<Image>().color = _ogSecondRat;
+
+            _selectedSecondDog = false;
+            _secondDogHero.GetComponent<Image>().color = _ogSecondDog;
+
+            _selectedThirdRat = false;
+            _thirdRatHero.GetComponent<Image>().color = _ogThirdRat;
+        }
     }
 
     public void Heal()
@@ -309,9 +369,11 @@ public class CharacterSelection : MonoBehaviour
 
                 _selectedFirstRat = false;
                 _firstRatHero.GetComponent<Image>().color = _ogFirstRat;
+                InfoOnOwnedCharacters.Instance.DeselectHero(1);
 
                 _selectedFirstDog = false;
                 _firstDogHero.GetComponent<Image>().color = _ogFirstDog;
+                InfoOnOwnedCharacters.Instance.DeselectHero(2);
 
                 _selectedSecondRat = false;
                 _secondRatHero.GetComponent<Image>().color = _ogSecondRat;
@@ -334,6 +396,13 @@ public class CharacterSelection : MonoBehaviour
     public void Close()
     {
         _currentGameObject.SetActive(false);
-        PreventMultipleUi.Instance.isUIWindowOpen = false;
+
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            Map.Instance.eventOpen = false;
+            Map.Instance.characterWindowOpen = false;
+        }
+        else
+            PreventMultipleUi.Instance.isUIWindowOpen = false;
     }
 }

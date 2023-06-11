@@ -99,12 +99,14 @@ public class Tile : MonoBehaviour
                         float damage = (10 + PlayerPrefs.GetInt("DamageEffectsAll")) * PlayerPrefs.GetFloat("DamageEffectsH1");
                         Debug.Log("Damage " + damage);
                         occupiedUnit.TakeDamage(damage * debuff);
+                        AudioManager.Instance.Play("Attack");
                     }
 
                     if (UnitManager.Instance.SelectedHero.Type == Type.Hero2)
                     {
                         float damage = (20 + PlayerPrefs.GetInt("DamageEffectsAll")) * PlayerPrefs.GetFloat("DamageEffectsH2");
                         occupiedUnit.TakeDamage( damage *  debuff);
+                        AudioManager.Instance.Play("Attack");
                     }
 
                     //Destroys an enemy unit if it reaches 0 or less health
@@ -116,7 +118,9 @@ public class Tile : MonoBehaviour
                             {
                                 index = i;
                             }
-                        }                       
+                        }
+                        AudioManager.Instance.Play("Death");
+
                         Destroy(enemy.gameObject);
                         UnitManager.Instance.GetAvailableTiles(UnitManager.Instance.HerosTile[UnitManager.Instance.SelectedHeroIndex].occupiedUnit,
                             UnitManager.Instance.HerosTile[UnitManager.Instance.SelectedHeroIndex], false);

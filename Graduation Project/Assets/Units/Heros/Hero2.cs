@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Hero2 : BaseHero
 {
-    public const string IsDeadH2 = "isDeaH2";
+    public const string IsDeadH2 = "isDeadH2";
     public const string IsWoundedH2 = "isWoundedH2";
     private bool isWoundedH2 = false;
     public bool isDeadH2 = false;

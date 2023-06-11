@@ -7,10 +7,14 @@ using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager Instance;
     public Sound[] sounds;
+    private float _volume;
 
     void Awake()
     {
+        Instance = this;
+
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -20,10 +24,12 @@ public class AudioManager : MonoBehaviour
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
+       
     }
 
     public void Start()
     {
+        AudioListener.volume = PlayerPrefs.GetFloat("Volume");
         Play(LocationMusic());
     }
 
@@ -33,7 +39,7 @@ public class AudioManager : MonoBehaviour
         s.source.Play();
     }
 
-    private String LocationMusic()
+    public String LocationMusic()
     {
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
@@ -68,5 +74,4 @@ public class AudioManager : MonoBehaviour
 
         }
     }
-
 }

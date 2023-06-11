@@ -4,31 +4,62 @@ using UnityEngine;
 
 public class CrossroadsEvent01 : MonoBehaviour
 {
+    private bool _failed;
     public void FirstChoice()
     {
-        int random;
+        RandomChance();
 
-        if (CurrencyManager.cheese >= 1)
+        if (!_failed)
         {
-            if (CurrencyManager.cheese < 5)
-                CurrencyManager.cheese += -CurrencyManager.cheese;
-            else CurrencyManager.cheese += -5;
-            CurrencyManager.UpdateCheese();
+            if (CurrencyManager.cheese >= 1 * PlayerPrefs.GetInt("CheeseMultiplier"))
+            {
+                CurrencyManager.cheese -= 1 * PlayerPrefs.GetInt("CheeseMultiplier");
+                CurrencyManager.UpdateCheese();
 
-            RandomUnit();
+                MenuManager.Instance.UpdateCurrencyDisplay();
 
-            MenuManager.Instance.UpdateCurrencyDisplay();
+                GetComponentInParent<Event>().Choice01();
 
-            GetComponentInParent<Event>().Choice01();
-
-            if (PlayerPrefs.GetInt("RaidChance") > 0)
-                PlayerPrefs.SetInt("RaidChance", PlayerPrefs.GetInt("RaidChance") - 5);
+                if (PlayerPrefs.GetInt("RaidChance") > 1)
+                    PlayerPrefs.SetInt("RaidChance", PlayerPrefs.GetInt("RaidChance") - 1);
+            }
+            else
+            {
+                GetComponentInParent<Event>().SomethingDidntWork();
+            }
         }
         else
         {
-            GetComponentInParent<Event>().SomethingDidntWork();
-            PlayerPrefs.SetInt("RaidChance", PlayerPrefs.GetInt("RaidChance") + 5);
+
+            if (CurrencyManager.cheese >= 1 * PlayerPrefs.GetInt("CheeseMultiplier"))
+            {
+                CurrencyManager.cheese -= 1 * PlayerPrefs.GetInt("CheeseMultiplier");
+                CurrencyManager.UpdateCheese();
+
+                MenuManager.Instance.UpdateCurrencyDisplay();
+                RandomUnit();
+
+                GetComponentInParent<Event>().Choice01Failed();
+
+                if (PlayerPrefs.GetInt("RaidChance") > 1)
+                    PlayerPrefs.SetInt("RaidChance", PlayerPrefs.GetInt("RaidChance") - 1);
+            }
+            else
+            {
+                GetComponentInParent<Event>().SomethingDidntWork();
+            }
         }
+    }
+
+    public void RandomChance()
+    {
+        int random = Random.Range(0, 10);
+        int failChance = 0 + Mathf.RoundToInt((PlayerPrefs.GetInt("RaidChance") / 10));
+
+        if (random <= failChance)
+            _failed = true;
+        else
+            _failed = false;
     }
 
     private void RandomUnit()
@@ -51,6 +82,5 @@ public class CrossroadsEvent01 : MonoBehaviour
     public void SecondChoice()
     {
         GetComponentInParent<Event>().Choice02();
-        PlayerPrefs.SetInt("RaidChance", PlayerPrefs.GetInt("RaidChance") + 5);
     }
 }

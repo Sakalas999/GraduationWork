@@ -37,6 +37,36 @@ public class Event : MonoBehaviour
 
         buttons[0].SetActive(false);
         buttons[1].SetActive(false);
+        buttons[2].SetActive(true);
+    }
+
+    public void Choice01More()
+    {
+        texts[0].SetActive(false);
+        texts[1].SetActive(true);
+
+        buttons[0].SetActive(false);
+        buttons[1].SetActive(false);
+        buttons[3].SetActive(true);
+    }
+
+    public void Choice01Failed()
+    {
+        texts[0].SetActive(false);
+        texts[4].SetActive(true);
+
+        buttons[0].SetActive(false);
+        buttons[1].SetActive(false);
+        buttons[2].SetActive(true);
+    }
+
+    public void Choice01FailedCombat()
+    {
+        texts[0].SetActive(false);
+        texts[4].SetActive(true);
+
+        buttons[0].SetActive(false);
+        buttons[1].SetActive(false);
         buttons[3].SetActive(true);
     }
 
@@ -53,12 +83,28 @@ public class Event : MonoBehaviour
 
         if (texts.Length > 3 && texts[3] != null)
         texts[3].SetActive(false);
+        if (texts.Length > 4 && texts[4] != null)
+            texts[4].SetActive(false);
+        if (texts.Length > 5 && texts[5] != null)
+            texts[5].SetActive(false);
 
         Map.Instance.eventOpen = false;
 
-        RaidChance();
+        if (!Map.Instance.loadingBattle)
+            RaidChance();
+
         if (PlayerPrefs.GetInt("Raid") == 1)
             SceneManager.LoadScene(3);
+    }
+
+    public void CantHeal()
+    {
+        texts[0].SetActive(false);
+        texts[5].SetActive(true);
+
+        buttons[0].SetActive(false);
+        buttons[1].SetActive(false);
+        buttons[2].SetActive(true);
     }
 
     public void SomethingDidntWork()

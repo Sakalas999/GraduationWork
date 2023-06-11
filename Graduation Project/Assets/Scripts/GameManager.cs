@@ -44,8 +44,19 @@ public class GameManager : MonoBehaviour
             case GameState.BattleLost:
                 if (PlayerPrefs.GetInt("End Battle") == 0)
                 {
-                    MenuManager.Instance.UpdateCurrencyDisplay();
+                    if (CurrencyManager.cheese >= CurrencyManager.count)
+                    {
+                        CurrencyManager.cheese -= CurrencyManager.count;
+                        CurrencyManager.UpdateCheese();
+                    }
+                    else if (CurrencyManager.cheese > 0)
+                    {
+                        CurrencyManager.cheese -= CurrencyManager.cheese;
+                        CurrencyManager.UpdateCheese();
+                    }
+
                     MenuManager.Instance.ShowBattleLostScreen();
+                    MenuManager.Instance.UpdateCurrencyDisplay();
                 }
                 else
                 {
@@ -55,8 +66,11 @@ public class GameManager : MonoBehaviour
             case GameState.BattleWon:
                 if (PlayerPrefs.GetInt("End Battle") == 0)
                 {
-                    MenuManager.Instance.UpdateCurrencyDisplay();
+                    CurrencyManager.cheese += CurrencyManager.count;
+                    CurrencyManager.UpdateCheese();
+                    AudioManager.Instance.Play("Victory");
                     MenuManager.Instance.ShowBattleWonScreen();
+                    MenuManager.Instance.UpdateCurrencyDisplay();
                 }
                 else
                 {

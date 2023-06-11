@@ -32,6 +32,7 @@ public class BuildSlotManager : MonoBehaviour
             int randomLevel = Random.Range(1, 5);
 
             PlayerPrefs.SetInt("Raid", 0);
+            PlayerPrefs.SetInt("RaidChance", 1);
             PlayerPrefs.Save();
 
             _raid.SetActive(true);

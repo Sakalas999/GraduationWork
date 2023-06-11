@@ -21,7 +21,7 @@ public class BaseEnemy : BaseUnit
             availabelTiles = GetAvailableTiles(enemyTile, _type1, enemyType);
             n = _type1;
         }
-        else if (enemyType == Type.Enemy2)
+        else if (enemyType == Type.Enemy2 || enemyType == Type.Enemy3)
         {
             availabelTiles = GetAvailableTiles(enemyTile, _type2, enemyType);
             n = _type2;
@@ -58,7 +58,7 @@ public class BaseEnemy : BaseUnit
 
         int indexer = 0;
 
-        if (type == Type.Enemy3)
+        if (type == Type.Enemy4 || type == Type.Enemy5)
         {
             for (int i = -1; i <= 1; i++)
             {
@@ -77,7 +77,7 @@ public class BaseEnemy : BaseUnit
                 }
             }
         }
-        else if (type == Type.Enemy2)
+        else if (type == Type.Enemy2 || type == Type.Enemy3)
         {
             for (int i = -2; i <= 2; i++)
             {

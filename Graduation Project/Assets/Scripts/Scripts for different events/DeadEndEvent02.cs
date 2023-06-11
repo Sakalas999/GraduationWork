@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class DeadEndEvent02 : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void FirstChoice()
     {
-        
+        if (CurrencyManager.cheese >= 1 * PlayerPrefs.GetInt("CheeseMultiplier"))
+        {
+            CurrencyManager.cheese -= 1 * PlayerPrefs.GetInt("CheeseMultiplier");
+            CurrencyManager.UpdateCheese();
+            MenuManager.Instance.UpdateCurrencyDisplay();
+
+            InfoOnOwnedCharacters.Instance.UpdateOwned(4, true);
+            GetComponentInParent<Event>().Choice01();
+        }
+        else
+            GetComponentInParent<Event>().SomethingDidntWork();
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SecondChoice()
     {
-        
+        GetComponentInParent<Event>().Choice02();
     }
 }
