@@ -90,7 +90,7 @@ public class BaseHero : BaseUnit
         int n = 0;
         bool move = false;
 
-        if (heroType == Type.Hero1)
+        if (heroType == Type.Hero1 || heroType == Type.Hero3 || heroType == Type.Hero5)
         {
             n = _type1;
 
@@ -138,7 +138,7 @@ public class BaseHero : BaseUnit
             debuff = 1;
         }
 
-        if (type == Type.Hero2)
+        if (type == Type.Hero2 || type == Type.Hero4)
         {     
             Tile[] array = new Tile[_type2];
 

@@ -12,7 +12,7 @@ public class RatLairEvent02 : MonoBehaviour
 
         if (_gotCheese)
         {
-            CurrencyManager.cheese += 1 * PlayerPrefs.GetInt("CheeseMultiplier");
+            CurrencyManager.cheese += 5 * PlayerPrefs.GetInt("CheeseMultiplier");
             CurrencyManager.UpdateCheese();
 
             MenuManager.Instance.UpdateCurrencyDisplay();
@@ -21,7 +21,7 @@ public class RatLairEvent02 : MonoBehaviour
         }
         else
         {
-            CurrencyManager.cheese += 1 * PlayerPrefs.GetInt("CheeseMultiplier");
+            CurrencyManager.cheese += 5 * PlayerPrefs.GetInt("CheeseMultiplier");
             CurrencyManager.UpdateCheese();
 
             MenuManager.Instance.UpdateCurrencyDisplay();

@@ -59,7 +59,7 @@ public class Parameters : MonoBehaviour
         PlayerPrefs.SetFloat("DamageEffectsH4", 1);
         PlayerPrefs.SetFloat("DamageEffectsH5", 1);
 
-        PlayerPrefs.SetInt("cheese", 0);
+        PlayerPrefs.SetInt("cheese", 10);
         PlayerPrefs.SetInt("NewGameInitialised", 0);
         PlayerPrefs.SetInt("End Battle", 0);
         PlayerPrefs.SetInt("Raid", 0);

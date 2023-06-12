@@ -383,10 +383,10 @@ MonoBehaviour:
   occupiedTile: {fileID: 0}
   Faction: 1
   Type: 7
-  Health: 0
+  Health: 250
   BaseHealth: 250
-  _healthBar: {fileID: 0}
-  _blood: {fileID: 0}
+  _healthBar: {fileID: 4764392215396976966}
+  _blood: {fileID: 5849201148280659662}
 --- !u!1 &4928138074282624609
 GameObject:
   m_ObjectHideFlags: 0

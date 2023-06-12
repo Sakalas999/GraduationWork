@@ -79,6 +79,7 @@ public class InfoOnOwnedCharacters : MonoBehaviour
         isDeadH5 = intToBool(PlayerPrefs.GetInt("isDeadH5"));
 
         PlayerPrefs.SetInt("amountOfUnits", amountOfUnits);
+        PlayerPrefs.SetInt("amountOfSelectedUnits", 0);
         PlayerPrefs.SetInt("ranpo", 0);
         PlayerPrefs.SetInt("poe", 0);
         PlayerPrefs.SetInt("sushi", 0);
@@ -464,22 +465,27 @@ public class InfoOnOwnedCharacters : MonoBehaviour
         if (index == 1)
         {
             PlayerPrefs.SetInt("ranpo", 1);
+            PlayerPrefs.SetInt("amountOfSelectedUnits", PlayerPrefs.GetInt("amountOfSelectedUnits")+1);
         }
         if (index == 2)
         {
             PlayerPrefs.SetInt("poe", 1);
+            PlayerPrefs.SetInt("amountOfSelectedUnits", PlayerPrefs.GetInt("amountOfSelectedUnits") + 1);
         }
         if (index == 3)
         {
             PlayerPrefs.SetInt("sushi", 1);
+            PlayerPrefs.SetInt("amountOfSelectedUnits", PlayerPrefs.GetInt("amountOfSelectedUnits") + 1);
         }
         if (index == 4)
         {
             PlayerPrefs.SetInt("odasaku", 1);
+            PlayerPrefs.SetInt("amountOfSelectedUnits", PlayerPrefs.GetInt("amountOfSelectedUnits") + 1);
         }
         if (index == 5)
         {
             PlayerPrefs.SetInt("pneumonia", 1);
+            PlayerPrefs.SetInt("amountOfSelectedUnits", PlayerPrefs.GetInt("amountOfSelectedUnits") + 1);
         }
     }
 
@@ -488,22 +494,27 @@ public class InfoOnOwnedCharacters : MonoBehaviour
         if (index == 1)
         {
             PlayerPrefs.SetInt("ranpo", 0);
+            PlayerPrefs.SetInt("amountOfSelectedUnits", PlayerPrefs.GetInt("amountOfSelectedUnits") - 1);
         }
         if (index == 2)
         {
             PlayerPrefs.SetInt("poe", 0);
+            PlayerPrefs.SetInt("amountOfSelectedUnits", PlayerPrefs.GetInt("amountOfSelectedUnits") - 1);
         }
         if (index == 3)
         {
             PlayerPrefs.SetInt("sushi", 0);
+            PlayerPrefs.SetInt("amountOfSelectedUnits", PlayerPrefs.GetInt("amountOfSelectedUnits") - 1);
         }
         if (index == 4)
         {
             PlayerPrefs.SetInt("odasaku", 0);
+            PlayerPrefs.SetInt("amountOfSelectedUnits", PlayerPrefs.GetInt("amountOfSelectedUnits") - 1);
         }
         if (index == 5)
         {
             PlayerPrefs.SetInt("pneumonia", 0);
+            PlayerPrefs.SetInt("amountOfSelectedUnits", PlayerPrefs.GetInt("amountOfSelectedUnits") - 1);
         }
     }
 

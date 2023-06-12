@@ -7,7 +7,7 @@ public class AlleywayEvent04 : MonoBehaviour
     public void FirstChoice()
     {
 
-        CurrencyManager.cheese += 1 * PlayerPrefs.GetInt("CheeseMultiplier");
+        CurrencyManager.cheese += 5 * PlayerPrefs.GetInt("CheeseMultiplier");
         CurrencyManager.UpdateCheese();
 
         MenuManager.Instance.UpdateCurrencyDisplay();

@@ -202,11 +202,43 @@ public class CharacterSelection : MonoBehaviour
                 InfoOnOwnedCharacters.Instance.SelectedHeros(1);
             }
         }
+
+        if (SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            if (_selectedFirstRat)
+            {
+                _selectedFirstRat = false;
+                _firstRatHero.GetComponent<Image>().color = _ogFirstRat;
+                InfoOnOwnedCharacters.Instance.DeselectHero(1);
+            }
+            else
+            {
+                _selectedFirstRat = true;
+                _firstRatHero.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.5f);
+                InfoOnOwnedCharacters.Instance.SelectedHeros(1);
+            }
+        }
     }
 
     public void SelectedSecond()
     {
         if (SceneManager.GetActiveScene().buildIndex == 1 && !Map.Instance.characterWindowOpen)
+        {
+            if (_selectedFirstDog)
+            {
+                _selectedFirstDog = false;
+                _firstDogHero.GetComponent<Image>().color = _ogFirstDog;
+                InfoOnOwnedCharacters.Instance.DeselectHero(2);
+            }
+            else
+            {
+                _selectedFirstDog = true;
+                _firstDogHero.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.5f);
+                InfoOnOwnedCharacters.Instance.SelectedHeros(2);
+            }
+        }
+        
+        if (SceneManager.GetActiveScene().buildIndex == 3)
         {
             if (_selectedFirstDog)
             {
@@ -240,11 +272,43 @@ public class CharacterSelection : MonoBehaviour
                 InfoOnOwnedCharacters.Instance.SelectedHeros(3);
             }
         }
+        
+        if (SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            if (_selectedSecondRat)
+            {
+                _selectedSecondRat = false;
+                _secondRatHero.GetComponent<Image>().color = _ogSecondRat;
+                InfoOnOwnedCharacters.Instance.DeselectHero(3);
+            }
+            else
+            {
+                _selectedSecondRat = true;
+                _secondRatHero.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.5f);
+                InfoOnOwnedCharacters.Instance.SelectedHeros(3);
+            }
+        }
     }  
 
     public void SelectedFourth()
     {
         if (SceneManager.GetActiveScene().buildIndex == 1 && !Map.Instance.characterWindowOpen)
+        {
+            if (_selectedSecondDog)
+            {
+                _selectedSecondDog = false;
+                _secondDogHero.GetComponent<Image>().color = _ogSecondDog;
+                InfoOnOwnedCharacters.Instance.DeselectHero(4);
+            }
+            else
+            {
+                _selectedSecondDog = true;
+                _secondDogHero.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.5f);
+                InfoOnOwnedCharacters.Instance.SelectedHeros(4);
+            }
+        }
+        
+        if (SceneManager.GetActiveScene().buildIndex == 3)
         {
             if (_selectedSecondDog)
             {
@@ -278,6 +342,23 @@ public class CharacterSelection : MonoBehaviour
                 InfoOnOwnedCharacters.Instance.SelectedHeros(5);
             }
         }
+        
+        if (SceneManager.GetActiveScene().buildIndex == 3)
+        {
+
+            if (_selectedThirdRat)
+            {
+                _selectedThirdRat = false;
+                _thirdRatHero.GetComponent<Image>().color = _ogThirdRat;
+                InfoOnOwnedCharacters.Instance.DeselectHero(5);
+            }
+            else
+            {
+                _selectedThirdRat = true;
+                _thirdRatHero.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.5f);
+                InfoOnOwnedCharacters.Instance.SelectedHeros(5);
+            }
+        }
     }
 
     public void Proceed()
@@ -297,18 +378,23 @@ public class CharacterSelection : MonoBehaviour
 
             _selectedFirstRat = false;
             _firstRatHero.GetComponent<Image>().color = _ogFirstRat;
+            InfoOnOwnedCharacters.Instance.DeselectHero(1);
 
             _selectedFirstDog = false;
             _firstDogHero.GetComponent<Image>().color = _ogFirstDog;
+            InfoOnOwnedCharacters.Instance.DeselectHero(2);
 
             _selectedSecondRat = false;
             _secondRatHero.GetComponent<Image>().color = _ogSecondRat;
+            InfoOnOwnedCharacters.Instance.DeselectHero(3);
 
             _selectedSecondDog = false;
             _secondDogHero.GetComponent<Image>().color = _ogSecondDog;
+            InfoOnOwnedCharacters.Instance.DeselectHero(4);
 
             _selectedThirdRat = false;
             _thirdRatHero.GetComponent<Image>().color = _ogThirdRat;
+            InfoOnOwnedCharacters.Instance.DeselectHero(5);
         }
     }
 
@@ -377,12 +463,15 @@ public class CharacterSelection : MonoBehaviour
 
                 _selectedSecondRat = false;
                 _secondRatHero.GetComponent<Image>().color = _ogSecondRat;
+                InfoOnOwnedCharacters.Instance.DeselectHero(3);
 
                 _selectedSecondDog = false;
                 _secondDogHero.GetComponent<Image>().color = _ogSecondDog;
+                InfoOnOwnedCharacters.Instance.DeselectHero(4);
 
                 _selectedThirdRat = false;
                 _thirdRatHero.GetComponent<Image>().color = _ogThirdRat;
+                InfoOnOwnedCharacters.Instance.DeselectHero(5);
             }
         }           
     }

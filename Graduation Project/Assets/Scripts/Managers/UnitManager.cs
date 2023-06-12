@@ -34,7 +34,7 @@ public class UnitManager : MonoBehaviour
 
         _units = Resources.LoadAll<ScriptableUnit>("Units").ToList();
 
-        HeroAmount = PlayerPrefs.GetInt("amountOfUnits");
+        HeroAmount = PlayerPrefs.GetInt("amountOfSelectedUnits");
         EnemyAmount = PlayerPrefs.GetInt("enemyAmount");
         
         if (PlayerPrefs.GetInt("ranpo") != 0)
@@ -294,6 +294,15 @@ public class UnitManager : MonoBehaviour
         GameManager.Instance.ChangeState(GameState.HerosTurn);
     }
 
+    public void DisplayUnmovedHeroes()
+    {
+        for(int i = 0; i < HeroAmount; i++)
+        {
+            if (HerosTile[i] != null) 
+            HerosTile[i].ShowUnmoved();
+        }
+    }
+
     //Get's a random unit of a specific faction (currently there's one option for either hero or enemy faction)
     //private T GetRandomUnit<T>(Faction faction) where T : BaseUnit
     //{
@@ -313,6 +322,7 @@ public class UnitManager : MonoBehaviour
                 if (HerosTile[i] != null && tile.name == HerosTile[i].name)
                 {
                     SelectedHeroIndex = i;
+                    HerosTile[i].HideUnmoved();
                 }
             }
         }
@@ -359,10 +369,12 @@ public class UnitManager : MonoBehaviour
                         if (distance[j] < distance[closestIndex] && HerosTile[closestIndex] != null)
                         {
                             closestIndex = j;
+                            Debug.Log("Closest " + j);
                         }
                         else
                         {
                             closestIndex = j;
+                            Debug.Log("Closest " + j);
                         }
                     }
                 }
@@ -374,7 +386,7 @@ public class UnitManager : MonoBehaviour
                 Vector2 enemyPosition = new Vector2(EnemiesTile[i].transform.position.x, EnemiesTile[i].transform.position.y);
 
                 //If a hero character is close to the enemy then it attacks
-                if (Mathf.Abs(Vector2.Distance(heroPosition, enemyPosition)) <= 1 && !MovedEnemyUnits[i])
+                if (Mathf.Abs(Vector2.Distance(heroPosition, enemyPosition)) < 2 && !MovedEnemyUnits[i])
                 {
                     AudioManager.Instance.Play("Attack");
 
@@ -398,22 +410,25 @@ public class UnitManager : MonoBehaviour
                 var tile = Enemy[i].Distance(HerosTile[closestIndex], EnemiesTile[i], Enemy[i].Type);
 
                 //Moves an enemy unit to another tile
-                if (tile.occupiedUnit == null && tile !=null) 
+                if (!MovedEnemyUnits[i]) 
                 {
-                    tile.SetUnit(Enemy[i]);
-                    EnemiesTile[i] = tile;
-                    UpdateEnemyMovementAvailability(i, true);
-                }
-                else
-                {
-
-                    UpdateEnemyMovementAvailability(i, true);
-                }
+                    if (tile != null)
+                    {
+                        tile.SetUnit(Enemy[i]);
+                        EnemiesTile[i] = tile;
+                        UpdateEnemyMovementAvailability(i, true);
+                        Debug.Log("Moved");
+                    }
+                    else
+                    {
+                        Debug.Log("Something else");
+                        UpdateEnemyMovementAvailability(i, true);
+                    }
+                }               
 
                 //If a hero unit has 0 or less health then the hero unit is destroyed and the enemy character moves to it's tile
                 if (hero.Health <= 0)
                 {
-                    AudioManager.Instance.Play("Death");
 
                     hero.UpdateWounded(true, hero.Type); 
                     Destroy(hero.gameObject);

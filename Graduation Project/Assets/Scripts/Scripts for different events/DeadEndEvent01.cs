@@ -20,7 +20,7 @@ public class DeadEndEvent01 : MonoBehaviour
             }
             else
             {
-                CurrencyManager.cheese += 1 * PlayerPrefs.GetInt("CheeseMultiplier");
+                CurrencyManager.cheese += 5 * PlayerPrefs.GetInt("CheeseMultiplier");
                 CurrencyManager.UpdateCheese();
                 MenuManager.Instance.UpdateCurrencyDisplay();
 

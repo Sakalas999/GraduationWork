@@ -9,7 +9,7 @@ public class MenuManager : MonoBehaviour
 {
     public static MenuManager Instance;
 
-    [SerializeField] private GameObject _selectedHeroObject, _tileObject, _tileUnitObject, _battleLostObject, _battleWonObject, _continueButton, _currencyDisplay, _resetWounded;
+    [SerializeField] private GameObject _selectedHeroObject, _tileUnitObject, _battleLostObject, _battleWonObject, _continueButton, _currencyDisplay, _resetWounded;
     [SerializeField] private TextMeshProUGUI _lossText, _rewardText;
     [SerializeField] private GameObject _mainMenu, _options;
 
@@ -60,13 +60,9 @@ public class MenuManager : MonoBehaviour
 
         if (tile == null || GameManager.Instance.GameState == GameState.BattleLost || GameManager.Instance.GameState == GameState.BattleWon)
         {
-            _tileObject.SetActive(false);
             _tileUnitObject.SetActive(false);
             return;
         }
-
-        _tileObject.GetComponentInChildren<TextMeshProUGUI>().text = tile.TileName;
-        _tileObject.SetActive(true);
 
         if (tile.occupiedUnit)
         {
@@ -98,7 +94,6 @@ public class MenuManager : MonoBehaviour
         }
 
         _battleLostObject.SetActive(true);
-        _tileObject.SetActive(false);
         _tileUnitObject.SetActive(false);
         _selectedHeroObject.SetActive(false);
 
@@ -134,7 +129,6 @@ public class MenuManager : MonoBehaviour
         }
 
         _battleWonObject.SetActive(true);
-        _tileObject.SetActive(false);
         _tileUnitObject.SetActive(false);
         _selectedHeroObject.SetActive(false);
 

@@ -26,15 +26,15 @@ public class RatLairEvent01 : MonoBehaviour
         _characterSelection.SetActive(true);
         _characterSelection.GetComponent<CharacterSelection>().ShowSelection();
 
-        int random = Random.Range(InfoOnOwnedCharacters.Instance.amountOfUnits,
-           InfoOnOwnedCharacters.Instance.amountOfUnits + Mathf.RoundToInt((PlayerPrefs.GetInt("RaidChance") / 10)) + 2);
+        int random = Random.Range(1,
+           1 + Mathf.RoundToInt((PlayerPrefs.GetInt("RaidChance") / 10)) + 2);
 
         int random1 = Random.Range(0, random);
+        random -= random1;
 
-        if (random1 < random)
-        {
-            int random2 = Random.Range(0, random - random1);           
-            InfoOnOwnedCharacters.Instance.AddEnemy(random, 0, random1, random2, 0, 0);                   
+        if  (random > 0)
+        {         
+            InfoOnOwnedCharacters.Instance.AddEnemy(random+random1, 0, random1, random, 0, 0);                   
         }
         else
             InfoOnOwnedCharacters.Instance.AddEnemy(random, 0, random1, 0, 0, 0);

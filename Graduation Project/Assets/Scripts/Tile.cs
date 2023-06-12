@@ -7,7 +7,7 @@ public class Tile : MonoBehaviour
     public string TileName;
     [SerializeField] private Color _baseColor, _offsetColor;
     [SerializeField] private SpriteRenderer _renderer;
-    [SerializeField] private GameObject _highlight, _available;
+    [SerializeField] private GameObject _highlight, _available, _unmoved;
 
     public BaseUnit occupiedUnit;
     public bool walkable => occupiedUnit == null;
@@ -32,13 +32,21 @@ public class Tile : MonoBehaviour
         if (GameManager.Instance.GameState == GameState.BattleWon || GameManager.Instance.GameState == GameState.BattleLost) return;
 
         //Displays the hovered over character's tile that it can move to
-            _highlight.SetActive(true);
+            //_highlight.SetActive(true);
             MenuManager.Instance.ShowTileInfo(this);
 
         //Displays occupied unit's name when hovered over
         if (occupiedUnit != null)
         {
-            UnitManager.Instance.GetAvailableTiles(occupiedUnit, this, true);
+            if (UnitManager.Instance.SelectedHero != null && (BaseHero)occupiedUnit == UnitManager.Instance.SelectedHero)
+            {
+                UnitManager.Instance.GetAvailableTiles(occupiedUnit, this, true);
+            }
+            else if (UnitManager.Instance.SelectedHero == null)
+                {
+                UnitManager.Instance.GetAvailableTiles(occupiedUnit, this, true);
+            
+            }
         }
     }
 
@@ -94,7 +102,8 @@ public class Tile : MonoBehaviour
                         debuff = 1;
                     }
 
-                    if (UnitManager.Instance.SelectedHero.Type == Type.Hero1)
+                    if (UnitManager.Instance.SelectedHero.Type == Type.Hero1 || UnitManager.Instance.SelectedHero.Type == Type.Hero3 
+                        || UnitManager.Instance.SelectedHero.Type == Type.Hero5)
                     {
                         float damage = (10 + PlayerPrefs.GetInt("DamageEffectsAll")) * PlayerPrefs.GetFloat("DamageEffectsH1");
                         Debug.Log("Damage " + damage);
@@ -102,7 +111,7 @@ public class Tile : MonoBehaviour
                         AudioManager.Instance.Play("Attack");
                     }
 
-                    if (UnitManager.Instance.SelectedHero.Type == Type.Hero2)
+                    if (UnitManager.Instance.SelectedHero.Type == Type.Hero2 || UnitManager.Instance.SelectedHero.Type == Type.Hero4)
                     {
                         float damage = (20 + PlayerPrefs.GetInt("DamageEffectsAll")) * PlayerPrefs.GetFloat("DamageEffectsH2");
                         occupiedUnit.TakeDamage( damage *  debuff);
@@ -119,7 +128,6 @@ public class Tile : MonoBehaviour
                                 index = i;
                             }
                         }
-                        AudioManager.Instance.Play("Death");
 
                         Destroy(enemy.gameObject);
                         UnitManager.Instance.GetAvailableTiles(UnitManager.Instance.HerosTile[UnitManager.Instance.SelectedHeroIndex].occupiedUnit,
@@ -274,5 +282,15 @@ public class Tile : MonoBehaviour
     public void DisablleAvailableTiles()
     {
         _available.SetActive(false);
+    }
+
+    public void ShowUnmoved()
+    {
+        _unmoved.SetActive(true);
+    }
+
+    public void HideUnmoved()
+    {
+        _unmoved.SetActive(false);
     }
 }

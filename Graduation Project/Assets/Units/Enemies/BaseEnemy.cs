@@ -40,7 +40,7 @@ public class BaseEnemy : BaseUnit
             {
                 distance = Mathf.Abs(Vector2.Distance(heroTile.transform.position, availabelTiles[i].transform.position));
 
-                if (distance < closestDistance)
+                if (distance < closestDistance && availabelTiles[i].occupiedUnit == null)
                 {
                     closestDistance = distance;
                     closestIndex = i;
@@ -71,6 +71,7 @@ public class BaseEnemy : BaseUnit
 
                     if (tile != enemyPosition)
                     {
+
                         array[indexer] = tile;
                         indexer++;
                     }

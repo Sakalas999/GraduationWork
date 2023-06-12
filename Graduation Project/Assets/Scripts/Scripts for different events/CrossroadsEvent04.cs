@@ -12,7 +12,7 @@ public class CrossroadsEvent04 : MonoBehaviour
 
         if (!_failed)
         {
-            CurrencyManager.cheese += 1 * PlayerPrefs.GetInt("CheeseMultiplier");
+            CurrencyManager.cheese += 5 * PlayerPrefs.GetInt("CheeseMultiplier");
             CurrencyManager.UpdateCheese();
 
             MenuManager.Instance.UpdateCurrencyDisplay();

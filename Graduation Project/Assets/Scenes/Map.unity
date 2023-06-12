@@ -1372,7 +1372,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You companions found an apple. Do you allow them to eat it or better to
+  m_text: Your companions found an apple. Do you allow them to eat it or better to
     leave it where they found it?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -2182,7 +2182,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Apperiantlly that apple belonged to someone. Prepare for battle now.
+  m_text: Apparentlly that apple belonged to someone. Prepare for battle now.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -4778,6 +4778,7 @@ MonoBehaviour:
   - {fileID: 170423602}
   - {fileID: 1694127349}
   - {fileID: 643301572}
+  _delete: {fileID: 0}
 --- !u!114 &162820688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5205,6 +5206,7 @@ MonoBehaviour:
   - {fileID: 1352487873}
   - {fileID: 796243630}
   - {fileID: 971630419}
+  _delete: {fileID: 0}
 --- !u!114 &176862694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6423,16 +6425,16 @@ RectTransform:
   m_GameObject: {fileID: 222763905}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 56299227}
-  m_Father: {fileID: 2020792778}
-  m_RootOrder: 7
+  m_Father: {fileID: 1327105942}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 10.582748}
+  m_AnchoredPosition: {x: 0, y: -275.92084}
   m_SizeDelta: {x: 48.00341, y: 21.1655}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &222763907
@@ -6732,6 +6734,7 @@ MonoBehaviour:
   - {fileID: 86067412}
   - {fileID: 1330133458}
   - {fileID: 1679024173}
+  _delete: {fileID: 241186780}
 --- !u!114 &241186784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6956,7 +6959,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: Orphans are thankfull to finally get something to eat. The sewers appear
-    to be less chaotic place.
+    to be a less chaotic place.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -7091,7 +7094,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You have been detected by camp owners while rumaging through their things.
+  m_text: You have been detected by camp owners while rummaging through their things.
     They look angry. Prepare for battle.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -20528,6 +20531,11 @@ MonoBehaviour:
   - {fileID: 2010822108}
   - {fileID: 1039151866}
   - {fileID: 1817215742}
+  deletable:
+  - {fileID: 0}
+  - {fileID: 2010822108}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &281787125
 GameObject:
   m_ObjectHideFlags: 0
@@ -21463,6 +21471,11 @@ MonoBehaviour:
   - {fileID: 1863926248}
   - {fileID: 437369615}
   - {fileID: 1108948939}
+  deletable:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &323235021
 GameObject:
   m_ObjectHideFlags: 0
@@ -23019,6 +23032,7 @@ MonoBehaviour:
   - {fileID: 1329337969}
   - {fileID: 467896691}
   - {fileID: 1835699472}
+  _delete: {fileID: 0}
 --- !u!114 &427457336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23139,6 +23153,7 @@ MonoBehaviour:
   - {fileID: 11959747}
   - {fileID: 1843927042}
   - {fileID: 192171644}
+  _delete: {fileID: 0}
 --- !u!114 &437369619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23797,6 +23812,7 @@ MonoBehaviour:
   - {fileID: 787977103}
   - {fileID: 1953496070}
   - {fileID: 1034443861}
+  _delete: {fileID: 0}
 --- !u!114 &479657251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24127,6 +24143,7 @@ MonoBehaviour:
   - {fileID: 1038977150}
   - {fileID: 137272274}
   - {fileID: 513663090}
+  _delete: {fileID: 0}
 --- !u!114 &488211408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24685,6 +24702,7 @@ MonoBehaviour:
   - {fileID: 123875467}
   - {fileID: 460387119}
   - {fileID: 1599352051}
+  _delete: {fileID: 508157449}
 --- !u!114 &508157455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24889,7 +24907,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Your party has been noticed while sneaking in. Prepare for a battle;
+  m_text: Your party has been noticed while sneaking in. Prepare for a battle.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -26353,7 +26371,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You see a group of mice bringing back home a lot of cheese. Do you attept
+  m_text: You see a group of mice bringing back home a lot of cheese. Do you attempt
     to intimidate them?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -27308,6 +27326,7 @@ MonoBehaviour:
   - {fileID: 1416841060}
   - {fileID: 1815793972}
   - {fileID: 1472143289}
+  _delete: {fileID: 0}
 --- !u!114 &660286588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27352,7 +27371,7 @@ Transform:
   - {fileID: 1476397037}
   - {fileID: 1311923144}
   - {fileID: 2122493474}
-  - {fileID: 1198145915}
+  - {fileID: 800167160}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -27823,8 +27842,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AllewayEvent02, Assembly-CSharp
+      - m_Target: {fileID: 944657479}
+        m_TargetAssemblyTypeName: AlleywayEvent04, Assembly-CSharp
         m_MethodName: SecondChoice
         m_Mode: 1
         m_Arguments:
@@ -28500,6 +28519,7 @@ MonoBehaviour:
   - {fileID: 929047397}
   - {fileID: 2055003441}
   - {fileID: 1694482374}
+  _delete: {fileID: 720340134}
 --- !u!114 &720340138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28664,7 +28684,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You decided that an orphaned mice is too much trouble. You continue your
+  m_text: You decided that an orphaned mouse is too much trouble. You continue your
     journey.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -31048,6 +31068,111 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 796243630}
   m_CullTransparentMesh: 1
+--- !u!1 &800167159
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 800167160}
+  - component: {fileID: 800167161}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &800167160
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800167159}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 679476807}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &800167161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800167159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef2aa72a4e213b84cb7ca8fb5d4451b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Map Theme
+    clip: {fileID: 8300000, guid: 033766cc31c97904bae4404b8a079544, type: 3}
+    loop: 1
+    volume: 0.7
+    pitch: 1
+    source: {fileID: 0}
+  - name: Batlle Theme
+    clip: {fileID: 8300000, guid: 51a4f1157b7ff1449b5e5cf064d584c7, type: 3}
+    loop: 1
+    volume: 0.7
+    pitch: 1
+    source: {fileID: 0}
+  - name: Base Theme
+    clip: {fileID: 8300000, guid: 06906d718be5b6a4cb2df8732bf39832, type: 3}
+    loop: 1
+    volume: 0.7
+    pitch: 1
+    source: {fileID: 0}
+  - name: Main Menu Theme
+    clip: {fileID: 8300000, guid: 89f935015cc98724a862a586326fdf21, type: 3}
+    loop: 1
+    volume: 0.7
+    pitch: 1
+    source: {fileID: 0}
+  - name: Victory
+    clip: {fileID: 8300000, guid: 2667a0a008b044e218b63df62e2be749, type: 3}
+    loop: 0
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Building
+    clip: {fileID: 8300000, guid: 79180f511d89441b9aa23ccae1992fe0, type: 3}
+    loop: 0
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Clicking
+    clip: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
+    loop: 0
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Attack
+    clip: {fileID: 8300000, guid: 79e6baad2fd414b82a6d49ce1568d2e5, type: 3}
+    loop: 0
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Game Over
+    clip: {fileID: 8300000, guid: 559c232a43caebe41870ce54786f604e, type: 3}
+    loop: 1
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Game Won
+    clip: {fileID: 8300000, guid: 35967e8a4dfb1664e9b066939272c0a4, type: 3}
+    loop: 1
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
 --- !u!1 &825190261
 GameObject:
   m_ObjectHideFlags: 0
@@ -31316,7 +31441,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Oh no. You have been spotted taking cheese by others. Prepare for battle
+  m_text: Oh no... You have been spotted taking cheese by others. Prepare for battle
     now.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -33325,11 +33450,12 @@ MonoBehaviour:
   texts:
   - {fileID: 1368379855}
   - {fileID: 622389520}
-  - {fileID: 622389520}
+  - {fileID: 400617179}
   buttons:
   - {fileID: 2011496821}
   - {fileID: 694837169}
   - {fileID: 106846131}
+  _delete: {fileID: 0}
 --- !u!114 &944657477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34120,6 +34246,7 @@ MonoBehaviour:
   - {fileID: 2100860952}
   - {fileID: 1832793426}
   - {fileID: 88757539}
+  _delete: {fileID: 0}
 --- !u!114 &975498156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35431,6 +35558,7 @@ MonoBehaviour:
   - {fileID: 654429905}
   - {fileID: 961902346}
   - {fileID: 18220755}
+  _delete: {fileID: 0}
 --- !u!114 &1039151870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35655,7 +35783,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You found a healing salve, one of your companion's injuries have been removed.
+  m_text: You encountered an unfriendly scavanger group. Prepare for battle.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -35925,7 +36053,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: A new mice companion has joined your party.
+  m_text: A new mouse companion has joined your party.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -36364,6 +36492,7 @@ MonoBehaviour:
   - {fileID: 2126591293}
   - {fileID: 2072280881}
   - {fileID: 592644441}
+  _delete: {fileID: 0}
 --- !u!114 &1108948943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37250,6 +37379,7 @@ MonoBehaviour:
   - {fileID: 335107203}
   - {fileID: 1649523270}
   - {fileID: 929442129}
+  _delete: {fileID: 0}
 --- !u!114 &1123068525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37358,8 +37488,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You have decided that the risk of getting cheese nearby the realm of the
-    cat is too risky. You continue your journey somewhere else.
+  m_text: You have decided that the risk of getting cheese nearby where the cat roams
+    is too risky. You continue your journey somewhere else.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -37763,7 +37893,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You decide that sneaking into Rats lair is a deathwish. You continue your
+  m_text: You decide that sneaking into Rats' lair is a deathwish. You continue your
     journey.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -38654,75 +38784,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0.18696976, y: 5.398899}
   m_SizeDelta: {x: -13.46204, y: -33.0474}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1198145914
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1198145915}
-  - component: {fileID: 1198145916}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1198145915
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1198145914}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 679476807}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1198145916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1198145914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef2aa72a4e213b84cb7ca8fb5d4451b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: Map Theme
-    clip: {fileID: 8300000, guid: 033766cc31c97904bae4404b8a079544, type: 3}
-    loop: 1
-    volume: 1
-    pitch: 1
-    source: {fileID: 0}
-  - name: Batlle Theme
-    clip: {fileID: 8300000, guid: 51a4f1157b7ff1449b5e5cf064d584c7, type: 3}
-    loop: 1
-    volume: 1
-    pitch: 1
-    source: {fileID: 0}
-  - name: Base Theme
-    clip: {fileID: 8300000, guid: 06906d718be5b6a4cb2df8732bf39832, type: 3}
-    loop: 1
-    volume: 1
-    pitch: 1
-    source: {fileID: 0}
-  - name: Main Menu Theme
-    clip: {fileID: 8300000, guid: 89f935015cc98724a862a586326fdf21, type: 3}
-    loop: 1
-    volume: 1
-    pitch: 1
-    source: {fileID: 0}
 --- !u!1 &1200392237
 GameObject:
   m_ObjectHideFlags: 0
@@ -38896,7 +38957,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You notice some cheese lying in the outskirts of the town and nobody is
+  m_text: You notice some cheese laying in the outskirts of the town and nobody is
     watching. Do you Attempt to steal it?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -39833,8 +39894,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You do not want to risk running into dangerous scavengers and decide to
-    continue your journey.
+  m_text: You do not want to risk someone accidentelly getting sick from bad food.
+    You continue your journey.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -39986,6 +40047,11 @@ MonoBehaviour:
   - {fileID: 975498152}
   - {fileID: 944657473}
   - {fileID: 1321337459}
+  deletable:
+  - {fileID: 508157449}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1246891940
 GameObject:
   m_ObjectHideFlags: 0
@@ -40702,7 +40768,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Entering the crossroads you notice a starving orphaned mice. Do you take
+  m_text: Entering the crossroads you notice a starving orphaned mouse. Do you take
     them in?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -40973,7 +41039,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Even if the rat doesn't appear to be aggressive it dosen't mean tht this
+  m_text: Even if the rat doesn't appear to be aggressive it dosen't mean that this
     isn't a trap. You decide to leave instead of endangering your party.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -41754,6 +41820,7 @@ MonoBehaviour:
   - {fileID: 1749984600}
   - {fileID: 1165212704}
   - {fileID: 934835561}
+  _delete: {fileID: 0}
 --- !u!114 &1307633734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42015,6 +42082,7 @@ MonoBehaviour:
   - {fileID: 1416571351}
   - {fileID: 1907031160}
   - {fileID: 18775231}
+  _delete: {fileID: 0}
 --- !u!114 &1321337463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42099,6 +42167,7 @@ Transform:
   - {fileID: 1677755696}
   - {fileID: 720340135}
   - {fileID: 1873253599}
+  - {fileID: 222763906}
   m_Father: {fileID: 1278790573}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -42120,6 +42189,11 @@ MonoBehaviour:
   - {fileID: 1677755695}
   - {fileID: 720340134}
   - {fileID: 1873253598}
+  deletable:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 720340134}
 --- !u!1 &1329337969
 GameObject:
   m_ObjectHideFlags: 0
@@ -43169,6 +43243,7 @@ MonoBehaviour:
   - {fileID: 1861865121}
   - {fileID: 1921319330}
   - {fileID: 1209924384}
+  _delete: {fileID: 0}
 --- !u!114 &1364946719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43490,8 +43565,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You find some fresh bones of rodents laying nearby. Do you attempt to search
-    their bones?
+  m_text: You find some fresh bones of rodents' laying nearby. Do you attempt to
+    search their bones?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -45473,7 +45548,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Press a flag to get an Event. \nW and S keys mowe the map up and down.
+  m_text: "Press a flag to get an Event. \nW and S keys move the map up and down.
     \nGates at the bottom left corner lead to base. \nGates at the right top corner
     lead to serious danger. \nPress I to see owned characters.\n"
   m_isRightToLeft: 0
@@ -46540,7 +46615,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectedHeroObject: {fileID: 0}
-  _tileObject: {fileID: 0}
   _tileUnitObject: {fileID: 0}
   _battleLostObject: {fileID: 0}
   _battleWonObject: {fileID: 0}
@@ -51999,8 +52073,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The unfortunate soul has been badly injuried, however, the wound dosen't
-    appear to be infected. You take him as one of your companions.
+  m_text: You help nurse back the injured rat. Once he gets better he introduces
+    himself as Poe. Poe decided to join you on your journey.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -52613,11 +52687,14 @@ MonoBehaviour:
   - {fileID: 2011180416}
   - {fileID: 2104611679}
   - {fileID: 1149874337}
+  - {fileID: 0}
+  - {fileID: 513782057}
   buttons:
   - {fileID: 1222337798}
   - {fileID: 634622549}
   - {fileID: 2019353198}
   - {fileID: 651889584}
+  _delete: {fileID: 0}
 --- !u!114 &1677755699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57993,6 +58070,7 @@ MonoBehaviour:
   - {fileID: 426168206}
   - {fileID: 1220732360}
   - {fileID: 1730142341}
+  _delete: {fileID: 0}
 --- !u!114 &1817215746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58635,6 +58713,11 @@ MonoBehaviour:
   - {fileID: 427457332}
   - {fileID: 162820684}
   - {fileID: 2020792777}
+  deletable:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 241186780}
+  - {fileID: 0}
 --- !u!1 &1860204674
 GameObject:
   m_ObjectHideFlags: 0
@@ -58975,6 +59058,7 @@ MonoBehaviour:
   - {fileID: 582963645}
   - {fileID: 1471252298}
   - {fileID: 444024377}
+  _delete: {fileID: 0}
 --- !u!114 &1863926251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59186,6 +59270,7 @@ MonoBehaviour:
   - {fileID: 490831500}
   - {fileID: 1412047009}
   - {fileID: 1340734438}
+  _delete: {fileID: 0}
 --- !u!114 &1873253602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59545,7 +59630,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: After trading some of your cheese with the mice one of your companions
+  m_text: After trading some of your cheese with the mice, one of your companions
     increased their damage dealt to opponents.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -61248,6 +61333,7 @@ MonoBehaviour:
   - {fileID: 1557845651}
   - {fileID: 1610702731}
   - {fileID: 99064667}
+  _delete: {fileID: 2010822108}
 --- !u!114 &2010822112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61497,8 +61583,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AllewayEvent02, Assembly-CSharp
+      - m_Target: {fileID: 944657479}
+        m_TargetAssemblyTypeName: AlleywayEvent04, Assembly-CSharp
         m_MethodName: FirstChoice
         m_Mode: 1
         m_Arguments:
@@ -62145,7 +62231,6 @@ RectTransform:
   - {fileID: 689163898}
   - {fileID: 2017797461}
   - {fileID: 104811837}
-  - {fileID: 222763906}
   m_Father: {fileID: 1859268273}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -62177,6 +62262,7 @@ MonoBehaviour:
   - {fileID: 2017797457}
   - {fileID: 104811836}
   - {fileID: 222763905}
+  _delete: {fileID: 0}
 --- !u!114 &2020792781
 MonoBehaviour:
   m_ObjectHideFlags: 0

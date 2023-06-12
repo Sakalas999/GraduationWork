@@ -53,6 +53,14 @@ public class AudioManager : MonoBehaviour
         {
             return "Base Theme";
         }
+        else if (SceneManager.GetActiveScene().buildIndex == 4)
+        {
+            return "Game Over";
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 5)
+        {
+            return "Game Won";
+        }
         else
         {
             return "Main Menu Theme";

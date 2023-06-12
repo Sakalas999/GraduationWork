@@ -11,7 +11,7 @@ public class AllewayEvent02 : MonoBehaviour
 
         if (!_failed)
         {
-            CurrencyManager.cheese += 1 * PlayerPrefs.GetInt("CheeseMultiplier");
+            CurrencyManager.cheese += 5 * PlayerPrefs.GetInt("CheeseMultiplier");
             CurrencyManager.UpdateCheese();
 
             MenuManager.Instance.UpdateCurrencyDisplay();
@@ -46,25 +46,34 @@ public class AllewayEvent02 : MonoBehaviour
         Map.Instance.characterSelectionWindow.SetActive(true);
         Map.Instance.characterSelectionWindow.GetComponent<CharacterSelection>().ShowSelection();
 
-        int random = Random.Range(InfoOnOwnedCharacters.Instance.amountOfUnits,
-           InfoOnOwnedCharacters.Instance.amountOfUnits + Mathf.RoundToInt((PlayerPrefs.GetInt("RaidChance") / 10)) + 2);
+        int random = Random.Range(1,
+           1 + Mathf.RoundToInt((PlayerPrefs.GetInt("RaidChance") / 10)) + 2);
 
         int random3 = Random.Range(0, 1);
         random -= random3;
-        int random1 = Random.Range(0, random);
 
-        if (random1 < random)
+        if (random > 0)
         {
-            int random2 = Random.Range(0, random - random1);
+            int random1 = Random.Range(0, random);
+            random -= random1;
 
-            if (random1 + random2 < random)
-                InfoOnOwnedCharacters.Instance.AddEnemy(random+1, random1, random2, random - random1 - random2, 0, random3);
+            if (random > 0)
+            {
+                int random2 = Random.Range(0, random);
+                random -= random2;
+
+                if (random > 0)
+                    InfoOnOwnedCharacters.Instance.AddEnemy(random + random1 + random2 + random3, random1, random2, random, 0, random3);
+                else
+                    InfoOnOwnedCharacters.Instance.AddEnemy(random + random1 + random2 + random3, random1, random2, 0, 0, random3);
+            }
             else
-                InfoOnOwnedCharacters.Instance.AddEnemy(random+1, random1, random2, 0, 0, random3);
-
+            {
+                InfoOnOwnedCharacters.Instance.AddEnemy(random + random3 + random1, random1, 0, 0, 0, random3);
+            }
         }
         else
-            InfoOnOwnedCharacters.Instance.AddEnemy(random, random1, 0, 0, 0, 0);
+            InfoOnOwnedCharacters.Instance.AddEnemy(random + random3, 0, 0, 0, 0, random3);
         GetComponentInParent<Event>().CloseTheEvent();
         Map.Instance.eventOpen = true;
     }

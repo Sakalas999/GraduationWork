@@ -8,6 +8,7 @@ public class Event : MonoBehaviour
 {
     public GameObject[] texts;
     public GameObject[] buttons;
+    public GameObject _delete;
 
     public void Choice01()
     {
@@ -17,7 +18,6 @@ public class Event : MonoBehaviour
         buttons[0].SetActive(false);
         buttons[1].SetActive(false);
         buttons[2].SetActive(true);
-
     }
 
     public void Choice02()
@@ -87,6 +87,12 @@ public class Event : MonoBehaviour
             texts[4].SetActive(false);
         if (texts.Length > 5 && texts[5] != null)
             texts[5].SetActive(false);
+
+
+        if (_delete != null)
+        {
+            DestroyObject(_delete);
+        }
 
         Map.Instance.eventOpen = false;
 

@@ -25,8 +25,8 @@ public class RatLairEvent05 : MonoBehaviour
         Map.Instance.characterSelectionWindow.SetActive(true);
         Map.Instance.characterSelectionWindow.GetComponent<CharacterSelection>().ShowSelection();
 
-        int random = Random.Range(InfoOnOwnedCharacters.Instance.amountOfUnits,
-           InfoOnOwnedCharacters.Instance.amountOfUnits + Mathf.RoundToInt((PlayerPrefs.GetInt("RaidChance") / 10)) + 2);
+        int random = Random.Range(1,
+           1 + Mathf.RoundToInt((PlayerPrefs.GetInt("RaidChance") / 10)) + 2);
 
         InfoOnOwnedCharacters.Instance.AddEnemy(random, random, 0, 0, 0, 0);
         GetComponentInParent<Event>().CloseTheEvent();
