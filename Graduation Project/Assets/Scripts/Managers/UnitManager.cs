@@ -127,7 +127,10 @@ public class UnitManager : MonoBehaviour
 
         EnemyLeft = EnemyAmount;
 
-        CurrencyManager.Count(EnemyTypes[0], EnemyTypes[1]);
+        int count = EnemyTypes[1] + EnemyTypes[2];
+        int count2 = EnemyTypes[4] + EnemyTypes[3];
+
+        CurrencyManager.Count(EnemyTypes[0], count, count2);
 
     }
 

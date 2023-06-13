@@ -26,11 +26,12 @@ public class CurrencyManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    public static void Count(int amountOfType1, int amountOfType2)
+    public static void Count(int amountOfType1, int amountOfType2, int amountOfType3)
     {
         int count1 = amountOfType1 * 1 * PlayerPrefs.GetInt("CheeseMultiplier");
         int count2 = amountOfType2 * 2 * PlayerPrefs.GetInt("CheeseMultiplier");
+        int count3 = amountOfType3 * 3 * PlayerPrefs.GetInt("CheeseMultiplier");
 
-        count = count1 + count2;
+        count = count1 + count2 + count3;
     }
 }

@@ -128,6 +128,11 @@ public class MenuManager : MonoBehaviour
             return;
         }
 
+        CurrencyManager.cheese += CurrencyManager.count;
+        CurrencyManager.UpdateCheese();
+
+        UpdateCurrencyDisplay();
+
         _battleWonObject.SetActive(true);
         _tileUnitObject.SetActive(false);
         _selectedHeroObject.SetActive(false);
