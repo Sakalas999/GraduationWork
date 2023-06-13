@@ -57,11 +57,13 @@ public class DeadEndEvent03 : MonoBehaviour
 
     public void Continue()
     {
+        AudioManager.Instance.Play("Clicking");
+
         Map.Instance.loadingBattle = true;
         Map.Instance.characterSelectionWindow.SetActive(true);
         Map.Instance.characterSelectionWindow.GetComponent<CharacterSelection>().ShowSelection();
 
-        int random = Random.Range(InfoOnOwnedCharacters.Instance.amountOfUnits,
+        int random = Random.Range(1,
             InfoOnOwnedCharacters.Instance.amountOfUnits + Mathf.RoundToInt((PlayerPrefs.GetInt("RaidChance") / 10)) + 2);
 
         int random1 = Random.Range(0, random);

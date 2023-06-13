@@ -58,12 +58,14 @@ public class RatLairEvent03 : MonoBehaviour
 
     public void Continue()
     {
+        AudioManager.Instance.Play("Clicking");
+
         Map.Instance.loadingBattle = true;
         Map.Instance.characterSelectionWindow.SetActive(true);
         Map.Instance.characterSelectionWindow.GetComponent<CharacterSelection>().ShowSelection();
 
         int random = Random.Range(1,
-           1 + Mathf.RoundToInt((PlayerPrefs.GetInt("RaidChance") / 10)) + 2);
+           InfoOnOwnedCharacters.Instance.amountOfUnits + Mathf.RoundToInt((PlayerPrefs.GetInt("RaidChance") / 10)) + 2);
 
         int random1 = Random.Range(0, random);
         random -= random1;
@@ -73,7 +75,7 @@ public class RatLairEvent03 : MonoBehaviour
             InfoOnOwnedCharacters.Instance.AddEnemy(random+random1, 0, random1, random, 0, 0);
         }
         else
-            InfoOnOwnedCharacters.Instance.AddEnemy(random, 0, random1, 0, 0, 0);
+            InfoOnOwnedCharacters.Instance.AddEnemy(random1, 0, random1, 0, 0, 0);
         GetComponentInParent<Event>().CloseTheEvent();
         Map.Instance.eventOpen = true;
     }

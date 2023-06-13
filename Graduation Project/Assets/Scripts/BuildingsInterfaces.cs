@@ -45,6 +45,8 @@ public class BuildingsInterfaces : MonoBehaviour
 
         if (CurrencyManager.cheese >= 5)
         {
+            AudioManager.Instance.Play("Building");
+
             BuildingManager.Instance.UpgradeBuilding(code);
 
             if (code == "A") _currentInterface.GetComponentInChildren<Armory>().UpdateText();

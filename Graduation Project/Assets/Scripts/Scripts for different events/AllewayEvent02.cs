@@ -42,12 +42,14 @@ public class AllewayEvent02 : MonoBehaviour
 
     public void Continue()
     {
+        AudioManager.Instance.Play("Clicking");
+
         Map.Instance.loadingBattle = true;
         Map.Instance.characterSelectionWindow.SetActive(true);
         Map.Instance.characterSelectionWindow.GetComponent<CharacterSelection>().ShowSelection();
 
         int random = Random.Range(1,
-           1 + Mathf.RoundToInt((PlayerPrefs.GetInt("RaidChance") / 10)) + 2);
+           InfoOnOwnedCharacters.Instance.amountOfUnits + Mathf.RoundToInt((PlayerPrefs.GetInt("RaidChance") / 10)) + 2);
 
         int random3 = Random.Range(0, 1);
         random -= random3;

@@ -11,6 +11,8 @@ public class ToBuildInterface : MonoBehaviour
     {
         if (CurrencyManager.cheese >= 5)
         {
+            AudioManager.Instance.Play("Building");
+
             this.gameObject.SetActive(false);
             BuildSlotManager.Instance.Build(_buildSlot);
 

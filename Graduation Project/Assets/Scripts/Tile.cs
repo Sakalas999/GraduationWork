@@ -32,7 +32,7 @@ public class Tile : MonoBehaviour
         if (GameManager.Instance.GameState == GameState.BattleWon || GameManager.Instance.GameState == GameState.BattleLost) return;
 
         //Displays the hovered over character's tile that it can move to
-            //_highlight.SetActive(true);
+            _highlight.SetActive(true);
             MenuManager.Instance.ShowTileInfo(this);
 
         //Displays occupied unit's name when hovered over
@@ -43,7 +43,7 @@ public class Tile : MonoBehaviour
                 UnitManager.Instance.GetAvailableTiles(occupiedUnit, this, true);
             }
             else if (UnitManager.Instance.SelectedHero == null)
-                {
+            {
                 UnitManager.Instance.GetAvailableTiles(occupiedUnit, this, true);
             
             }
@@ -60,7 +60,7 @@ public class Tile : MonoBehaviour
         //this is for selected character to still show the available tiles when the mouse leaves it's area
         if (occupiedUnit != null)
         {
-            if (occupiedUnit.Faction == Faction.Hero && UnitManager.Instance.SelectedHero != null) return;
+            if (UnitManager.Instance.SelectedHero != null) return;
             else
             {
 

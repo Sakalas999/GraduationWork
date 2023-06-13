@@ -55,6 +55,8 @@ public class DeadEndEvent05 : MonoBehaviour
 
     public void Continue()
     {
+        AudioManager.Instance.Play("Clicking");
+
         Map.Instance.loadingBattle = true;
         Map.Instance.characterSelectionWindow.SetActive(true);
         Map.Instance.characterSelectionWindow.GetComponent<CharacterSelection>().ShowSelection();

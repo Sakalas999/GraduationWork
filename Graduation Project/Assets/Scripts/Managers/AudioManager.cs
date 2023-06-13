@@ -9,7 +9,6 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
     public Sound[] sounds;
-    private float _volume;
 
     void Awake()
     {
@@ -64,22 +63,6 @@ public class AudioManager : MonoBehaviour
         else
         {
             return "Main Menu Theme";
-        }
-    }
-
-    public void PlaySoundEffect (string name)
-    {
-        if (name == "Clicking")
-        {
-
-        }
-        else if (name == "Event popup")
-        {
-
-        }
-        else if (name == "attack")
-        {
-
         }
     }
 }

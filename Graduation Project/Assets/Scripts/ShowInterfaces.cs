@@ -11,6 +11,7 @@ public class ShowInterfaces : MonoBehaviour
     {
         if (!PreventMultipleUi.Instance.isUIWindowOpen)
         {
+            AudioManager.Instance.Play("Clicking");
             _armoryInterface.SetActive(true);
             _armoryInterface.GetComponentInChildren<Armory>().UpdateText();
             PreventMultipleUi.Instance.isUIWindowOpen = true;
@@ -21,6 +22,7 @@ public class ShowInterfaces : MonoBehaviour
     {
         if (!PreventMultipleUi.Instance.isUIWindowOpen)
         {
+            AudioManager.Instance.Play("Clicking");
             _gymInterface.SetActive(true);
             _gymInterface.GetComponentInChildren<Gym>().UpdateText();
             PreventMultipleUi.Instance.isUIWindowOpen = true;
@@ -31,6 +33,7 @@ public class ShowInterfaces : MonoBehaviour
     {
         if (!PreventMultipleUi.Instance.isUIWindowOpen)
         {
+            AudioManager.Instance.Play("Clicking");
             _healersHutInterface.SetActive(true);
             _healersHutInterface.GetComponentInChildren<HealersHut>().UpdateText();
             PreventMultipleUi.Instance.isUIWindowOpen = true;
@@ -41,6 +44,7 @@ public class ShowInterfaces : MonoBehaviour
     {
         if (!PreventMultipleUi.Instance.isUIWindowOpen)
         {
+            AudioManager.Instance.Play("Clicking");
             _scoutsHutInterface.SetActive(true);
             _scoutsHutInterface.GetComponentInChildren<ScoutsHut>().UpdateText();
             PreventMultipleUi.Instance.isUIWindowOpen = true;
@@ -51,6 +55,7 @@ public class ShowInterfaces : MonoBehaviour
     {
         if (!PreventMultipleUi.Instance.isUIWindowOpen)
         {
+            AudioManager.Instance.Play("Clicking");
             _cheeseStorageInterface.SetActive(true);
             _cheeseStorageInterface.GetComponentInChildren<CheeseStorage>().UpdateText();
             PreventMultipleUi.Instance.isUIWindowOpen = true;

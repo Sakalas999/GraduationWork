@@ -54,7 +54,7 @@ public class CrossroadsEvent01 : MonoBehaviour
     public void RandomChance()
     {
         int random = Random.Range(0, 10);
-        int failChance = 0 + Mathf.RoundToInt((PlayerPrefs.GetInt("RaidChance") / 10));
+        int failChance = 3 + Mathf.RoundToInt((PlayerPrefs.GetInt("RaidChance") / 10));
 
         if (random <= failChance)
             _failed = true;

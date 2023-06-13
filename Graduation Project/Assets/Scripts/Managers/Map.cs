@@ -24,6 +24,8 @@ public class Map : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I) && !eventOpen)
         {
+            AudioManager.Instance.Play("Clicking");
+
             eventOpen = true;
             characterWindowOpen = true;
             characterSelectionWindow.SetActive(true);
@@ -33,6 +35,8 @@ public class Map : MonoBehaviour
 
     public void MiceTown()
     {
+        AudioManager.Instance.Play("Clicking");
+
         if (eventOpen == false)
         {
             Debug.Log("Mice town location pressed");
@@ -43,6 +47,8 @@ public class Map : MonoBehaviour
 
     public void Crossroads()
     {
+        AudioManager.Instance.Play("Clicking");
+
         if (eventOpen == false)
         {
             Debug.Log("Crossroads location pressed");
@@ -53,6 +59,8 @@ public class Map : MonoBehaviour
 
     public void DeadEnd()
     {
+      AudioManager.Instance.Play("Clicking");
+
         if (eventOpen == false)
         {
             Debug.Log("DeadEnd location pressed");
@@ -63,6 +71,8 @@ public class Map : MonoBehaviour
 
     public void RatLair()
     {
+        AudioManager.Instance.Play("Clicking");
+
         if (eventOpen == false)
         {
             Debug.Log("RatLair location pressed");
@@ -73,6 +83,8 @@ public class Map : MonoBehaviour
 
     public void Alleyway()
     {
+        AudioManager.Instance.Play("Clicking");
+
         if (eventOpen == false)
         {
             Debug.Log("Alleyway location pressed");
@@ -88,12 +100,16 @@ public class Map : MonoBehaviour
 
     public void EndBattle()
     {
+        AudioManager.Instance.Play("Clicking");
+
         areYouSure.SetActive(true);
         eventOpen = true;
     }
 
     public void Tips()
     {
+        AudioManager.Instance.Play("Clicking");
+
         if (!eventOpen)
         {
             tipsDisplay.SetActive(true);

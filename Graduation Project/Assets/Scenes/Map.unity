@@ -31152,7 +31152,7 @@ MonoBehaviour:
   - name: Clicking
     clip: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
     loop: 0
-    volume: 1
+    volume: 0.7
     pitch: 1
     source: {fileID: 0}
   - name: Attack

@@ -8,6 +8,8 @@ public class EndBattle : MonoBehaviour
 
     public void Yes()
     {
+        AudioManager.Instance.Play("Clicking");
+
         this.gameObject.SetActive(false);
 
         characterSelectionWindow.SetActive(true);

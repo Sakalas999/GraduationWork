@@ -24,6 +24,8 @@ public class PreventMultipleUi : MonoBehaviour
 
     public void Tips()
     {
+        AudioManager.Instance.Play("Clicking");
+
         if (!isUIWindowOpen)
         {
             tipsDisplay.SetActive(true);

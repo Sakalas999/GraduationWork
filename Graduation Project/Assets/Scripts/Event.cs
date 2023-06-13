@@ -12,6 +12,7 @@ public class Event : MonoBehaviour
 
     public void Choice01()
     {
+
         texts[0].SetActive(false);
         texts[1].SetActive(true);
 
@@ -22,6 +23,7 @@ public class Event : MonoBehaviour
 
     public void Choice02()
     {
+
         texts[0].SetActive(false);
         texts[2].SetActive(true);
 
@@ -32,6 +34,7 @@ public class Event : MonoBehaviour
 
     public void Choice02More()
     {
+
         texts[0].SetActive(false);
         texts[2].SetActive(true);
 
@@ -42,6 +45,7 @@ public class Event : MonoBehaviour
 
     public void Choice01More()
     {
+
         texts[0].SetActive(false);
         texts[1].SetActive(true);
 
@@ -52,6 +56,7 @@ public class Event : MonoBehaviour
 
     public void Choice01Failed()
     {
+
         texts[0].SetActive(false);
         texts[4].SetActive(true);
 
@@ -62,6 +67,7 @@ public class Event : MonoBehaviour
 
     public void Choice01FailedCombat()
     {
+
         texts[0].SetActive(false);
         texts[4].SetActive(true);
 
@@ -72,6 +78,7 @@ public class Event : MonoBehaviour
 
     public void CloseTheEvent()
     {
+
         buttons[2].transform.parent.gameObject.SetActive(false);
         buttons[0].SetActive(true);
         buttons[1].SetActive(true);

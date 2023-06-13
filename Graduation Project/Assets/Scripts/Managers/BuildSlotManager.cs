@@ -35,6 +35,7 @@ public class BuildSlotManager : MonoBehaviour
             PlayerPrefs.SetInt("RaidChance", 1);
             PlayerPrefs.Save();
 
+            AudioManager.Instance.Play("Clicking");
             _raid.SetActive(true);
             //PreventMultipleUi.Instance.isUIWindowOpen = true;
 
@@ -332,6 +333,8 @@ public class BuildSlotManager : MonoBehaviour
 
     public void AskAboutArmory()
     {
+        AudioManager.Instance.Play("Clicking");
+
         if (!PreventMultipleUi.Instance.isUIWindowOpen)
         {
             _toBuildA.SetActive(true);
@@ -342,6 +345,8 @@ public class BuildSlotManager : MonoBehaviour
 
     public void AskAboutGym()
     {
+        AudioManager.Instance.Play("Clicking");
+
         if (!PreventMultipleUi.Instance.isUIWindowOpen)
         {
             _toBuildG.SetActive(true);
@@ -352,6 +357,8 @@ public class BuildSlotManager : MonoBehaviour
 
     public void AskAboutHealersHut()
     {
+        AudioManager.Instance.Play("Clicking");
+
         if (!PreventMultipleUi.Instance.isUIWindowOpen)
         {
             _toBuildHH.SetActive(true);
@@ -362,6 +369,8 @@ public class BuildSlotManager : MonoBehaviour
 
     public void AskAboutScoutsHut()
     {
+        AudioManager.Instance.Play("Clicking");
+
         if (!PreventMultipleUi.Instance.isUIWindowOpen)
         {
             _toBuildSH.SetActive(true);
@@ -372,6 +381,8 @@ public class BuildSlotManager : MonoBehaviour
 
     public void AskAboutCheeseStorage()
     {
+        AudioManager.Instance.Play("Clicking");
+
         if (!PreventMultipleUi.Instance.isUIWindowOpen)
         {
             _toBuildCS.SetActive(true);

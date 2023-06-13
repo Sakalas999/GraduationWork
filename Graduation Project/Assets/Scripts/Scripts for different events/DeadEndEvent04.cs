@@ -63,7 +63,7 @@ public class DeadEndEvent04 : MonoBehaviour
         else if (random == 5 && InfoOnOwnedCharacters.Instance.isOwnedH5)
             InfoOnOwnedCharacters.Instance.UpdateWounded(random, true);
         else
-            RandomUnit();
+            RandomUnitNegative();
     }
 
     public void SecondChoice()
